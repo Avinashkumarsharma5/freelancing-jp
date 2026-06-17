@@ -459,7 +459,7 @@ function StatsBar() {
       <span className="overlay-badge">
         Featured Project
       </span>
-
+//avi
       <h3>
         Experience Premium Living
       </h3>
