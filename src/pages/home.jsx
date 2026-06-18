@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
@@ -14,11 +13,9 @@ import {
   Landmark,
   Mail,
   Map,
-  
   Menu,
   Mic,
-    Heart,
-
+  Heart,
   MapPin,
   Train,
   School,
@@ -32,12 +29,8 @@ import {
   Star,
   MessageCircle,
   Users,
-
   GitCompare,
   Clock,
-
-
-
   Award,
   Sparkles,
   Video,
@@ -78,7 +71,7 @@ const browseTypes = [
   {
     title: "Luxury Apartment",
     slug: "luxury-apartment",
-     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80",
     count: "245 properties",
   },
   {
@@ -181,15 +174,13 @@ const premiumLocations = [
   { name: 'Dwarka Expressway', properties: 234, growth: 25.7, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80' },
 ];
 
-
-
 const services = [
-  { title: 'Buy Luxury Homes', icon: Home, desc: 'Curated collection of premium properties', color: '#D4AF37' },
-  { title: 'Sell Your Property', icon: CircleDollarSign, desc: 'Expert valuation & marketing', color: '#0F172A' },
-  { title: 'Premium Rentals', icon: Building2, desc: 'Luxury leasing solutions', color: '#D4AF37' },
-  { title: 'Investment Advisory', icon: TrendingUp, desc: 'High-ROI opportunities', color: '#0F172A' },
-  { title: 'Home Loan Assistance', icon: Landmark, desc: 'Best rates from top banks', color: '#D4AF37' },
-  { title: 'Legal Consultation', icon: FileCheck2, desc: 'End-to-end documentation', color: '#0F172A' },
+  { title: 'Buy Luxury Homes', icon: Home, desc: 'Curated collection of premium properties', color: '#B8892D' },
+  { title: 'Sell Your Property', icon: CircleDollarSign, desc: 'Expert valuation & marketing', color: '#1B1B1B' },
+  { title: 'Premium Rentals', icon: Building2, desc: 'Luxury leasing solutions', color: '#B8892D' },
+  { title: 'Investment Advisory', icon: TrendingUp, desc: 'High-ROI opportunities', color: '#1B1B1B' },
+  { title: 'Home Loan Assistance', icon: Landmark, desc: 'Best rates from top banks', color: '#B8892D' },
+  { title: 'Legal Consultation', icon: FileCheck2, desc: 'End-to-end documentation', color: '#1B1B1B' },
 ];
 
 const launches = [
@@ -205,14 +196,14 @@ const readyHomes = [
 ];
 
 const developers = [
-  { name: 'DLF', logo: 'DLF', color: '#0F172A' },
-  { name: 'Godrej', logo: 'Godrej', color: '#D4AF37' },
-  { name: 'ATS', logo: 'ATS', color: '#0F172A' },
-  { name: 'Sobha', logo: 'Sobha', color: '#D4AF37' },
-  { name: 'M3M', logo: 'M3M', color: '#0F172A' },
-  { name: 'TATA', logo: 'TATA', color: '#D4AF37' },
-  { name: 'ACE', logo: 'ACE', color: '#0F172A' },
-  { name: 'Prestige', logo: 'Prestige', color: '#D4AF37' },
+  { name: 'DLF', logo: 'DLF', color: '#1B1B1B' },
+  { name: 'Godrej', logo: 'Godrej', color: '#B8892D' },
+  { name: 'ATS', logo: 'ATS', color: '#1B1B1B' },
+  { name: 'Sobha', logo: 'Sobha', color: '#B8892D' },
+  { name: 'M3M', logo: 'M3M', color: '#1B1B1B' },
+  { name: 'TATA', logo: 'TATA', color: '#B8892D' },
+  { name: 'ACE', logo: 'ACE', color: '#1B1B1B' },
+  { name: 'Prestige', logo: 'Prestige', color: '#B8892D' },
 ];
 
 const premiumAgents = [
@@ -345,10 +336,10 @@ function PremiumVideoHero() {
   ];
 
   const floatingCards = [
-    { icon: Zap, text: 'Hot Deal', color: '#D4AF37', bg: 'rgba(212, 175, 55, 0.15)' },
-    { icon: TrendingUp, text: '₹1.45 Cr | ACE Terra', color: '#0F172A', bg: 'rgba(15, 23, 42, 0.85)' },
-    { icon: Star, text: '⭐ 4.9 Rating', color: '#D4AF37', bg: 'rgba(212, 175, 55, 0.15)' },
-    { icon: Sparkles, text: '📈 15% ROI Potential', color: '#0F172A', bg: 'rgba(15, 23, 42, 0.85)' },
+    { icon: Zap, text: 'Hot Deal', color: '#B8892D', bg: 'rgba(184, 137, 45, 0.15)' },
+    { icon: TrendingUp, text: '₹1.45 Cr | ACE Terra', color: '#1B1B1B', bg: 'rgba(27, 27, 27, 0.85)' },
+    { icon: Star, text: '⭐ 4.9 Rating', color: '#B8892D', bg: 'rgba(184, 137, 45, 0.15)' },
+    { icon: Sparkles, text: '📈 15% ROI Potential', color: '#1B1B1B', bg: 'rgba(27, 27, 27, 0.85)' },
   ];
 
   return (
@@ -394,17 +385,14 @@ function PremiumVideoHero() {
             </a>
           </motion.div>
         </div>
-
-        
       </div>
-
-      
     </section>
   );
 }
 
-
-
+// ======================================
+// COUNTER COMPONENT
+// ======================================
 function Counter({ end, suffix = "", duration = 2000 }) {
   const [count, setCount] = useState(0);
   const ref = React.useRef();
@@ -433,6 +421,9 @@ function Counter({ end, suffix = "", duration = 2000 }) {
   return <strong ref={ref}>{count}{suffix}</strong>;
 }
 
+// ======================================
+// STATS BAR
+// ======================================
 function StatsBar() {
   const stats = [
     { value: 20, suffix: "+", label: "Years Advisory" },
@@ -443,8 +434,6 @@ function StatsBar() {
 
   return (
     <>
-      {/* STATS */}
-
       <section className="stats-strip">
         <div className="site-container stats-grid">
           {stats.map((stat, idx) => (
@@ -456,71 +445,34 @@ function StatsBar() {
         </div>
       </section>
 
-{/* VIDEO SECTION */}
-
-<section className="stats-video-section">
-
-  <div className="video-info">
-    <span className="video-tag">
-      Premium Property Tour
-    </span>
-
-    <h2>
-      Discover Luxury Living Across NCR
-    </h2>
-
-    <p>
-      Explore premium villas, luxury apartments,
-      commercial spaces and high-return investment
-      opportunities across Noida, Gurgaon and Delhi.
-    </p>
-  </div>
-
-  <div className="video-wrapper">
-
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="stats-video"
-    >
-      <source
-  src="https://assets.mixkit.co/videos/preview/mixkit-modern-house-exterior-3984-large.mp4"
-  type="video/mp4"
-/>
-    </video>
-
-    <div className="video-overlay">
-      <span className="overlay-badge">
-        Featured Project
-      </span>
-
-      <h3>
-        Experience Premium Living
-      </h3>
-
-      <p>
-        Luxury Apartments • Villas • Commercial Spaces
-      </p>
-
-      <div className="overlay-buttons">
-        <button className="primary-btn gold-btn">
-          Explore Properties
-        </button>
-
-        <button className="secondary-btn glass-btn">
-          Book Site Visit
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-</section>
+      <section className="stats-video-section">
+        <div className="video-info">
+          <span className="video-tag">Premium Property Tour</span>
+          <h2>Discover Luxury Living Across NCR</h2>
+          <p>
+            Explore premium villas, luxury apartments, commercial spaces and high-return investment
+            opportunities across Noida, Gurgaon and Delhi.
+          </p>
+        </div>
+        <div className="video-wrapper">
+          <video autoPlay muted loop playsInline className="stats-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-house-exterior-3984-large.mp4" type="video/mp4" />
+          </video>
+          <div className="video-overlay">
+            <span className="overlay-badge">Featured Project</span>
+            <h3>Experience Premium Living</h3>
+            <p>Luxury Apartments • Villas • Commercial Spaces</p>
+            <div className="overlay-buttons">
+              <button className="primary-btn gold-btn">Explore Properties</button>
+              <button className="secondary-btn glass-btn">Book Site Visit</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
+
 // ======================================
 // SECTION HEADING
 // ======================================
@@ -536,7 +488,9 @@ function SectionHeading({ kicker, title, align = 'left' }) {
   );
 }
 
-
+// ======================================
+// BROWSE BY TYPE
+// ======================================
 function BrowseByType() {
   const navigate = useNavigate();
 
@@ -555,26 +509,15 @@ function BrowseByType() {
               className="premium-type-card"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              onClick={() =>
-                navigate(`/property-type/${type.slug}`)
-              }
+              onClick={() => navigate(`/property-type/${type.slug}`)}
             >
               <img src={type.image} alt={type.title} />
-
               <div className="premium-overlay">
                 <div>
-                  <span className="property-tag">
-                    {type.count} Properties
-                  </span>
-
+                  <span className="property-tag">{type.count} Properties</span>
                   <h3>{type.title}</h3>
-
-                  <p>
-                    Explore premium listings, luxury amenities
-                    and investment opportunities.
-                  </p>
+                  <p>Explore premium listings, luxury amenities and investment opportunities.</p>
                 </div>
-
                 <div className="arrow-circle">
                   <ArrowRight size={22} />
                 </div>
@@ -586,176 +529,146 @@ function BrowseByType() {
     </section>
   );
 }
+
 // ======================================
-// PREMIUM FEATURED PROPERTIES
+// PREMIUM FEATURED PROPERTIES (LUXURY EDITION)
 // ======================================
 function PremiumFeaturedProperties() {
-const [savedProperties, setSavedProperties] = useState([]);
+  const [savedProperties, setSavedProperties] = useState([]);
 
-const toggleSave = (title) => {
-setSavedProperties((prev) =>
-prev.includes(title)
-? prev.filter((item) => item !== title)
-: [...prev, title]
-);
-};
+  const toggleSave = (title) => {
+    setSavedProperties((prev) =>
+      prev.includes(title)
+        ? prev.filter((item) => item !== title)
+        : [...prev, title]
+    );
+  };
 
-return ( <section
-   id="properties"
-   className="section properties-section premium-properties"
- > <div className="site-container">
+  return (
+    <section id="properties" className="section properties-section premium-properties">
+      <div className="site-container">
+        <SectionHeading
+          kicker="Featured Collection"
+          title="Handpicked Luxury Homes Across NCR"
+        />
 
-```
-    <SectionHeading
-      kicker="Featured Properties"
-      title="Handpicked Luxury Homes Across NCR"
-    />
-
-    <div className="property-grid premium-property-grid">
-
-      {featuredProperties.map((property, idx) => (
-        <motion.article
-          className="premium-property-card"
-          key={property.title}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ delay: idx * 0.08 }}
-        >
-          <div className="property-image-container">
-
-            <img
-              src={property.image}
-              alt={property.title}
-              loading="lazy"
-            />
-
-            <span
-              className={`property-badge ${property.badge
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`}
+        <div className="property-grid premium-property-grid">
+          {featuredProperties.map((property, idx) => (
+            <motion.article
+              className="premium-property-card"
+              key={property.title}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              transition={{ delay: idx * 0.08 }}
             >
-              {property.badge}
-            </span>
+              {/* ===== IMAGE SECTION ===== */}
+              <div className="property-image-container">
+                <img src={property.image} alt={property.title} loading="lazy" />
+                <div className="property-image-overlay"></div>
 
-            <div className="property-quick-actions">
+                <span className={`property-badge ${property.badge.toLowerCase().replace(/\s+/g, "-")}`}>
+                  {property.badge}
+                </span>
 
-              <button
-                className="quick-action"
-                onClick={() => toggleSave(property.title)}
-              >
-                <Heart
-                  size={18}
-                  fill={
-                    savedProperties.includes(property.title)
-                      ? "#D4AF37"
-                      : "none"
-                  }
-                  color={
-                    savedProperties.includes(property.title)
-                      ? "#D4AF37"
-                      : "#fff"
-                  }
-                />
-              </button>
+                <div className="property-floating-price">{property.price}</div>
+                <div className="property-floating-rating">
+                  <Star size={14} fill="#B8892D" color="#B8892D" />
+                  <span>{property.rating}</span>
+                </div>
 
-              <button className="quick-action">
-                <GitCompare size={18} color="#fff" />
-              </button>
+                <div className="property-quick-actions">
+                  <button
+                    className="quick-action-btn"
+                    onClick={() => toggleSave(property.title)}
+                    aria-label="Save property"
+                  >
+                    <Heart
+                      size={18}
+                      fill={savedProperties.includes(property.title) ? "#B8892D" : "none"}
+                      color={savedProperties.includes(property.title) ? "#B8892D" : "#fff"}
+                    />
+                  </button>
+                  <button className="quick-action-btn" aria-label="Compare">
+                    <GitCompare size={18} color="#fff" />
+                  </button>
+                </div>
 
-            </div>
-
-            <div className="floating-price">
-              {property.price}
-            </div>
-
-            <div className="property-score">
-              ⭐ {property.rating}
-            </div>
-
-          </div>
-
-          <div className="property-body">
-
-            <div className="property-status">
-              <span>Ready To Move</span>
-              <span>RERA Approved</span>
-            </div>
-
-            <h3>{property.title}</h3>
-
-            <p className="location">
-              <MapPin size={14} />
-              {property.location}
-            </p>
-
-            <div className="property-highlights">
-              <span>🏆 Verified</span>
-              <span>🔥 Top Pick</span>
-              <span>⭐ Premium</span>
-            </div>
-
-            <div className="property-specs">
-
-              <div>
-                <strong>{property.bhk}</strong>
-                <small>Configuration</small>
+                <div className="exclusive-tag">
+                  <Sparkles size={12} />
+                  Exclusive
+                </div>
               </div>
 
-              <div>
-                <strong>{property.area}</strong>
-                <small>Area</small>
+              {/* ===== CONTENT SECTION ===== */}
+              <div className="property-content">
+                <div className="property-status">
+                  <span className="status-badge ready">Ready To Move</span>
+                  <span className="status-badge rera">RERA Approved</span>
+                </div>
+
+                <h3 className="property-title">{property.title}</h3>
+                <p className="property-location">
+                  <MapPin size={14} className="location-icon" />
+                  {property.location}
+                </p>
+
+                <div className="property-highlights">
+                  <span>🏆 Verified</span>
+                  <span>🔥 Top Pick</span>
+                  <span>⭐ Premium</span>
+                </div>
+
+                <div className="property-specs">
+                  <div className="spec-item">
+                    <strong>{property.bhk}</strong>
+                    <span>Config</span>
+                  </div>
+                  <div className="spec-divider"></div>
+                  <div className="spec-item">
+                    <strong>{property.area}</strong>
+                    <span>Area</span>
+                  </div>
+                  <div className="spec-divider"></div>
+                  <div className="spec-item">
+                    <strong>{property.builder}</strong>
+                    <span>Builder</span>
+                  </div>
+                </div>
+
+                <div className="property-amenities">
+                  <div className="amenity-item">
+                    <Train size={14} />
+                    <span>Metro {property.metro}</span>
+                  </div>
+                  <div className="amenity-item">
+                    <School size={14} />
+                    <span>School {property.school}</span>
+                  </div>
+                  <div className="amenity-item">
+                    <Hospital size={14} />
+                    <span>Hospital {property.hospital}</span>
+                  </div>
+                </div>
+
+                <div className="property-ctas">
+                  <button className="btn-primary-luxury">
+                    Explore Property
+                    <ArrowRight size={18} />
+                  </button>
+                  <button className="btn-secondary-luxury">
+                    <CalendarDays size={16} />
+                    Site Visit
+                  </button>
+                </div>
               </div>
-
-              <div>
-                <strong>{property.builder}</strong>
-                <small>Builder</small>
-              </div>
-
-            </div>
-
-            <div className="property-amenities">
-
-              <div className="amenity">
-                <Train size={14} />
-                Metro {property.metro}
-              </div>
-
-              <div className="amenity">
-                <School size={14} />
-                School {property.school}
-              </div>
-
-              <div className="amenity">
-                <Hospital size={14} />
-                Hospital {property.hospital}
-              </div>
-
-            </div>
-
-            <div className="property-ctas">
-
-              <button className="luxury-primary-btn">
-                Explore Property
-              </button>
-
-              <button className="luxury-secondary-btn">
-                Site Visit
-              </button>
-
-            </div>
-
-          </div>
-        </motion.article>
-      ))}
-
-    </div>
-  </div>
-</section>
-
-
-);
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // ======================================
@@ -799,7 +712,7 @@ function PremiumLocations() {
 }
 
 // ======================================
-// WHY CHOOSE US (PREMIUM)
+// WHY CHOOSE US
 // ======================================
 function PremiumWhyChooseUs() {
   const features = [
@@ -828,7 +741,7 @@ function PremiumWhyChooseUs() {
               whileHover={{ y: -8 }}
             >
               <div className="feature-icon">
-                <feature.icon size={32} color="#D4AF37" />
+                <feature.icon size={32} color="#B8892D" />
               </div>
               <h3>{feature.title}</h3>
               <p>{feature.desc}</p>
@@ -860,7 +773,7 @@ function PremiumServicesSection() {
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -8 }}
             >
-              <div className="service-icon" style={{ backgroundColor: service.color === '#D4AF37' ? 'rgba(212, 175, 55, 0.1)' : 'rgba(15, 23, 42, 0.05)' }}>
+              <div className="service-icon" style={{ backgroundColor: service.color === '#B8892D' ? 'rgba(184, 137, 45, 0.1)' : 'rgba(27, 27, 27, 0.05)' }}>
                 <service.icon size={32} color={service.color} />
               </div>
               <h3>{service.title}</h3>
@@ -972,8 +885,6 @@ function PremiumDeveloperShowcase() {
   );
 }
 
-
-
 // ======================================
 // PREMIUM TESTIMONIALS
 // ======================================
@@ -1000,7 +911,7 @@ function PremiumTestimonials() {
                   <span>{testimonial.location}</span>
                   <div className="testimonial-rating">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} fill={i < testimonial.rating ? '#D4AF37' : 'none'} color="#D4AF37" />
+                      <Star key={i} size={14} fill={i < testimonial.rating ? '#B8892D' : 'none'} color="#B8892D" />
                     ))}
                   </div>
                 </div>
@@ -1043,7 +954,7 @@ function LuxuryAgentShowcase() {
               <h3 className="agent-name">{agent.name}</h3>
               <div className="agent-rating">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill={i < Math.floor(agent.rating) ? "#D4AF37" : "none"} color="#D4AF37" />
+                  <Star key={i} size={16} fill={i < Math.floor(agent.rating) ? "#B8892D" : "none"} color="#B8892D" />
                 ))}
                 <span>{agent.rating}</span>
               </div>
@@ -1316,7 +1227,6 @@ function FloatingActions() {
           <CalendarDays size={24} />
         </a>
       </div>
-      
     </>
   );
 }
@@ -1329,7 +1239,6 @@ function HomePage() {
     <main>
       <Navbar />
       <PremiumVideoHero />
-      
       <StatsBar />
       <BrowseByType />
       <PremiumFeaturedProperties />
@@ -1338,7 +1247,6 @@ function HomePage() {
       <PremiumServicesSection />
       <PremiumLaunchAndReady />
       <PremiumDeveloperShowcase />
-     
       <PremiumTestimonials />
       <LuxuryAgentShowcase />
       <PremiumFAQ />
