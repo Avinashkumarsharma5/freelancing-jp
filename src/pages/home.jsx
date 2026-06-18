@@ -163,14 +163,50 @@ const featuredProperties = [
 ];
 
 const premiumLocations = [
-  { name: 'Noida', properties: 245, growth: 15.2, image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Greater Noida', properties: 186, growth: 22.8, image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Gurgaon', properties: 340, growth: 18.5, image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Delhi', properties: 198, growth: 12.3, image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Noida Extension', properties: 167, growth: 28.4, image: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Dwarka Expressway', properties: 234, growth: 25.7, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80' },
+  
+  {
+    name: "Noida",
+    slug: "noida",
+    properties: 245,
+    growth: 15.2,
+    image: "..."
+  },
+  {
+    name: "Greater Noida",
+    slug: "greater-noida",
+    properties: 186,
+    growth: 22.8,
+    image: "..."
+  },
+  {
+    name: "Gurgaon",
+    slug: "gurgaon",
+    properties: 340,
+    growth: 18.5,
+    image: "..."
+  },
+  {
+    name: "Delhi",
+    slug: "delhi",
+    properties: 198,
+    growth: 12.3,
+    image: "..."
+  },
+  {
+    name: "Noida Extension",
+    slug: "noida-extension",
+    properties: 167,
+    growth: 28.4,
+    image: "..."
+  },
+  {
+    name: "Dwarka Expressway",
+    slug: "dwarka-expressway",
+    properties: 234,
+    growth: 25.7,
+    image: "..."
+  }
 ];
-
 const services = [
   { title: 'Buy Luxury Homes', icon: Home, desc: 'Curated collection of premium properties', color: '#B8892D' },
   { title: 'Sell Your Property', icon: CircleDollarSign, desc: 'Expert valuation & marketing', color: '#1B1B1B' },
@@ -554,48 +590,99 @@ const HorizontalSlider = ({
   );
 };
 
-// ======================================
-// NAVBAR
-// ======================================
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const links = ["Home", "Properties", "Locations", "Services", "About", "Contact"];
+
+  const links = [
+    "Home",
+    "Properties",
+    "Locations",
+    "Services",
+    "About",
+    "Contact",
+  ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-      <nav className="nav-shell" aria-label="Main navigation">
-        <a className="brand" href="#home" onClick={() => setOpen(false)}>
-          <span className="brand-mark">MS</span>
-          <span className="brand-text">Milesquare Realty</span>
+    <header
+      className={`site-header ${scrolled ? "scrolled" : ""}`}
+    >
+      <nav className="nav-shell">
+
+        {/* Logo */}
+        <a
+          href="#home"
+          className="brand"
+          onClick={() => setOpen(false)}
+        >
+          <span className="brand-mark">
+            MS
+          </span>
+
+          <span className="brand-text">
+            Milesquare Realty
+          </span>
         </a>
-        <div className={`nav-links ${open ? 'is-open' : ''}`}>
+
+        {/* Navigation */}
+        <div
+          className={`nav-links ${
+            open ? "is-open" : ""
+          }`}
+        >
           {links.map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}>
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              onClick={() => setOpen(false)}
+            >
               {link}
             </a>
           ))}
         </div>
+
+        {/* Right Side */}
         <div className="nav-right">
-          <a className="nav-cta" href="tel:+919876543210">
+
+          <a
+            href="tel:+919876543210"
+            className="nav-cta"
+          >
             <Phone size={17} />
-            Call Now
+            Contact Us
           </a>
-          <button className="menu-btn" type="button" aria-label="Toggle navigation" onClick={() => setOpen((value) => !value)}>
-            {open ? <X size={22} /> : <Menu size={22} />}
+
+          <button
+            type="button"
+            className="menu-btn"
+            aria-label="Toggle Navigation"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? (
+              <X size={22} />
+            ) : (
+              <Menu size={22} />
+            )}
           </button>
+
         </div>
+
       </nav>
     </header>
   );
 }
-
 // ======================================
 // HERO (with all enhancements)
 // ======================================
@@ -880,97 +967,216 @@ function PremiumFeaturedProperties() {
 }
 
 // ======================================
-// PREMIUM LOCATIONS (with Parallax + animated numbers)
+// PREMIUM LOCATIONS V3
 // ======================================
 function PremiumLocations() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
+  const navigate = useNavigate();
 
   return (
-    <section id="locations" className="section locations-section premium-locations" ref={containerRef}>
+    <section
+      id="locations"
+      className="section locations-section premium-locations"
+    >
       <div className="site-container">
-        <SectionHeading kicker="Top locations" title="Explore high-demand city pockets with growth potential." />
-        <div className="location-grid premium-location-grid">
-          {premiumLocations.map((location, idx) => {
-            const cardY = useTransform(y, (value) => value * (idx % 2 === 0 ? 1 : -0.5));
-            return (
+
+        <SectionHeading
+          kicker="Top Locations"
+          title="Explore NCR's Most Desirable Destinations"
+        />
+
+        <div className="premium-location-grid">
+
+          {premiumLocations.map(
+            (location, idx) => (
               <motion.article
-                className="premium-location-card"
+               onClick={() =>
+    navigate(`/location/${location.slug}`)
+  }
                 key={location.name}
+                className="premium-location-card"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                transition={{ delay: idx * 0.05 }}
-                style={{ y: cardY }}
-                whileHover={{ scale: 1.03 }}
+                transition={{
+                  delay: idx * 0.08,
+                }}
+                whileHover={{
+                  scale: 1.02,
+                }}
               >
-                <img src={location.image} alt={location.name} loading="lazy" />
+
+                <img
+                  src={location.image}
+                  alt={location.name}
+                  loading="lazy"
+                />
+
                 <div className="location-overlay">
-                  <div className="location-info">
-                    <h3>{location.name}</h3>
-                    <p><LocationCounter target={location.properties} /> Properties</p>
+
+                  {/* TOP */}
+
+                  <div className="location-top">
+
+                    <span className="location-tag">
+                      Investment Hotspot
+                    </span>
+
                     <div className="growth-badge">
-                      <TrendingUp size={14} /> ↑ {location.growth}% Growth
+                      <TrendingUp size={14} />
+                      +{location.growth}%
                     </div>
+
                   </div>
-                  <ArrowRight size={24} />
+
+                  {/* BOTTOM */}
+
+                  <div className="location-bottom">
+
+                    <h3>
+                      {location.name}
+                    </h3>
+
+                    <p>
+                      <LocationCounter
+                        target={
+                          location.properties
+                        }
+                      />{" "}
+                      Properties Available
+                    </p>
+
+                    <div className="location-footer">
+
+                      <span>
+                        Explore Area
+                      </span>
+
+                      <div className="location-arrow">
+                        <ArrowRight
+                          size={20}
+                        />
+                      </div>
+
+                    </div>
+
+                  </div>
+
                 </div>
+
               </motion.article>
-            );
-          })}
+            )
+          )}
+
         </div>
+
       </div>
     </section>
   );
 }
 
-// ======================================
-// WHY CHOOSE US (Slider)
-// ======================================
 function PremiumWhyChooseUs() {
   const features = [
-    { icon: ShieldCheck, title: 'RERA Approved Projects', desc: '100% verified properties with RERA certification' },
-    { icon: FileCheck2, title: 'Legal Documentation', desc: 'Complete due diligence and title verification' },
-    { icon: WalletCards, title: 'Home Loan Support', desc: 'Best rates from 20+ leading banks' },
-    { icon: CalendarDays, title: 'Free Site Visits', desc: 'Guided tours with expert advisors' },
-    { icon: TrendingUp, title: 'Investment Advisory', desc: 'High-ROI micro-market insights' },
-    { icon: Headphones, title: '24/7 Customer Support', desc: 'Dedicated relationship manager' },
+    {
+      icon: ShieldCheck,
+      title: "RERA Approved Projects",
+      desc: "100% verified properties with complete transparency and trust."
+    },
+    {
+      icon: FileCheck2,
+      title: "Legal Documentation",
+      desc: "End-to-end legal verification and secure transactions."
+    },
+    {
+      icon: WalletCards,
+      title: "Home Loan Support",
+      desc: "Exclusive offers and best rates from top banks."
+    },
+    {
+      icon: CalendarDays,
+      title: "Free Site Visits",
+      desc: "Personalized property tours guided by experts."
+    },
+    {
+      icon: TrendingUp,
+      title: "Investment Advisory",
+      desc: "Data-driven insights for high-growth opportunities."
+    },
+    {
+      icon: Headphones,
+      title: "24/7 Support",
+      desc: "Dedicated relationship managers for every client."
+    }
   ];
 
   return (
     <section className="section why-section premium-why">
       <div className="site-container">
-        <SectionHeading kicker="Why choose us" title="Experience the difference with Milesquare." align="center" />
-        <HorizontalSlider className="premium-feature-slider">
+
+        <SectionHeading
+          kicker="Why Choose Milesquare"
+          title="A Real Estate Experience Built Around Trust & Results"
+          align="center"
+        />
+
+        <div className="premium-feature-grid">
           {features.map((feature, idx) => (
-            <motion.div 
+            <motion.div
               className="premium-feature-card"
               key={idx}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              variants={fadeUp}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -8 }}
+              transition={{
+                duration: 0.5,
+                delay: idx * 0.1
+              }}
             >
+              <span className="feature-number">
+                {String(idx + 1).padStart(2, "0")}
+              </span>
+
               <div className="feature-icon">
-                <feature.icon size={32} color="#B8892D" />
+                <feature.icon size={34} />
               </div>
+
               <h3>{feature.title}</h3>
+
               <p>{feature.desc}</p>
+
+              <div className="feature-arrow">
+                →
+              </div>
             </motion.div>
           ))}
-        </HorizontalSlider>
+        </div>
+
+        {/* Bottom Stats */}
+
+        <div className="why-stats">
+
+          <div className="why-stat">
+            <h2>1500+</h2>
+            <span>Homes Sold</span>
+          </div>
+
+          <div className="why-stat">
+            <h2>500+</h2>
+            <span>Happy Investors</span>
+          </div>
+
+          <div className="why-stat">
+            <h2>₹800Cr+</h2>
+            <span>Property Transactions</span>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
 }
-
 // ======================================
 // SERVICES (Slider)
 // ======================================
@@ -1007,73 +1213,165 @@ function PremiumServicesSection() {
   );
 }
 
-// ======================================
-// LAUNCHES & READY (Both as sliders)
-// ======================================
 function PremiumLaunchAndReady() {
   return (
     <section className="section launch-section premium-launch">
-      <div className="site-container launch-ready-grid">
-        {/* New Launches Slider */}
-        <div>
-          <SectionHeading kicker="New launch" title="Upcoming projects with launch-stage pricing." />
-          <HorizontalSlider className="launch-slider" scrollAmount={470}>
+      <div className="site-container">
+
+        <SectionHeading
+          kicker="Featured Opportunities"
+          title="Explore New Launches & Ready To Move Homes"
+          align="center"
+        />
+
+        {/* NEW LAUNCHES */}
+
+        <div className="launch-block">
+
+          <div className="section-mini-heading">
+            <span>NEW LAUNCHES</span>
+          </div>
+
+          <div className="premium-launch-grid">
+
             {launches.map((launch, idx) => (
-              <motion.article 
-                className="premium-launch-card" 
+              <motion.article
+                className="premium-launch-card"
                 key={launch.name}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                variants={fadeUp}
-                transition={{ delay: idx * 0.05 }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1
+                }}
               >
-                <div className="launch-header">
-                  <span className="ribbon premium">NEW LAUNCH</span>
-                  <span className="launch-date">{launch.launchDate}</span>
+
+                <div className="launch-image-wrapper">
+
+                  <img
+                    src={launch.image}
+                    alt={launch.name}
+                    className="launch-image"
+                  />
+
+                  <span className="launch-badge">
+                    NEW LAUNCH
+                  </span>
+
                 </div>
-                <h3>{launch.name}</h3>
-                <div className="launch-details">
-                  <div><span>Builder</span><strong>{launch.builder}</strong></div>
-                  <div><span>Starting Price</span><strong>{launch.price}</strong></div>
-                  <div><span>Possession</span><strong>{launch.possession}</strong></div>
+
+                <div className="launch-body">
+
+                  <span className="launch-date">
+                    {launch.launchDate}
+                  </span>
+
+                  <h3>{launch.name}</h3>
+
+                  <div className="launch-price">
+                    {launch.price}
+                  </div>
+
+                  <div className="launch-meta">
+
+                    <div>
+                      <span>Builder</span>
+                      <strong>{launch.builder}</strong>
+                    </div>
+
+                    <div>
+                      <span>Possession</span>
+                      <strong>{launch.possession}</strong>
+                    </div>
+
+                  </div>
+
+                  <div className="launch-ctas">
+
+                    <button className="primary-btn small">
+                      Download Brochure
+                    </button>
+
+                    <button className="secondary-btn small">
+                      Contact Advisor
+                    </button>
+
+                  </div>
+
                 </div>
-                <div className="launch-ctas">
-                  <button className="primary-btn small">Download Brochure</button>
-                  <button className="secondary-btn small">Contact Advisor</button>
-                </div>
+
               </motion.article>
             ))}
-          </HorizontalSlider>
+
+          </div>
+
         </div>
 
-        {/* Ready to Move Slider */}
-        <div>
-          <SectionHeading kicker="Ready to move" title="Immediate possession homes." />
-          <HorizontalSlider className="ready-slider" scrollAmount={400}>
+        {/* READY TO MOVE */}
+
+        <div className="launch-block">
+
+          <div className="section-mini-heading">
+            <span>READY TO MOVE</span>
+          </div>
+
+          <div className="premium-launch-grid">
+
             {readyHomes.map((home, idx) => (
-              <motion.article 
-                className="premium-ready-card" 
+              <motion.article
+                className="premium-ready-card"
                 key={home.name}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                variants={fadeUp}
-                transition={{ delay: idx * 0.05 }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1
+                }}
               >
-                <img src={home.image} alt={home.name} loading="lazy" />
-                <div className="ready-content">
-                  <span className="ready-badge premium">READY TO MOVE</span>
-                  <h3>{home.name}</h3>
-                  <p>{home.highlight}</p>
-                  <div className="ready-price">{home.price}</div>
-                  <div className="ready-location"><MapPin size={14} />{home.location}</div>
-                  <button className="primary-btn small">Schedule Visit</button>
+
+                <div className="ready-image-wrapper">
+
+                  <img
+                    src={home.image}
+                    alt={home.name}
+                  />
+
+                  <span className="ready-badge">
+                    READY TO MOVE
+                  </span>
+
                 </div>
+
+                <div className="ready-content">
+
+                  <h3>{home.name}</h3>
+
+                  <p>{home.highlight}</p>
+
+                  <div className="ready-price">
+                    {home.price}
+                  </div>
+
+                  <div className="ready-location">
+                    <MapPin size={15} />
+                    {home.location}
+                  </div>
+
+                  <button className="primary-btn small">
+                    Schedule Visit
+                  </button>
+
+                </div>
+
               </motion.article>
             ))}
-          </HorizontalSlider>
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );
@@ -1251,79 +1549,232 @@ function PremiumFAQ() {
 }
 
 // ======================================
-// BOOKING FORM
+// CONTACT US
 // ======================================
-function SiteVisitBooking() {
-  const [status, setStatus] = useState('');
+function ContactSection() {
+  const [status, setStatus] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setStatus('Thank you! Our concierge team will contact you within 30 minutes.');
-    event.currentTarget.reset();
-    setTimeout(() => setStatus(''), 5000);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setStatus(
+      "Thank you! Our property advisor will contact you shortly."
+    );
+
+    e.target.reset();
+
+    setTimeout(() => {
+      setStatus("");
+    }, 5000);
   };
 
   return (
-    <section id="contact" className="section booking-section">
-      <div className="site-container booking-grid">
-        <div className="booking-info">
-          <span className="section-kicker">Schedule a Visit</span>
-          <h2>Experience luxury <span className="gold-text">in person.</span></h2>
-          <p>Our expert advisors will guide you through premium properties, arrange site visits, and help you make an informed decision.</p>
-          <div className="booking-benefits">
-            <div><CheckCircle size={18} /> Free site visit coordination</div>
-            <div><CheckCircle size={18} /> Personalized property shortlist</div>
-            <div><CheckCircle size={18} /> Expert advisor accompaniment</div>
-            <div><CheckCircle size={18} /> Tea/Coffee refreshments</div>
+    <section
+      id="contact"
+      className="section contact-section"
+    >
+      <div className="site-container contact-grid">
+
+        {/* LEFT */}
+
+        <div className="contact-info">
+
+          <span className="section-kicker">
+            Contact Us
+          </span>
+
+          <h2>
+            Let's Find Your
+            <span className="gold-text">
+              {" "}Perfect Property
+            </span>
+          </h2>
+
+          <p>
+            Whether you're looking for a dream
+            home, luxury investment or commercial
+            opportunity, our experts are here to
+            guide you every step of the way.
+          </p>
+
+          <div className="contact-benefits">
+
+            <div>
+              <CheckCircle size={18}/>
+              Verified Properties Only
+            </div>
+
+            <div>
+              <CheckCircle size={18}/>
+              Free Consultation
+            </div>
+
+            <div>
+              <CheckCircle size={18}/>
+              End-to-End Support
+            </div>
+
+            <div>
+              <CheckCircle size={18}/>
+              Fast Response Within 30 Minutes
+            </div>
+
           </div>
+
+          <div className="contact-cards">
+
+            <div className="contact-card">
+
+              <Phone size={22}/>
+
+              <div>
+                <strong>Call Us</strong>
+                <span>+91 98765 43210</span>
+              </div>
+
+            </div>
+
+            <div className="contact-card">
+
+              <Mail size={22}/>
+
+              <div>
+                <strong>Email Us</strong>
+                <span>
+                  info@milesquarerealty.com
+                </span>
+              </div>
+
+            </div>
+
+            <div className="contact-card">
+
+              <MapPin size={22}/>
+
+              <div>
+                <strong>Office Address</strong>
+                <span>
+                  Gurgaon, NCR, India
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <form className="premium-booking-form" onSubmit={handleSubmit}>
-          <h3>Book a Site Visit</h3>
+        {/* RIGHT */}
+
+        <form
+          className="contact-form"
+          onSubmit={handleSubmit}
+        >
+
+          <h3>
+            Request Free Consultation
+          </h3>
+
           <div className="form-row">
-            <input type="text" placeholder="Full Name" required />
-            <input type="tel" placeholder="Phone Number" required />
+
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+            />
+
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              required
+            />
+
           </div>
+
           <div className="form-row">
-            <select required defaultValue="">
-              <option value="" disabled>Budget Range</option>
-              <option>₹50 L - ₹1 Cr</option>
-              <option>₹1 Cr - ₹2 Cr</option>
-              <option>₹2 Cr - ₹4 Cr</option>
-              <option>₹4 Cr+</option>
-            </select>
-            <select required defaultValue="">
-              <option value="" disabled>Preferred Location</option>
+
+            <input
+              type="email"
+              placeholder="Email Address"
+            />
+
+            <select required>
+
+              <option>
+                Preferred Location
+              </option>
+
               <option>Noida</option>
               <option>Gurgaon</option>
-              <option>Greater Noida</option>
               <option>Delhi</option>
+              <option>Greater Noida</option>
+
             </select>
+
           </div>
+
           <div className="form-row">
-            <select required defaultValue="">
-              <option value="" disabled>Property Type</option>
+
+            <select>
+
+              <option>
+                Budget Range
+              </option>
+
+              <option>
+                ₹50L - ₹1Cr
+              </option>
+
+              <option>
+                ₹1Cr - ₹2Cr
+              </option>
+
+              <option>
+                ₹2Cr - ₹5Cr
+              </option>
+
+              <option>
+                ₹5Cr+
+              </option>
+
+            </select>
+
+            <select>
+
+              <option>
+                Property Type
+              </option>
+
               <option>Apartment</option>
               <option>Villa</option>
               <option>Plot</option>
               <option>Commercial</option>
+
             </select>
-            <input type="date" required />
+
           </div>
-          <div className="form-row">
-            <select defaultValue="">
-              <option>Preferred Time Slot</option>
-              <option>10 AM - 12 PM</option>
-              <option>12 PM - 3 PM</option>
-              <option>3 PM - 6 PM</option>
-            </select>
-            <input type="text" placeholder="Additional Message" />
-          </div>
-          <button className="primary-btn gold-btn full-width" type="submit">
-            Request Callback <ArrowRight size={18} />
+
+          <textarea
+            rows="5"
+            placeholder="Tell us about your requirements..."
+          />
+
+          <button
+            className="primary-btn gold-btn full-width"
+            type="submit"
+          >
+            Get Free Consultation
+            <ArrowRight size={18}/>
           </button>
-          {status && <p className="form-status success">{status}</p>}
+
+          {status && (
+            <p className="form-status success">
+              {status}
+            </p>
+          )}
+
         </form>
+
       </div>
     </section>
   );
@@ -1462,7 +1913,7 @@ function FloatingActions() {
 // ======================================
 function HomePage() {
   const [loading, setLoading] = useState(true);
-
+// <PremiumLocations /> //
   return (
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
@@ -1477,7 +1928,7 @@ function HomePage() {
         <SectionDivider />
         <PremiumFeaturedProperties />
         <SectionDivider />
-        <PremiumLocations />
+       
         <SectionDivider />
         <PremiumWhyChooseUs />
         <SectionDivider />
@@ -1493,7 +1944,7 @@ function HomePage() {
         <SectionDivider />
         <PremiumFAQ />
         <SectionDivider />
-        <SiteVisitBooking />
+      <ContactSection />
         <SectionDivider />
         <LuxuryCTASection />
         <PremiumFooter />
