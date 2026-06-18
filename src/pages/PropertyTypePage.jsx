@@ -37,7 +37,10 @@ import {
   Sun,
   Moon,
   Cloud,
-  Zap
+  Zap,
+  BadgeCheck,
+  CircleDollarSign,
+  Landmark
 } from "lucide-react";
 import "./PropertyTypePage.css";
 
@@ -60,17 +63,11 @@ const staggerContainer = {
   }
 };
 
-const scaleOnHover = {
-  scale: 1.03,
-  transition: { duration: 0.3, ease: "easeOut" }
-};
-
 // ======================================
 // MAIN COMPONENT
 // ======================================
 export default function PropertyTypePage() {
   const { slug } = useParams();
-  const propertyName = slug.replace(/-/g, " ").toUpperCase();
 
   // Dynamic property data based on slug
   const getPropertyData = () => {
@@ -79,6 +76,9 @@ export default function PropertyTypePage() {
         title: "Luxury Apartments",
         subtitle: "Elegant Living Redefined",
         description: "Experience unparalleled luxury with our premium apartments featuring world-class amenities, breathtaking views, and prime locations across NCR.",
+        startingPrice: "₹1.8 Cr",
+        projects: "25+",
+        rating: "4.9★",
         stats: [
           { value: "450+", label: "Luxury Units", icon: Building2 },
           { value: "25+", label: "Premium Projects", icon: Crown },
@@ -170,6 +170,9 @@ export default function PropertyTypePage() {
         title: "Premium Villas",
         subtitle: "Exclusive Estate Living",
         description: "Discover the epitome of luxury with our premium villas offering unmatched privacy, spacious living, and exquisite architecture.",
+        startingPrice: "₹4.8 Cr",
+        projects: "15+",
+        rating: "5.0★",
         stats: [
           { value: "180+", label: "Luxury Villas", icon: Home },
           { value: "15+", label: "Gated Communities", icon: ShieldCheck },
@@ -217,8 +220,7 @@ export default function PropertyTypePage() {
           { icon: Cloud, label: "Smart Home" }
         ],
         testimonials: []
-      },
-      // Add more property types as needed
+      }
     };
     return data[slug] || data["luxury-apartment"];
   };
@@ -228,7 +230,9 @@ export default function PropertyTypePage() {
   return (
     <div className="property-page">
 
-      {/* ===== HERO SECTION ===== */}
+      {/* ============================================================
+          HERO SECTION (Enhanced with Stats & Trust Strip)
+      ============================================================ */}
       <motion.section 
         className="property-hero-premium"
         initial="hidden"
@@ -238,6 +242,8 @@ export default function PropertyTypePage() {
         <div className="hero-background">
           <div className="hero-gradient"></div>
           <div className="hero-particles"></div>
+          {/* 👑 Luxury Pattern Overlay */}
+          <div className="hero-pattern-overlay"></div>
         </div>
         
         <div className="hero-content-premium">
@@ -281,6 +287,29 @@ export default function PropertyTypePage() {
             {propertyData.description}
           </motion.p>
 
+          {/* 🆕 Hero Property Stats */}
+          <motion.div 
+            className="hero-property-stats"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+          >
+            <div className="hero-stat-item">
+              <strong>{propertyData.startingPrice}</strong>
+              <span>Starting Price</span>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat-item">
+              <strong>{propertyData.projects}</strong>
+              <span>Projects</span>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat-item">
+              <strong>{propertyData.rating}</strong>
+              <span>Rating</span>
+            </div>
+          </motion.div>
+
           <motion.div 
             className="hero-actions"
             initial={{ opacity: 0, y: 30 }}
@@ -306,6 +335,19 @@ export default function PropertyTypePage() {
             <span><Award size={16} /> ISO Certified</span>
             <span><Users size={16} /> 15K+ Happy Families</span>
           </motion.div>
+
+          {/* 🆕 Trust Strip */}
+          <motion.div 
+            className="trust-strip"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.75 }}
+          >
+            <span>✓ RERA Verified</span>
+            <span>✓ Legal Checked</span>
+            <span>✓ Best Price Guarantee</span>
+            <span>✓ 15,000+ Happy Families</span>
+          </motion.div>
         </div>
 
         <div className="hero-floating-card">
@@ -313,14 +355,16 @@ export default function PropertyTypePage() {
             <div className="floating-icon"><Gem size={24} /></div>
             <div>
               <span className="floating-label">Featured Property</span>
-              <strong className="floating-value">₹2.8 Cr</strong>
+              <strong className="floating-value">{propertyData.startingPrice}</strong>
             </div>
             <ArrowRight size={20} className="floating-arrow" />
           </div>
         </div>
       </motion.section>
 
-      {/* ===== STATS SECTION ===== */}
+      {/* ============================================================
+          STATS SECTION
+      ============================================================ */}
       <motion.section 
         className="stats-premium"
         initial="hidden"
@@ -336,7 +380,7 @@ export default function PropertyTypePage() {
               variants={fadeUp}
               whileHover={{ y: -8 }}
             >
-              <stat.icon size={32} color="#D4AF37" />
+              <stat.icon size={32} color="#B8892D" />
               <div>
                 <h3>{stat.value}</h3>
                 <p>{stat.label}</p>
@@ -346,7 +390,9 @@ export default function PropertyTypePage() {
         </div>
       </motion.section>
 
-      {/* ===== PROPERTY GRID ===== */}
+      {/* ============================================================
+          PROPERTY GRID (Enhanced Cards)
+      ============================================================ */}
       <section className="listing-premium">
         <div className="listing-premium-header">
           <motion.div
@@ -395,14 +441,21 @@ export default function PropertyTypePage() {
               <div className="property-image-wrapper">
                 <img src={property.image} alt={property.title} loading="lazy" />
                 <div className="property-image-overlay"></div>
+                
+                {/* 🆕 Exclusive Ribbon */}
+                <div className="exclusive-ribbon">
+                  Exclusive Collection
+                </div>
+                
                 <span className="property-badge-premium">{property.badge}</span>
+                
                 <div className="property-actions-float">
                   <button className="float-btn"><Heart size={18} /></button>
                   <button className="float-btn"><GitCompare size={18} /></button>
                   <button className="float-btn"><Eye size={18} /></button>
                 </div>
                 <div className="property-rating-premium">
-                  <Star size={14} fill="#D4AF37" color="#D4AF37" />
+                  <Star size={14} fill="#B8892D" color="#B8892D" />
                   {property.rating}
                 </div>
               </div>
@@ -418,8 +471,6 @@ export default function PropertyTypePage() {
                   <span>{property.bhk}</span>
                   <span>•</span>
                   <span>{property.area}</span>
-                  <span>•</span>
-                  <span className="price">{property.price}</span>
                 </div>
 
                 <div className="property-amenities-mini">
@@ -428,16 +479,25 @@ export default function PropertyTypePage() {
                   <span>🛡 Security</span>
                 </div>
 
-                <button className="property-cta-premium">
-                  View Details <ArrowRight size={16} />
-                </button>
+                {/* 🆕 Enhanced Card Footer with Price Block */}
+                <div className="card-footer-premium">
+                  <div className="price-block">
+                    <span>Starting From</span>
+                    <strong>{property.price}</strong>
+                  </div>
+                  <button className="property-cta-premium">
+                    Explore <ArrowRight size={16} />
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      {/* ===== AMENITIES SECTION ===== */}
+      {/* ============================================================
+          AMENITIES SECTION (Enhanced with Glow)
+      ============================================================ */}
       <section className="amenities-premium">
         <div className="amenities-premium-container">
           <motion.div 
@@ -467,20 +527,22 @@ export default function PropertyTypePage() {
                 className="amenity-premium-item" 
                 key={index}
                 variants={fadeUp}
-                whileHover={{ y: -5, scale: 1.02 }}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
                 <div className="amenity-icon-wrapper">
-                  <amenity.icon size={24} color="#D4AF37" />
+                  <amenity.icon size={24} color="#B8892D" />
                 </div>
                 <span>{amenity.label}</span>
-                <CheckCircle size={16} color="#D4AF37" className="amenity-check" />
+                <CheckCircle size={16} color="#B8892D" className="amenity-check" />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
+      {/* ============================================================
+          TESTIMONIALS (Enhanced with Left Border)
+      ============================================================ */}
       {propertyData.testimonials.length > 0 && (
         <section className="testimonials-premium">
           <div className="testimonials-premium-container">
@@ -513,7 +575,7 @@ export default function PropertyTypePage() {
                 >
                   <div className="testimonial-rating-premium">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={16} fill={i < testimonial.rating ? "#D4AF37" : "none"} color="#D4AF37" />
+                      <Star key={i} size={16} fill={i < testimonial.rating ? "#B8892D" : "none"} color="#B8892D" />
                     ))}
                   </div>
                   <p>"{testimonial.review}"</p>
@@ -531,7 +593,9 @@ export default function PropertyTypePage() {
         </section>
       )}
 
-      {/* ===== CTA SECTION ===== */}
+      {/* ============================================================
+          CTA SECTION
+      ============================================================ */}
       <section className="cta-premium">
         <div className="cta-premium-container">
           <motion.div 

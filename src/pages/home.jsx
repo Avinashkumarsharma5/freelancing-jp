@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import React, { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
@@ -41,15 +41,16 @@ import {
   Briefcase,
   Globe,
   Languages,
+  Play,
 } from "lucide-react";
 import './home.css';
 
 // ======================================
-// ANIMATION VARIANTS
+// ANIMATION VARIANTS (Enhanced)
 // ======================================
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 80, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: "easeOut" } }
 };
 
 const fadeIn = {
@@ -57,13 +58,8 @@ const fadeIn = {
   visible: { opacity: 1, transition: { duration: 0.8 } }
 };
 
-const scaleHover = {
-  scale: 1.05,
-  transition: { duration: 0.3 }
-};
-
 // ======================================
-// STATIC DATA
+// STATIC DATA (unchanged)
 // ======================================
 const quickFilters = ['Luxury', 'Ready To Move', 'New Launch', 'Smart Homes', 'Golf View'];
 
@@ -281,7 +277,208 @@ const faqs = [
 ];
 
 // ======================================
-// NAVBAR COMPONENT
+// ENHANCEMENT COMPONENTS
+// ======================================
+
+// 1. Loading Screen
+function LoadingScreen({ onComplete }) {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 2500);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
+  return (
+    <div className="loading-screen">
+      <div className="loading-content">
+        <div className="loading-logo">
+          <span className="brand-mark">MS</span>
+        </div>
+        <h1>Milesquare Realty</h1>
+        <p>Luxury Living Across NCR</p>
+        <div className="loading-bar">
+          <motion.div 
+            className="loading-progress"
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 2. Scroll Progress Bar
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setProgress(progress);
+    };
+    window.addEventListener('scroll', updateProgress);
+    return () => window.removeEventListener('scroll', updateProgress);
+  }, []);
+
+  return (
+    <div className="scroll-progress-bar">
+      <div className="scroll-progress-fill" style={{ width: `${progress}%` }} />
+    </div>
+  );
+}
+
+// 3. Hero Glow (Mouse Follow)
+function HeroGlow() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const rect = heroRef.current?.getBoundingClientRect();
+    if (rect) {
+      setPosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  return (
+    <div 
+      className="hero-glow-wrapper" 
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+    >
+      <div 
+        className="hero-glow"
+        style={{
+          left: position.x - 200,
+          top: position.y - 200,
+        }}
+      />
+    </div>
+  );
+}
+
+// 4. Floating Particles
+function FloatingParticles() {
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 8 + 4,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 10,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+  }));
+
+  return (
+    <div className="floating-particles">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="particle"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// 5. Video Popup Modal
+function VideoPopup({ videoSrc, isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="video-popup-overlay" onClick={onClose}>
+      <div className="video-popup-content" onClick={(e) => e.stopPropagation()}>
+        <button className="video-popup-close" onClick={onClose}>
+          <X size={32} />
+        </button>
+        <video controls autoPlay className="video-popup-player">
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  );
+}
+
+// 6. Counter with comma formatting
+function Counter({ end, suffix = "", duration = 2000 }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef();
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const increment = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [inView, end, duration]);
+
+  const formatted = new Intl.NumberFormat('en-IN').format(count);
+  return <strong ref={ref}>{formatted}{suffix}</strong>;
+}
+
+// 7. Animated Location Counter
+function LocationCounter({ target, suffix = "", duration = 1500 }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef();
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [inView, target, duration]);
+
+  const formatted = new Intl.NumberFormat('en-IN').format(count);
+  return <span ref={ref}>{formatted}{suffix}</span>;
+}
+
+// 8. Section Divider
+function SectionDivider() {
+  return (
+    <div className="section-divider">
+      <div className="divider-wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,30 1440,30 L1440,60 L0,60 Z" fill="#FAF7F1" />
+        </svg>
+      </div>
+      <div className="divider-gold-line" />
+    </div>
+  );
+}
+
+// ======================================
+// NAVBAR
 // ======================================
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -323,24 +520,10 @@ function Navbar() {
 }
 
 // ======================================
-// PREMIUM VIDEO HERO SECTION
+// HERO (with all enhancements)
 // ======================================
 function PremiumVideoHero() {
-  const [activeTab, setActiveTab] = useState('buy');
-
-  const tabs = [
-    { id: 'buy', label: 'Buy', icon: Home },
-    { id: 'rent', label: 'Rent', icon: Building2 },
-    { id: 'commercial', label: 'Commercial', icon: Briefcase },
-    { id: 'plot', label: 'Plot', icon: Map },
-  ];
-
-  const floatingCards = [
-    { icon: Zap, text: 'Hot Deal', color: '#B8892D', bg: 'rgba(184, 137, 45, 0.15)' },
-    { icon: TrendingUp, text: '₹1.45 Cr | ACE Terra', color: '#1B1B1B', bg: 'rgba(27, 27, 27, 0.85)' },
-    { icon: Star, text: '⭐ 4.9 Rating', color: '#B8892D', bg: 'rgba(184, 137, 45, 0.15)' },
-    { icon: Sparkles, text: '📈 15% ROI Potential', color: '#1B1B1B', bg: 'rgba(27, 27, 27, 0.85)' },
-  ];
+  const [videoOpen, setVideoOpen] = useState(false);
 
   return (
     <section className="premium-hero">
@@ -358,6 +541,9 @@ function PremiumVideoHero() {
         <div className="hero-video-overlay"></div>
       </div>
 
+      <HeroGlow />
+      <FloatingParticles />
+
       <div className="site-container hero-content">
         <div className="hero-left">
           <motion.div className="trust-badge" initial="hidden" animate="visible" variants={fadeUp}>
@@ -370,6 +556,46 @@ function PremiumVideoHero() {
             <span className="gold-text"> Across NCR's Best Locations</span>
           </motion.h1>
 
+          {/* Glass Search Bar */}
+          <motion.div 
+            className="hero-glass-search"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ delay: 0.15 }}
+          >
+            <div className="search-row">
+              <div className="search-field">
+                <MapPin size={18} />
+                <input type="text" placeholder="Location" />
+              </div>
+              <div className="search-field">
+                <CircleDollarSign size={18} />
+                <select>
+                  <option>Budget</option>
+                  <option>₹50 L - ₹1 Cr</option>
+                  <option>₹1 Cr - ₹2 Cr</option>
+                  <option>₹2 Cr - ₹4 Cr</option>
+                  <option>₹4 Cr+</option>
+                </select>
+              </div>
+              <div className="search-field">
+                <Building2 size={18} />
+                <select>
+                  <option>Property Type</option>
+                  <option>Apartment</option>
+                  <option>Villa</option>
+                  <option>Plot</option>
+                  <option>Commercial</option>
+                </select>
+              </div>
+              <button className="search-btn">
+                <Search size={18} />
+                Search
+              </button>
+            </div>
+          </motion.div>
+
           <motion.div className="hero-stats" initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.2 }}>
             <div className="stat"><strong>1200+</strong><span>Verified Listings</span></div>
             <div className="stat"><strong>15000+</strong><span>Happy Families</span></div>
@@ -380,45 +606,25 @@ function PremiumVideoHero() {
             <a href="#properties" className="primary-btn gold-btn">
               Explore Properties <ArrowRight size={18} />
             </a>
+            <button className="secondary-btn glass-btn" onClick={() => setVideoOpen(true)}>
+              <Play size={18} />
+              Watch Tour
+            </button>
             <a href="#contact" className="secondary-btn glass-btn">
-              Book Site Visit <CalendarDays size={18} />
+              <CalendarDays size={18} />
+              Book Site Visit
             </a>
           </motion.div>
         </div>
       </div>
+
+      <VideoPopup 
+        videoSrc="https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-luxury-villa-32879.mp4"
+        isOpen={videoOpen}
+        onClose={() => setVideoOpen(false)}
+      />
     </section>
   );
-}
-
-// ======================================
-// COUNTER COMPONENT
-// ======================================
-function Counter({ end, suffix = "", duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const ref = React.useRef();
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-
-    let start = 0;
-    const increment = end / (duration / 16);
-
-    const timer = setInterval(() => {
-      start += increment;
-
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [inView, end, duration]);
-
-  return <strong ref={ref}>{count}{suffix}</strong>;
 }
 
 // ======================================
@@ -489,7 +695,7 @@ function SectionHeading({ kicker, title, align = 'left' }) {
 }
 
 // ======================================
-// BROWSE BY TYPE
+// BROWSE BY TYPE (3D hover)
 // ======================================
 function BrowseByType() {
   const navigate = useNavigate();
@@ -497,17 +703,13 @@ function BrowseByType() {
   return (
     <section className="section type-section">
       <div className="site-container">
-        <SectionHeading
-          kicker="Browse by type"
-          title="Choose the property style that fits your plan."
-        />
-
+        <SectionHeading kicker="Browse by type" title="Choose the property style that fits your plan." />
         <div className="type-grid">
           {browseTypes.map((type) => (
             <motion.article
               key={type.title}
               className="premium-type-card"
-              whileHover={{ y: -10, scale: 1.02 }}
+              whileHover={{ y: -10, scale: 1.02, rotateX: 3, rotateY: -3 }}
               transition={{ duration: 0.3 }}
               onClick={() => navigate(`/property-type/${type.slug}`)}
             >
@@ -531,26 +733,21 @@ function BrowseByType() {
 }
 
 // ======================================
-// PREMIUM FEATURED PROPERTIES (LUXURY EDITION)
+// FEATURED PROPERTIES (3D hover + shine)
 // ======================================
 function PremiumFeaturedProperties() {
   const [savedProperties, setSavedProperties] = useState([]);
 
   const toggleSave = (title) => {
     setSavedProperties((prev) =>
-      prev.includes(title)
-        ? prev.filter((item) => item !== title)
-        : [...prev, title]
+      prev.includes(title) ? prev.filter((item) => item !== title) : [...prev, title]
     );
   };
 
   return (
     <section id="properties" className="section properties-section premium-properties">
       <div className="site-container">
-        <SectionHeading
-          kicker="Featured Collection"
-          title="Handpicked Luxury Homes Across NCR"
-        />
+        <SectionHeading kicker="Featured Collection" title="Handpicked Luxury Homes Across NCR" />
 
         <div className="property-grid premium-property-grid">
           {featuredProperties.map((property, idx) => (
@@ -562,8 +759,14 @@ function PremiumFeaturedProperties() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
+              whileHover={{ 
+                y: -15, 
+                rotateX: 3, 
+                rotateY: -3,
+                transition: { duration: 0.3 }
+              }}
             >
-              {/* ===== IMAGE SECTION ===== */}
+              {/* Image with shine (via CSS) */}
               <div className="property-image-container">
                 <img src={property.image} alt={property.title} loading="lazy" />
                 <div className="property-image-overlay"></div>
@@ -579,16 +782,8 @@ function PremiumFeaturedProperties() {
                 </div>
 
                 <div className="property-quick-actions">
-                  <button
-                    className="quick-action-btn"
-                    onClick={() => toggleSave(property.title)}
-                    aria-label="Save property"
-                  >
-                    <Heart
-                      size={18}
-                      fill={savedProperties.includes(property.title) ? "#B8892D" : "none"}
-                      color={savedProperties.includes(property.title) ? "#B8892D" : "#fff"}
-                    />
+                  <button className="quick-action-btn" onClick={() => toggleSave(property.title)} aria-label="Save property">
+                    <Heart size={18} fill={savedProperties.includes(property.title) ? "#B8892D" : "none"} color={savedProperties.includes(property.title) ? "#B8892D" : "#fff"} />
                   </button>
                   <button className="quick-action-btn" aria-label="Compare">
                     <GitCompare size={18} color="#fff" />
@@ -596,12 +791,10 @@ function PremiumFeaturedProperties() {
                 </div>
 
                 <div className="exclusive-tag">
-                  <Sparkles size={12} />
-                  Exclusive
+                  <Sparkles size={12} /> Exclusive
                 </div>
               </div>
 
-              {/* ===== CONTENT SECTION ===== */}
               <div className="property-content">
                 <div className="property-status">
                   <span className="status-badge ready">Ready To Move</span>
@@ -621,46 +814,22 @@ function PremiumFeaturedProperties() {
                 </div>
 
                 <div className="property-specs">
-                  <div className="spec-item">
-                    <strong>{property.bhk}</strong>
-                    <span>Config</span>
-                  </div>
+                  <div className="spec-item"><strong>{property.bhk}</strong><span>Config</span></div>
                   <div className="spec-divider"></div>
-                  <div className="spec-item">
-                    <strong>{property.area}</strong>
-                    <span>Area</span>
-                  </div>
+                  <div className="spec-item"><strong>{property.area}</strong><span>Area</span></div>
                   <div className="spec-divider"></div>
-                  <div className="spec-item">
-                    <strong>{property.builder}</strong>
-                    <span>Builder</span>
-                  </div>
+                  <div className="spec-item"><strong>{property.builder}</strong><span>Builder</span></div>
                 </div>
 
                 <div className="property-amenities">
-                  <div className="amenity-item">
-                    <Train size={14} />
-                    <span>Metro {property.metro}</span>
-                  </div>
-                  <div className="amenity-item">
-                    <School size={14} />
-                    <span>School {property.school}</span>
-                  </div>
-                  <div className="amenity-item">
-                    <Hospital size={14} />
-                    <span>Hospital {property.hospital}</span>
-                  </div>
+                  <div className="amenity-item"><Train size={14} /><span>Metro {property.metro}</span></div>
+                  <div className="amenity-item"><School size={14} /><span>School {property.school}</span></div>
+                  <div className="amenity-item"><Hospital size={14} /><span>Hospital {property.hospital}</span></div>
                 </div>
 
                 <div className="property-ctas">
-                  <button className="btn-primary-luxury">
-                    Explore Property
-                    <ArrowRight size={18} />
-                  </button>
-                  <button className="btn-secondary-luxury">
-                    <CalendarDays size={16} />
-                    Site Visit
-                  </button>
+                  <button className="btn-primary-luxury">Explore Property <ArrowRight size={18} /></button>
+                  <button className="btn-secondary-luxury"><CalendarDays size={16} /> Site Visit</button>
                 </div>
               </div>
             </motion.article>
@@ -672,39 +841,49 @@ function PremiumFeaturedProperties() {
 }
 
 // ======================================
-// PREMIUM LOCATIONS
+// PREMIUM LOCATIONS (with Parallax + animated numbers)
 // ======================================
 function PremiumLocations() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
   return (
-    <section id="locations" className="section locations-section premium-locations">
+    <section id="locations" className="section locations-section premium-locations" ref={containerRef}>
       <div className="site-container">
         <SectionHeading kicker="Top locations" title="Explore high-demand city pockets with growth potential." />
         <div className="location-grid premium-location-grid">
-          {premiumLocations.map((location, idx) => (
-            <motion.article 
-              className="premium-location-card" 
-              key={location.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ scale: 1.03 }}
-            >
-              <img src={location.image} alt={location.name} loading="lazy" />
-              <div className="location-overlay">
-                <div className="location-info">
-                  <h3>{location.name}</h3>
-                  <p>{location.properties} Properties</p>
-                  <div className="growth-badge">
-                    <TrendingUp size={14} />
-                    ↑ {location.growth}% Growth
+          {premiumLocations.map((location, idx) => {
+            const cardY = useTransform(y, (value) => value * (idx % 2 === 0 ? 1 : -0.5));
+            return (
+              <motion.article
+                className="premium-location-card"
+                key={location.name}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                transition={{ delay: idx * 0.05 }}
+                style={{ y: cardY }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <img src={location.image} alt={location.name} loading="lazy" />
+                <div className="location-overlay">
+                  <div className="location-info">
+                    <h3>{location.name}</h3>
+                    <p><LocationCounter target={location.properties} /> Properties</p>
+                    <div className="growth-badge">
+                      <TrendingUp size={14} /> ↑ {location.growth}% Growth
+                    </div>
                   </div>
+                  <ArrowRight size={24} />
                 </div>
-                <ArrowRight size={24} />
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -754,7 +933,7 @@ function PremiumWhyChooseUs() {
 }
 
 // ======================================
-// SERVICES SECTION
+// SERVICES
 // ======================================
 function PremiumServicesSection() {
   return (
@@ -790,7 +969,7 @@ function PremiumServicesSection() {
 }
 
 // ======================================
-// NEW LAUNCHES & READY TO MOVE
+// LAUNCHES & READY
 // ======================================
 function PremiumLaunchAndReady() {
   return (
@@ -859,7 +1038,7 @@ function PremiumLaunchAndReady() {
 }
 
 // ======================================
-// DEVELOPER SHOWCASE
+// DEVELOPER SHOWCASE (Auto-marquee)
 // ======================================
 function PremiumDeveloperShowcase() {
   return (
@@ -886,7 +1065,7 @@ function PremiumDeveloperShowcase() {
 }
 
 // ======================================
-// PREMIUM TESTIMONIALS
+// TESTIMONIALS
 // ======================================
 function PremiumTestimonials() {
   return (
@@ -930,7 +1109,7 @@ function PremiumTestimonials() {
 }
 
 // ======================================
-// LUXURY AGENT SHOWCASE
+// AGENTS
 // ======================================
 function LuxuryAgentShowcase() {
   return (
@@ -981,7 +1160,7 @@ function LuxuryAgentShowcase() {
 }
 
 // ======================================
-// PREMIUM FAQ
+// FAQ
 // ======================================
 function PremiumFAQ() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -1025,7 +1204,7 @@ function PremiumFAQ() {
 }
 
 // ======================================
-// SITE VISIT BOOKING FORM
+// BOOKING FORM
 // ======================================
 function SiteVisitBooking() {
   const [status, setStatus] = useState('');
@@ -1104,7 +1283,7 @@ function SiteVisitBooking() {
 }
 
 // ======================================
-// LUXURY CTA SECTION
+// CTA
 // ======================================
 function LuxuryCTASection() {
   return (
@@ -1142,7 +1321,7 @@ function LuxuryCTASection() {
 }
 
 // ======================================
-// PREMIUM FOOTER
+// FOOTER
 // ======================================
 function PremiumFooter() {
   const year = useMemo(() => new Date().getFullYear(), []);
@@ -1235,26 +1414,45 @@ function FloatingActions() {
 // MAIN HOMEPAGE
 // ======================================
 function HomePage() {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <main>
-      <Navbar />
-      <PremiumVideoHero />
-      <StatsBar />
-      <BrowseByType />
-      <PremiumFeaturedProperties />
-      <PremiumLocations />
-      <PremiumWhyChooseUs />
-      <PremiumServicesSection />
-      <PremiumLaunchAndReady />
-      <PremiumDeveloperShowcase />
-      <PremiumTestimonials />
-      <LuxuryAgentShowcase />
-      <PremiumFAQ />
-      <SiteVisitBooking />
-      <LuxuryCTASection />
-      <PremiumFooter />
-      <FloatingActions />
-    </main>
+    <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      <ScrollProgress />
+      <main>
+        <Navbar />
+        <PremiumVideoHero />
+        <SectionDivider />
+        <StatsBar />
+        <SectionDivider />
+        <BrowseByType />
+        <SectionDivider />
+        <PremiumFeaturedProperties />
+        <SectionDivider />
+        <PremiumLocations />
+        <SectionDivider />
+        <PremiumWhyChooseUs />
+        <SectionDivider />
+        <PremiumServicesSection />
+        <SectionDivider />
+        <PremiumLaunchAndReady />
+        <SectionDivider />
+        <PremiumDeveloperShowcase />
+        <SectionDivider />
+        <PremiumTestimonials />
+        <SectionDivider />
+        <LuxuryAgentShowcase />
+        <SectionDivider />
+        <PremiumFAQ />
+        <SectionDivider />
+        <SiteVisitBooking />
+        <SectionDivider />
+        <LuxuryCTASection />
+        <PremiumFooter />
+        <FloatingActions />
+      </main>
+    </>
   );
 }
 
