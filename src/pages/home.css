@@ -1070,31 +1070,90 @@ img {
 /* ======================================
    PREMIUM LOCATIONS
 ====================================== */
+/* ==========================================
+   PREMIUM LOCATION MODAL
+========================================== */
+
+/* ==========================
+   PREMIUM LOCATIONS SECTION
+========================== */
+
 .locations-section {
-  background: var(--white);
+  padding: 80px 0;
+  background: #f8fafc;
 }
 
-.premium-location-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.site-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-kicker {
+  display: inline-block;
+  background: #D4AF37;
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #64748B;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================
+   LOCATION GRID
+========================== */
+
+.premium-location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
 .premium-location-card {
   position: relative;
-  border-radius: var(--radius-md);
+  height: 320px;
+  border-radius: 28px;
   overflow: hidden;
   cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.premium-location-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .premium-location-card img {
   width: 100%;
-  height: 320px;
+  height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: transform 0.6s ease;
 }
 
 .premium-location-card:hover img {
@@ -1104,52 +1163,343 @@ img {
 .location-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.8));
+  padding: 28px;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
-  padding: 24px;
-  color: var(--white);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  color: #fff;
 }
 
-.location-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+.location-info {
+  width: 100%;
 }
 
-.location-info p {
-  font-size: 0.85rem;
-  opacity: 0.9;
+.location-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.location-stats {
+  font-size: 0.95rem;
+  opacity: 0.85;
   margin-bottom: 8px;
 }
 
 .growth-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 12px;
-  background: rgba(212, 175, 55, 0.9);
-  border-radius: var(--radius-xl);
-  font-size: 0.75rem;
+  gap: 4px;
+  background: rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: #D4AF37;
 }
 
-@media (max-width: 992px) {
-  .premium-location-grid {
-    grid-template-columns: repeat(2, 1fr);
+.growth-arrow {
+  display: inline-block;
+  font-size: 1rem;
+}
+
+/* Active Location Card */
+.active-location {
+  outline: 3px solid #D4AF37;
+  outline-offset: 2px;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
+}
+
+/* ==========================
+   LOCATION SHOWCASE (Expands on click)
+========================== */
+
+.location-showcase {
+  margin-top: 40px;
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+  animation: slideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 640px) {
+.showcase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 35px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.showcase-tag {
+  display: inline-block;
+  background: #D4AF37;
+  color: #111;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.showcase-title {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: #0F172A;
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.showcase-description {
+  color: #64748B;
+  font-size: 1.05rem;
+  margin-top: 8px;
+  max-width: 500px;
+}
+
+.explore-market-btn {
+  background: #0F172A;
+  color: #fff;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.explore-market-btn:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+}
+
+/* ==========================
+   PROPERTY GRID
+========================== */
+
+.location-properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.showcase-property-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.showcase-property-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border-color: #e2e8f0;
+}
+
+.property-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-property-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.showcase-property-card:hover img {
+  transform: scale(1.05);
+}
+
+.property-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #D4AF37;
+  color: #111;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+.showcase-content {
+  padding: 22px 24px 24px;
+}
+
+.showcase-price {
+  display: block;
+  color: #D4AF37;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.property-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+
+.property-location {
+  color: #64748B;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.showcase-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.info-divider {
+  color: #cbd5e1;
+}
+
+.showcase-btn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 14px;
+  background: #f8fafc;
+  color: #0F172A;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.showcase-btn:hover {
+  background: #D4AF37;
+  color: #111;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 1024px) {
   .premium-location-grid {
-    grid-template-columns: 1fr;
+    gap: 16px;
   }
-  
-  .premium-location-card img {
+
+  .premium-location-card {
     height: 280px;
   }
 }
 
+@media (max-width: 768px) {
+  .locations-section {
+    padding: 48px 0;
+  }
+
+  .premium-location-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .premium-location-card {
+    height: 220px;
+  }
+
+  .showcase-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .explore-market-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .location-showcase {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .location-properties-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .showcase-property-card img {
+    height: 180px;
+  }
+
+  .showcase-price {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-location-card {
+    height: 190px;
+    border-radius: 20px;
+  }
+
+  .location-name {
+    font-size: 1.3rem;
+  }
+
+  .showcase-content {
+    padding: 16px 18px 20px;
+  }
+
+  .showcase-btn {
+    height: 44px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ==========================
+   UTILITY - smooth scrolling
+========================== */
+
+html {
+  scroll-behavior: smooth;
+}
 /* ======================================
    WHY CHOOSE US (PREMIUM)
 ====================================== */

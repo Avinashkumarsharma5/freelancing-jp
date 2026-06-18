@@ -206,14 +206,7 @@ const featuredProperties = [
 ];
 
 
-const premiumLocations = [
-  { name: 'Noida', properties: 245, growth: 15.2, image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Greater Noida', properties: 186, growth: 22.8, image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Gurgaon', properties: 340, growth: 18.5, image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Delhi', properties: 198, growth: 12.3, image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Noida Extension', properties: 167, growth: 28.4, image: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Dwarka Expressway', properties: 234, growth: 25.7, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80' },
-];
+
 
 
 
@@ -750,42 +743,181 @@ function PremiumFeaturedProperties() {
 // ======================================
 // PREMIUM LOCATIONS
 // ======================================
-function PremiumLocations() {
+
+const PremiumLocations = () => {
+  const [activeLocation, setActiveLocation] = useState('Noida');
+
+  const premiumLocations = [
+    {
+      name: 'Noida',
+      image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=400&fit=crop',
+      properties: 245,
+      growth: 15,
+      propertyList: [
+        {
+          title: 'Godrej Golf Links',
+          location: 'Sector 150, Noida',
+          price: '₹2.5 Cr',
+          bhk: '3 BHK',
+          area: '1850 sq.ft',
+          images: ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop']
+        },
+        {
+          title: 'DLF The Camellias',
+          location: 'Sector 42, Noida',
+          price: '₹4.2 Cr',
+          bhk: '4 BHK',
+          area: '2500 sq.ft',
+          images: ['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop']
+        },
+        {
+          title: 'Jaypee Greens',
+          location: 'Sector 128, Noida',
+          price: '₹1.8 Cr',
+          bhk: '3 BHK',
+          area: '1650 sq.ft',
+          images: ['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop']
+        }
+      ]
+    },
+    {
+      name: 'Greater Noida',
+      image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=400&fit=crop',
+      properties: 189,
+      growth: 22,
+      propertyList: [
+        {
+          title: 'Supertech Eco Village',
+          location: 'Sector 16, Greater Noida',
+          price: '₹1.2 Cr',
+          bhk: '3 BHK',
+          area: '1500 sq.ft',
+          images: ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop']
+        },
+        {
+          title: 'Gaur Yamuna City',
+          location: 'Sector 6, Greater Noida',
+          price: '₹95 L',
+          bhk: '2 BHK',
+          area: '1200 sq.ft',
+          images: ['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop']
+        }
+      ]
+    },
+    {
+      name: 'Gurgaon',
+      image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=400&fit=crop',
+      properties: 312,
+      growth: 18,
+      propertyList: [
+        {
+          title: 'DLF Phase 5',
+          location: 'Gurugram, Haryana',
+          price: '₹5.8 Cr',
+          bhk: '4 BHK',
+          area: '3000 sq.ft',
+          images: ['https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop']
+        },
+        {
+          title: 'Tata Primanti',
+          location: 'Sector 72, Gurugram',
+          price: '₹2.8 Cr',
+          bhk: '3 BHK',
+          area: '1900 sq.ft',
+          images: ['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop']
+        }
+      ]
+    }
+  ];
+
+  const selectedLocation = premiumLocations.find(
+    (item) => item.name === activeLocation
+  ) || premiumLocations[0];
+
   return (
-    <section id="locations" className="section locations-section premium-locations">
+    <section id="locations" className="locations-section">
       <div className="site-container">
-        <SectionHeading kicker="Top locations" title="Explore high-demand city pockets with growth potential." />
-        <div className="location-grid premium-location-grid">
-          {premiumLocations.map((location, idx) => (
-            <motion.article 
-              className="premium-location-card" 
+        <div className="section-header">
+          <span className="section-kicker">Prime Locations</span>
+          <h2 className="section-title">
+            Explore NCR's Fastest Growing Micro-Markets
+          </h2>
+          <p className="section-subtitle">
+            Discover premium properties in the most sought-after neighborhoods
+          </p>
+        </div>
+
+        {/* Location Cards Grid */}
+        <div className="premium-location-grid">
+          {premiumLocations.map((location) => (
+            <div
               key={location.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ scale: 1.03 }}
+              className={`premium-location-card ${
+                activeLocation === location.name ? 'active-location' : ''
+              }`}
+              onClick={() => setActiveLocation(location.name)}
             >
               <img src={location.image} alt={location.name} loading="lazy" />
               <div className="location-overlay">
                 <div className="location-info">
-                  <h3>{location.name}</h3>
-                  <p>{location.properties} Properties</p>
+                  <h3 className="location-name">{location.name}</h3>
+                  <p className="location-stats">
+                    {location.properties} Properties
+                  </p>
                   <div className="growth-badge">
-                    <TrendingUp size={14} />
-                    ↑ {location.growth}% Growth
+                    <span className="growth-arrow">↑</span>
+                    {location.growth}% Growth
                   </div>
                 </div>
-                <ArrowRight size={24} />
               </div>
-            </motion.article>
+            </div>
           ))}
+        </div>
+
+        {/* Expanded Showcase - Slides down on click */}
+        <div className="location-showcase">
+          <div className="showcase-header">
+            <div>
+              <span className="showcase-tag">Featured Market</span>
+              <h2 className="showcase-title">{selectedLocation.name}</h2>
+              <p className="showcase-description">
+                Explore premium projects, villas, apartments, and investment opportunities.
+              </p>
+            </div>
+            <button className="explore-market-btn">View All Properties →</button>
+          </div>
+
+          <div className="location-properties-grid">
+            {selectedLocation.propertyList.map((property, index) => (
+              <div key={index} className="showcase-property-card">
+                <div className="property-image-wrapper">
+                  <img
+                    src={property.images[0]}
+                    alt={property.title}
+                    loading="lazy"
+                  />
+                  <span className="property-badge">Featured</span>
+                </div>
+                <div className="showcase-content">
+                  <span className="showcase-price">{property.price}</span>
+                  <h3 className="property-title">{property.title}</h3>
+                  <p className="property-location">📍 {property.location}</p>
+                  <div className="showcase-info">
+                    <span>{property.bhk}</span>
+                    <span className="info-divider">•</span>
+                    <span>{property.area}</span>
+                  </div>
+                  <button className="showcase-btn">Explore Project</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
 
 // ======================================
 // WHY CHOOSE US (PREMIUM)
