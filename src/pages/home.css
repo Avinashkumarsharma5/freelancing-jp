@@ -1242,6 +1242,11 @@ img {
 /* ======================================
    WHY CHOOSE US
 ====================================== */
+.why-section {
+  background: var(--ivory-light);
+}
+
+/* Grid version (fallback) */
 .premium-feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1304,6 +1309,11 @@ img {
 /* ======================================
    SERVICES
 ====================================== */
+.services-section {
+  background: var(--ivory-light);
+}
+
+/* Grid version (fallback) */
 .premium-services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1376,12 +1386,17 @@ img {
 /* ======================================
    LAUNCHES & READY
 ====================================== */
+.launch-section {
+  background: var(--ivory-light);
+}
+
 .launch-ready-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
 
+/* Grid version (fallback) */
 .info-card-list {
   display: flex;
   flex-direction: column;
@@ -1453,6 +1468,7 @@ img {
   gap: 12px;
 }
 
+/* Ready to Move */
 .ready-grid {
   display: flex;
   flex-direction: column;
@@ -1626,6 +1642,11 @@ img {
 /* ======================================
    TESTIMONIALS
 ====================================== */
+.testimonials-section {
+  background: var(--ivory-light);
+}
+
+/* Grid version (fallback) */
 .premium-testimonial-slider {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1708,6 +1729,11 @@ img {
 /* ======================================
    AGENTS
 ====================================== */
+.team-section {
+  background: var(--ivory-light);
+}
+
+/* Grid version (fallback) */
 .luxury-agent-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1869,6 +1895,10 @@ img {
 /* ======================================
    FAQ
 ====================================== */
+.faq-section {
+  background: var(--ivory-light);
+}
+
 .faq-layout {
   max-width: 800px;
   margin: 0 auto;
@@ -1920,6 +1950,11 @@ img {
 /* ======================================
    BOOKING FORM
 ====================================== */
+.booking-section {
+  background: var(--ivory-light);
+  padding: 80px 0;
+}
+
 .booking-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2575,6 +2610,122 @@ img {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
   margin-top: -2px;
+}
+
+/* ======================================
+   HORIZONTAL SLIDER STYLES
+====================================== */
+.horizontal-slider-wrapper {
+  position: relative;
+  padding: 10px 0 20px;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.slider-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid rgba(184, 137, 45, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--charcoal);
+  box-shadow: var(--shadow-sm);
+}
+
+.slider-arrow:hover {
+  background: var(--gold-primary);
+  color: var(--white);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.slider-arrow.hidden {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.horizontal-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 5px 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.horizontal-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-slider > * {
+  flex: 0 0 380px;
+  scroll-snap-align: start;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.horizontal-slider > *:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Card widths for different sections */
+.premium-feature-slider > * { flex: 0 0 360px; }
+.premium-services-slider > * { flex: 0 0 320px; }
+.premium-testimonial-slider > * { flex: 0 0 420px; }
+.luxury-agent-slider > * { flex: 0 0 380px; }
+.launch-slider > * { flex: 0 0 450px; }
+.ready-slider > * { flex: 0 0 380px; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .horizontal-slider > * {
+    flex: 0 0 320px;
+  }
+  .premium-testimonial-slider > * { flex: 0 0 340px; }
+  .launch-slider > * { flex: 0 0 380px; }
+  .slider-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .horizontal-slider > * {
+    flex: 0 0 280px;
+  }
+  .premium-testimonial-slider > * { flex: 0 0 300px; }
+  .launch-slider > * { flex: 0 0 320px; }
+  .ready-slider > * { flex: 0 0 300px; }
+  .premium-feature-slider > * { flex: 0 0 280px; }
+  .premium-services-slider > * { flex: 0 0 260px; }
+  .luxury-agent-slider > * { flex: 0 0 300px; }
+}
+
+@media (max-width: 480px) {
+  .horizontal-slider > * {
+    flex: 0 0 240px;
+  }
+  .slider-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .slider-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 /* ======================================

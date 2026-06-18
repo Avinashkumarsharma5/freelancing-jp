@@ -42,6 +42,7 @@ import {
   Globe,
   Languages,
   Play,
+  ChevronLeft,
 } from "lucide-react";
 import './home.css';
 
@@ -477,6 +478,82 @@ function SectionDivider() {
   );
 }
 
+// 9. Horizontal Slider (NEW)
+const HorizontalSlider = ({ 
+  children, 
+  autoScroll = false, 
+  scrollAmount = 420, 
+  interval = 4000,
+  className = "" 
+}) => {
+  const sliderRef = useRef(null);
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+
+  const checkScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    setShowLeft(el.scrollLeft > 10);
+    setShowRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  const scrollLeft = () => {
+    sliderRef.current?.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current?.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const el = sliderRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', checkScroll);
+    checkScroll();
+    return () => el.removeEventListener('scroll', checkScroll);
+  }, []);
+
+  // Auto-scroll for testimonials
+  useEffect(() => {
+    if (!autoScroll) return;
+    const intervalId = setInterval(() => {
+      const el = sliderRef.current;
+      if (!el) return;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 10) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }, interval);
+    return () => clearInterval(intervalId);
+  }, [autoScroll, scrollAmount, interval]);
+
+  return (
+    <div className={`horizontal-slider-wrapper ${className}`}>
+      <div className="slider-controls">
+        <button 
+          className={`slider-arrow left ${!showLeft ? 'hidden' : ''}`}
+          onClick={scrollLeft}
+          aria-label="Scroll left"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button 
+          className={`slider-arrow right ${!showRight ? 'hidden' : ''}`}
+          onClick={scrollRight}
+          aria-label="Scroll right"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+      <div className="horizontal-slider" ref={sliderRef}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 // ======================================
 // NAVBAR
 // ======================================
@@ -556,45 +633,7 @@ function PremiumVideoHero() {
             <span className="gold-text"> Across NCR's Best Locations</span>
           </motion.h1>
 
-          {/* Glass Search Bar */}
-          <motion.div 
-            className="hero-glass-search"
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ delay: 0.15 }}
-          >
-            <div className="search-row">
-              <div className="search-field">
-                <MapPin size={18} />
-                <input type="text" placeholder="Location" />
-              </div>
-              <div className="search-field">
-                <CircleDollarSign size={18} />
-                <select>
-                  <option>Budget</option>
-                  <option>₹50 L - ₹1 Cr</option>
-                  <option>₹1 Cr - ₹2 Cr</option>
-                  <option>₹2 Cr - ₹4 Cr</option>
-                  <option>₹4 Cr+</option>
-                </select>
-              </div>
-              <div className="search-field">
-                <Building2 size={18} />
-                <select>
-                  <option>Property Type</option>
-                  <option>Apartment</option>
-                  <option>Villa</option>
-                  <option>Plot</option>
-                  <option>Commercial</option>
-                </select>
-              </div>
-              <button className="search-btn">
-                <Search size={18} />
-                Search
-              </button>
-            </div>
-          </motion.div>
+          
 
           <motion.div className="hero-stats" initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.2 }}>
             <div className="stat"><strong>1200+</strong><span>Verified Listings</span></div>
@@ -891,7 +930,7 @@ function PremiumLocations() {
 }
 
 // ======================================
-// WHY CHOOSE US
+// WHY CHOOSE US (Slider)
 // ======================================
 function PremiumWhyChooseUs() {
   const features = [
@@ -907,7 +946,7 @@ function PremiumWhyChooseUs() {
     <section className="section why-section premium-why">
       <div className="site-container">
         <SectionHeading kicker="Why choose us" title="Experience the difference with Milesquare." align="center" />
-        <div className="premium-feature-grid">
+        <HorizontalSlider className="premium-feature-slider">
           {features.map((feature, idx) => (
             <motion.div 
               className="premium-feature-card"
@@ -926,21 +965,21 @@ function PremiumWhyChooseUs() {
               <p>{feature.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </HorizontalSlider>
       </div>
     </section>
   );
 }
 
 // ======================================
-// SERVICES
+// SERVICES (Slider)
 // ======================================
 function PremiumServicesSection() {
   return (
     <section id="services" className="section services-section premium-services">
       <div className="site-container">
         <SectionHeading kicker="Services" title="Everything you need before and after buying." align="center" />
-        <div className="services-grid premium-services-grid">
+        <HorizontalSlider className="premium-services-slider" scrollAmount={340}>
           {services.map((service, idx) => (
             <motion.article 
               className="premium-service-card" 
@@ -962,22 +1001,23 @@ function PremiumServicesSection() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </HorizontalSlider>
       </div>
     </section>
   );
 }
 
 // ======================================
-// LAUNCHES & READY
+// LAUNCHES & READY (Both as sliders)
 // ======================================
 function PremiumLaunchAndReady() {
   return (
     <section className="section launch-section premium-launch">
       <div className="site-container launch-ready-grid">
+        {/* New Launches Slider */}
         <div>
           <SectionHeading kicker="New launch" title="Upcoming projects with launch-stage pricing." />
-          <div className="info-card-list">
+          <HorizontalSlider className="launch-slider" scrollAmount={470}>
             {launches.map((launch, idx) => (
               <motion.article 
                 className="premium-launch-card" 
@@ -1004,11 +1044,13 @@ function PremiumLaunchAndReady() {
                 </div>
               </motion.article>
             ))}
-          </div>
+          </HorizontalSlider>
         </div>
+
+        {/* Ready to Move Slider */}
         <div>
           <SectionHeading kicker="Ready to move" title="Immediate possession homes." />
-          <div className="ready-grid">
+          <HorizontalSlider className="ready-slider" scrollAmount={400}>
             {readyHomes.map((home, idx) => (
               <motion.article 
                 className="premium-ready-card" 
@@ -1030,7 +1072,7 @@ function PremiumLaunchAndReady() {
                 </div>
               </motion.article>
             ))}
-          </div>
+          </HorizontalSlider>
         </div>
       </div>
     </section>
@@ -1065,14 +1107,19 @@ function PremiumDeveloperShowcase() {
 }
 
 // ======================================
-// TESTIMONIALS
+// TESTIMONIALS (Slider with Auto-Scroll)
 // ======================================
 function PremiumTestimonials() {
   return (
     <section className="section testimonials-section premium-testimonials">
       <div className="site-container">
         <SectionHeading kicker="Testimonials" title="What our customers say about us." align="center" />
-        <div className="premium-testimonial-slider">
+        <HorizontalSlider 
+          className="premium-testimonial-slider" 
+          autoScroll={true} 
+          scrollAmount={440}
+          interval={4500}
+        >
           {premiumTestimonials.map((testimonial, idx) => (
             <motion.article 
               className="premium-testimonial-card" 
@@ -1102,21 +1149,21 @@ function PremiumTestimonials() {
               <p>"{testimonial.review}"</p>
             </motion.article>
           ))}
-        </div>
+        </HorizontalSlider>
       </div>
     </section>
   );
 }
 
 // ======================================
-// AGENTS
+// AGENTS (Slider)
 // ======================================
 function LuxuryAgentShowcase() {
   return (
     <section className="section team-section luxury-agents">
       <div className="site-container">
         <SectionHeading kicker="Our Experts" title="Meet your dedicated real estate advisors." align="center" />
-        <div className="team-grid premium-grid luxury-agent-grid">
+        <HorizontalSlider className="luxury-agent-slider" scrollAmount={400}>
           {premiumAgents.map((agent, idx) => (
             <motion.article 
               className="luxury-agent-card" 
@@ -1153,7 +1200,7 @@ function LuxuryAgentShowcase() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </HorizontalSlider>
       </div>
     </section>
   );
