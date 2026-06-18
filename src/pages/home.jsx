@@ -1,5 +1,5 @@
 
-
+import { useNavigate } from "react-router-dom";
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -69,72 +69,142 @@ const scaleHover = {
 const quickFilters = ['Luxury', 'Ready To Move', 'New Launch', 'Smart Homes', 'Golf View'];
 
 const browseTypes = [
-  { title: 'Luxury Apartment', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80', count: '245 properties' },
-  { title: 'Premium Villa', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80', count: '128 properties' },
-  { title: 'Luxury Plot', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80', count: '89 properties' },
-  { title: 'Commercial Space', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80', count: '156 properties' },
-  { title: 'Farmhouse', image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', count: '42 properties' },
-  { title: 'Penthouse', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80', count: '67 properties' },
+  {
+    title: "Luxury Apartment",
+    slug: "luxury-apartment",
+     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80",
+    count: "245 properties",
+  },
+  {
+    title: "Premium Villa",
+    slug: "premium-villa",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+    count: "128 properties",
+  },
+  {
+    title: "Luxury Plot",
+    slug: "luxury-plot",
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80",
+    count: "89 properties",
+  },
+  {
+    title: "Commercial Space",
+    slug: "commercial-space",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    count: "156 properties",
+  },
+  {
+    title: "Farmhouse",
+    slug: "farmhouse",
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+    count: "42 properties",
+  },
+  {
+    title: "Penthouse",
+    slug: "penthouse",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+    count: "67 properties",
+  },
 ];
 
 const featuredProperties = [
   {
-    badge: 'HOT DEAL',
-    title: 'ACE Terra Residences',
-    location: 'Sector 150, Noida',
-    price: '₹1.45 Cr',
-    area: '1,650 sq.ft',
-    bhk: '3 BHK',
-    builder: 'ACE Group',
-    image: 'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1000&q=80',
-    metro: '5 min',
-    school: '8 min',
-    hospital: '12 min',
-    rating: 4.8
+    badge: "HOT DEAL",
+    title: "ACE Terra Residences",
+    location: "Sector 150, Noida",
+    price: "₹1.45 Cr",
+    area: "1,650 Sq.ft",
+    bhk: "3 BHK",
+    builder: "ACE Group",
+
+    images: [
+      "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80"
+    ],
+
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-modern-house-exterior-3984-large.mp4",
+
+    amenities: ["Pool", "Gym", "Club House", "Garden"],
+
+    description:
+      "Luxury apartments with world-class amenities and excellent connectivity."
   },
+
   {
-    badge: 'TOP PICK',
-    title: 'M3M Golf Estate',
-    location: 'Golf Course Extn, Gurgaon',
-    price: '₹3.25 Cr',
-    area: '2,350 sq.ft',
-    bhk: '4 BHK',
-    builder: 'M3M India',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=80',
-    metro: '3 min',
-    school: '6 min',
-    hospital: '10 min',
-    rating: 4.9
+    badge: "TOP PICK",
+    title: "M3M Golf Estate",
+    location: "Golf Course Extn, Gurgaon",
+    price: "₹3.25 Cr",
+    area: "2,350 Sq.ft",
+    bhk: "4 BHK",
+    builder: "M3M India",
+
+    images: [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&w=1200&q=80"
+    ],
+
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-luxury-villa-32879.mp4",
+
+    amenities: ["Golf View", "Infinity Pool", "Spa", "Club House"],
+
+    description:
+      "Ultra luxury golf-facing residences in Gurgaon."
   },
+
   {
-    badge: 'RERA',
-    title: 'Godrej Woods',
-    location: 'Sector 43, Noida',
-    price: '₹2.10 Cr',
-    area: '1,950 sq.ft',
-    bhk: '3.5 BHK',
-    builder: 'Godrej Properties',
-    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1000&q=80',
-    metro: '7 min',
-    school: '4 min',
-    hospital: '15 min',
-    rating: 4.7
+    badge: "RERA",
+    title: "Godrej Woods",
+    location: "Sector 43, Noida",
+    price: "₹2.10 Cr",
+    area: "1,950 Sq.ft",
+    bhk: "3.5 BHK",
+    builder: "Godrej Properties",
+
+    images: [
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80"
+    ],
+
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-modern-house-with-a-swimming-pool-32878-large.mp4",
+
+    amenities: ["Forest View", "Jogging Track", "Pool", "Gym"],
+
+    description:
+      "Premium forest-themed residences surrounded by greenery."
   },
+
   {
-    badge: 'LUXURY',
-    title: 'ATS Pristine Villas',
-    location: 'Greater Noida West',
-    price: '₹4.80 Cr',
-    area: '3,900 sq.ft',
-    bhk: '5 BHK',
-    builder: 'ATS Group',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=80',
-    metro: '10 min',
-    school: '8 min',
-    hospital: '18 min',
-    rating: 4.9
-  },
+    badge: "LUXURY",
+    title: "ATS Pristine Villas",
+    location: "Greater Noida West",
+    price: "₹4.80 Cr",
+    area: "3,900 Sq.ft",
+    bhk: "5 BHK",
+    builder: "ATS Group",
+
+    images: [
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80"
+    ],
+
+    video:
+      "https://assets.mixkit.co/videos/preview/mixkit-luxury-house-with-pool-32880-large.mp4",
+
+    amenities: ["Private Pool", "Home Theatre", "Club House", "Garden"],
+
+    description:
+      "Exclusive luxury villas designed for premium living."
+  }
 ];
+
 
 const premiumLocations = [
   { name: 'Noida', properties: 245, growth: 15.2, image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80' },
@@ -450,16 +520,16 @@ function StatsBar() {
       className="stats-video"
     >
       <source
-        src="/videos/property.mp4"
-        type="video/mp4"
-      />
+  src="https://assets.mixkit.co/videos/preview/mixkit-modern-house-exterior-3984-large.mp4"
+  type="video/mp4"
+/>
     </video>
 
     <div className="video-overlay">
       <span className="overlay-badge">
         Featured Project
       </span>
-//avi
+
       <h3>
         Experience Premium Living
       </h3>
@@ -500,27 +570,48 @@ function SectionHeading({ kicker, title, align = 'left' }) {
   );
 }
 
-// ======================================
-// BROWSE BY TYPE
-// ======================================
+
 function BrowseByType() {
+  const navigate = useNavigate();
+
   return (
     <section className="section type-section">
       <div className="site-container">
-        <SectionHeading kicker="Browse by type" title="Choose the property style that fits your plan." />
+        <SectionHeading
+          kicker="Browse by type"
+          title="Choose the property style that fits your plan."
+        />
+
         <div className="type-grid">
           {browseTypes.map((type) => (
-            <motion.article 
-              className="image-card premium-type-card" 
+            <motion.article
               key={type.title}
-              whileHover={{ y: -8 }}
+              className="premium-type-card"
+              whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
+              onClick={() =>
+                navigate(`/property-type/${type.slug}`)
+              }
             >
-              <img src={type.image} alt={type.title} loading="lazy" />
-              <div className="image-card-overlay">
-                <h3>{type.title}</h3>
-                <p>{type.count}</p>
-                <ArrowRight size={20} />
+              <img src={type.image} alt={type.title} />
+
+              <div className="premium-overlay">
+                <div>
+                  <span className="property-tag">
+                    {type.count} Properties
+                  </span>
+
+                  <h3>{type.title}</h3>
+
+                  <p>
+                    Explore premium listings, luxury amenities
+                    and investment opportunities.
+                  </p>
+                </div>
+
+                <div className="arrow-circle">
+                  <ArrowRight size={22} />
+                </div>
               </div>
             </motion.article>
           ))}
@@ -529,30 +620,29 @@ function BrowseByType() {
     </section>
   );
 }
-
 // ======================================
 // PREMIUM FEATURED PROPERTIES
 // ======================================
 function PremiumFeaturedProperties() {
-  const [savedProperties, setSavedProperties] = useState([]);
-
-  const toggleSave = (title) => {
-    if (savedProperties.includes(title)) {
-      setSavedProperties(savedProperties.filter(t => t !== title));
-    } else {
-      setSavedProperties([...savedProperties, title]);
-    }
-  };
-
   return (
-    <section id="properties" className="section properties-section premium-properties">
+    <section
+      id="properties"
+      className="section properties-section premium-properties"
+    >
       <div className="site-container">
-        <SectionHeading kicker="Featured properties" title="Handpicked listings with verified details." />
+
+        <SectionHeading
+          kicker="Featured Properties"
+          title="Handpicked Luxury Homes Across NCR"
+        />
+
         <div className="property-grid premium-property-grid">
+
           {featuredProperties.map((property, idx) => (
-            <motion.article 
-              className="premium-property-card" 
+
+            <motion.article
               key={property.title}
+              className="premium-property-card"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -560,52 +650,103 @@ function PremiumFeaturedProperties() {
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -12 }}
             >
+
+              {/* IMAGE */}
+
               <div className="property-image-container">
-                <img src={property.image} alt={property.title} loading="lazy" />
-                <span className={`property-badge ${property.badge.toLowerCase().replace(' ', '-')}`}>{property.badge}</span>
-                <div className="property-quick-actions">
-                  <button className="quick-action" onClick={() => toggleSave(property.title)}>
-                    <Heart size={18} fill={savedProperties.includes(property.title) ? '#D4AF37' : 'none'} color={savedProperties.includes(property.title) ? '#D4AF37' : '#fff'} />
-                  </button>
-                  <button className="quick-action">
-                    <GitCompare size={18} />
-                  </button>
+
+                <img
+                  src={property.image}
+                  alt={property.title}
+                  loading="lazy"
+                />
+
+                <div className="image-overlay"></div>
+
+                <span
+                  className={`property-badge ${property.badge
+                    .toLowerCase()
+                    .replace(" ", "-")}`}
+                >
+                  {property.badge}
+                </span>
+
+                <div className="property-rating">
+                  ⭐ {property.rating}
                 </div>
+
+                <div className="property-floating-tag">
+                  Premium Project
+                </div>
+
               </div>
+
+              {/* BODY */}
+
               <div className="property-body">
-                <div className="property-price-rating">
-                  <span className="price">{property.price}</span>
-                  <div className="rating">
-                    <Star size={14} fill="#D4AF37" color="#D4AF37" />
-                    <span>{property.rating}</span>
-                  </div>
+
+                <div className="property-top">
+
+                  <span className="property-price">
+                    {property.price}
+                  </span>
+
                 </div>
-                <h3>{property.title}</h3>
-                <p className="location"><MapPin size={14} />{property.location}</p>
-                <div className="property-specs">
+
+                <h3 className="property-title">
+                  {property.title}
+                </h3>
+
+                <p className="property-location">
+                  <MapPin size={15} />
+                  {property.location}
+                </p>
+
+                <div className="property-mini-info">
+
                   <span>{property.bhk}</span>
+
+                  <span>•</span>
+
                   <span>{property.area}</span>
-                  <span>{property.builder}</span>
+
                 </div>
-                <div className="property-amenities">
-                  <div className="amenity"><Train size={12} /> Metro: {property.metro}</div>
-                  <div className="amenity"><School size={12} /> School: {property.school}</div>
-                  <div className="amenity"><Hospital size={12} /> Hospital: {property.hospital}</div>
+
+                <div className="property-builder">
+                  By {property.builder}
                 </div>
-                <div className="property-ctas">
-                  <button className="primary-btn small">View Details</button>
-                  <button className="secondary-btn small">Schedule Visit</button>
-                  <button className="outline-btn small">Contact Advisor</button>
+
+                <div className="property-amenities-new">
+
+                  <span>🏊 Pool</span>
+
+                  <span>🏋 Gym</span>
+
+                  <span>🌳 Garden</span>
+
+                  <span>🛡 Security</span>
+
                 </div>
+
+                <button className="explore-btn">
+
+                  Explore Project
+
+                  <ArrowRight size={18} />
+
+                </button>
+
               </div>
+
             </motion.article>
+
           ))}
+
         </div>
       </div>
     </section>
   );
 }
-
 // ======================================
 // PREMIUM LOCATIONS
 // ======================================

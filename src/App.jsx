@@ -1,7 +1,18 @@
-import Home from './pages/home';
+import { Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/home";
+import PropertyTypePage from "./pages/PropertyTypePage";
 
 function App() {
-  return <Home />;
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/property-type/:slug"
+        element={<PropertyTypePage />}
+      />
+    </Routes>
+  );
 }
 
 export default App;
