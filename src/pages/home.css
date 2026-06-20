@@ -372,6 +372,9 @@ img {
   min-height:100vh;
   overflow:hidden;
 }
+.hero-left{
+  padding-top: 80px;
+}
 
 /* VIDEO BG */
 

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import heroVideo from "../assets/jpmp5.mp4";
 import Spline from "@splinetool/react-spline";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
@@ -697,17 +698,20 @@ return ( <section className="premium-hero">
   {/* BLACK BACKGROUND + SPLINE */}
   <div className="hero-video-container">
 
-    <div className="hero-spline-overlay">
-      <iframe
-        src="https://my.spline.design/orbitalviewofarrakisfromtimqxyz-Z78QlxKGaZVNSoyoBsuZDu7P/"
-        title="Spline Scene"
-        className="hero-spline-frame"
-      />
-    </div>
+  <video
+    className="hero-video"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+  >
+    <source src={heroVideo} type="video/mp4" />
+  </video>
 
-    <div className="hero-video-overlay"></div>
+  <div className="hero-video-overlay"></div>
 
-  </div>
+</div>
 
   <HeroGlow />
   <FloatingParticles />
@@ -717,12 +721,12 @@ return ( <section className="premium-hero">
     <div className="hero-left">
 
       <motion.div
-        className="trust-badge"
+        className="trust-badge "
         initial="hidden"
         animate="visible"
         variants={fadeUp}
       >
-        <ShieldCheck size={18} />
+        <ShieldCheck size={18} mt-8/>
         Verified Real Estate Advisory
       </motion.div>
 
