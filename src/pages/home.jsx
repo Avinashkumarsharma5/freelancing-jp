@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import Spline from "@splinetool/react-spline";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
   Building2,
+  
   CalendarDays,
   CircleDollarSign,
   FileCheck2,
@@ -687,124 +689,132 @@ function Navbar() {
 // HERO (with all enhancements)
 // ======================================
 function PremiumVideoHero() {
-  const [videoOpen, setVideoOpen] = useState(false);
+const [videoOpen, setVideoOpen] = useState(false);
 
-  return (
-    <section className="premium-hero">
-      <div className="hero-video-container">
-        <video 
-          className="hero-video" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          poster="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=80"
-        >
-          <source src="https://assets.mixkit.co/videos/premium/mixkit-drone-flying-over-a-luxury-villa-32879.mp4" type="video/mp4" />
-        </video>
-        <div className="hero-video-overlay"></div>
-      </div>
+return ( <section className="premium-hero">
 
-      <HeroGlow />
-      <FloatingParticles />
+```
+  {/* BLACK BACKGROUND + SPLINE */}
+  <div className="hero-video-container">
 
-      <div className="site-container hero-content">
-        <div className="hero-left">
-          <motion.div className="trust-badge" initial="hidden" animate="visible" variants={fadeUp}>
-            <ShieldCheck size={18} />
-            Verified Real Estate Advisory
-          </motion.div>
-          
-          <motion.h1 initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.1 }}>
-            Find Your Dream Home
-            <span className="gold-text"> Across NCR's Best Locations</span>
-          </motion.h1>
-
-          
-
-          <motion.div className="hero-stats" initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.2 }}>
-            <div className="stat"><strong>1200+</strong><span>Verified Listings</span></div>
-            <div className="stat"><strong>15000+</strong><span>Happy Families</span></div>
-            <div className="stat"><strong>50+</strong><span>Developer Partners</span></div>
-          </motion.div>
-
-          <motion.div className="hero-buttons" initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.3 }}>
-            <a href="#properties" className="primary-btn gold-btn">
-              Explore Properties <ArrowRight size={18} />
-            </a>
-            <button className="secondary-btn glass-btn" onClick={() => setVideoOpen(true)}>
-              <Play size={18} />
-              Watch Tour
-            </button>
-            <a href="#contact" className="secondary-btn glass-btn">
-              <CalendarDays size={18} />
-              Book Site Visit
-            </a>
-          </motion.div>
-        </div>
-      </div>
-
-      <VideoPopup 
-        videoSrc="https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-luxury-villa-32879.mp4"
-        isOpen={videoOpen}
-        onClose={() => setVideoOpen(false)}
+    <div className="hero-spline-overlay">
+      <iframe
+        src="https://my.spline.design/orbitalviewofarrakisfromtimqxyz-Z78QlxKGaZVNSoyoBsuZDu7P/"
+        title="Spline Scene"
+        className="hero-spline-frame"
       />
-    </section>
-  );
+    </div>
+
+    <div className="hero-video-overlay"></div>
+
+  </div>
+
+  <HeroGlow />
+  <FloatingParticles />
+
+  <div className="site-container hero-content">
+
+    <div className="hero-left">
+
+      <motion.div
+        className="trust-badge"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <ShieldCheck size={18} />
+        Verified Real Estate Advisory
+      </motion.div>
+
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        Luxury Living
+
+        <span className="gold-text">
+          Beyond Expectations
+        </span>
+      </motion.h1>
+
+      <p className="hero-description">
+        Discover handpicked residences,
+        exclusive investment opportunities,
+        and premium living experiences
+        across NCR.
+      </p>
+
+      <motion.div
+        className="hero-stats"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <div className="stat">
+          <strong>₹800Cr+</strong>
+          <span>Transaction Value</span>
+        </div>
+
+        <div className="stat">
+          <strong>15000+</strong>
+          <span>Families Served</span>
+        </div>
+
+        <div className="stat">
+          <strong>4.9★</strong>
+          <span>Client Rating</span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="hero-buttons"
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <a
+          href="#properties"
+          className="primary-btn gold-btn"
+        >
+          Explore Properties
+          <ArrowRight size={18} />
+        </a>
+
+        <button
+          className="secondary-btn glass-btn"
+          onClick={() => setVideoOpen(true)}
+        >
+          <Play size={18} />
+          Watch Tour
+        </button>
+
+        <a
+          href="#contact"
+          className="secondary-btn glass-btn"
+        >
+          <CalendarDays size={18} />
+          Book Site Visit
+        </a>
+      </motion.div>
+
+    </div>
+
+  </div>
+
+  <VideoPopup
+    videoSrc="https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-luxury-villa-32879.mp4"
+    isOpen={videoOpen}
+    onClose={() => setVideoOpen(false)}
+  />
+
+</section>
+
+
+);
 }
 
-// ======================================
-// STATS BAR
-// ======================================
-function StatsBar() {
-  const stats = [
-    { value: 20, suffix: "+", label: "Years Advisory" },
-    { value: 15000, suffix: "+", label: "Families Served" },
-    { value: 50, suffix: "+", label: "Developer Partners" },
-    { value: 1200, suffix: "+", label: "Verified Listings" },
-  ];
-
-  return (
-    <>
-      <section className="stats-strip">
-        <div className="site-container stats-grid">
-          {stats.map((stat, idx) => (
-            <div className="stat-item" key={idx}>
-              <Counter end={stat.value} suffix={stat.suffix} />
-              <span>{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="stats-video-section">
-        <div className="video-info">
-          <span className="video-tag">Premium Property Tour</span>
-          <h2>Discover Luxury Living Across NCR</h2>
-          <p>
-            Explore premium villas, luxury apartments, commercial spaces and high-return investment
-            opportunities across Noida, Gurgaon and Delhi.
-          </p>
-        </div>
-        <div className="video-wrapper">
-          <video autoPlay muted loop playsInline className="stats-video">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-house-exterior-3984-large.mp4" type="video/mp4" />
-          </video>
-          <div className="video-overlay">
-            <span className="overlay-badge">Featured Project</span>
-            <h3>Experience Premium Living</h3>
-            <p>Luxury Apartments • Villas • Commercial Spaces</p>
-            <div className="overlay-buttons">
-              <button className="primary-btn gold-btn">Explore Properties</button>
-              <button className="secondary-btn glass-btn">Book Site Visit</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
+    
 // ======================================
 // SECTION HEADING
 // ======================================
@@ -1922,7 +1932,7 @@ function HomePage() {
         <Navbar />
         <PremiumVideoHero />
         <SectionDivider />
-        <StatsBar />
+     
         <SectionDivider />
         <BrowseByType />
         <SectionDivider />
