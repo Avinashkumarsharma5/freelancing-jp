@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import heroVideo from "../assets/jpmp5.mp4";
 import Spline from "@splinetool/react-spline";
+import logo from "../assets/logo2.png";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import {
@@ -593,6 +594,8 @@ const HorizontalSlider = ({
   );
 };
 
+// navbar
+
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -625,19 +628,15 @@ function Navbar() {
       <nav className="nav-shell">
 
         {/* Logo */}
-        <a
-          href="#home"
-          className="brand"
-          onClick={() => setOpen(false)}
-        >
-          <span className="brand-mark">
-            MS
-          </span>
+      <a href="#home" className="brand">
+  <img
+    src={logo}
+    alt="Milesquare Realty"
+    className="brand-logo"
+  />
 
-          <span className="brand-text">
-            Milesquare Realty
-          </span>
-        </a>
+ 
+</a>
 
         {/* Navigation */}
         <div

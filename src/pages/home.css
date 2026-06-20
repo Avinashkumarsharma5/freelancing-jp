@@ -204,9 +204,9 @@ img {
 }
 
 .nav-shell{
-  max-width:1200px;
+  max-width:14000px;
   margin:auto;
-  padding:16px 30px;
+  padding:8px 30px;
 
   display:flex;
   align-items:center;
@@ -228,32 +228,41 @@ img {
   align-items:center;
   gap:12px;
   flex-shrink:0;
+
+
 }
 
-.brand-mark{
-  width:46px;
-  height:46px;
+.brand-logo{
+  width:140px;
+  height:auto;
+  object-fit:contain;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  transform:scale(3);
+  transform-origin:left center;
 
-  border-radius:12px;
 
-  background:linear-gradient(
-    135deg,
-    #B8892D,
-    #D6B15E
-  );
 
-  color:#fff;
-  font-weight:800;
+}
+
+.brand-logo:hover{
+  transform:scale(1.05);
 }
 
 .brand-text{
   font-size:1.15rem;
   font-weight:800;
   color:#111827;
+}
+
+@media (max-width:768px){
+  .brand-logo{
+    width:70px;
+    height:70px;
+  }
+
+  .brand-text{
+    font-size:1rem;
+  }
 }
 
 /* LINKS */
