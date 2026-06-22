@@ -1,7 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import heroVideo from "../assets/jpmp5.mp4";
 import Spline from "@splinetool/react-spline";
 import logo from "../assets/logo2.png";
+
+import logo2 from "../assets/logo.png";
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import {
@@ -321,34 +323,61 @@ const faqs = [
 // ENHANCEMENT COMPONENTS
 // ======================================
 
-// 1. Loading Screen
 function LoadingScreen({ onComplete }) {
   useEffect(() => {
-    const timer = setTimeout(onComplete, 2500);
+    const timer = setTimeout(onComplete, 3500);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
-    <div className="loading-screen">
-      <div className="loading-content">
-        <div className="loading-logo">
-          <span className="brand-mark">MS</span>
+    <div className="luxury-loader">
+
+      <div className="loader-bg-grid"></div>
+
+      <div className="loader-card">
+
+        <div className="logo-wrapper">
+
+          {/* Replace with your logo */}
+         <img
+  src={logo2}
+  alt="Milesquare Realty"
+  className="loader-logo"
+/>
+
+          <div className="gold-ring"></div>
         </div>
-        <h1>Milesquare Realty</h1>
-        <p>Luxury Living Across NCR</p>
-        <div className="loading-bar">
-          <motion.div 
-            className="loading-progress"
+
+        <h1 className="loader-title">
+          Milesquare Realty
+        </h1>
+
+        <p className="loader-tagline">
+          Luxury Living Across NCR
+        </p>
+
+        <div className="premium-progress">
+          <motion.div
+            className="premium-progress-fill"
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 3 }}
           />
         </div>
+
+        <motion.div
+          className="loader-percent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          Loading Premium Properties...
+        </motion.div>
+
       </div>
+
     </div>
   );
 }
-
 // 2. Scroll Progress Bar
 function ScrollProgress() {
   const [progress, setProgress] = useState(0);
@@ -594,20 +623,13 @@ const HorizontalSlider = ({
   );
 };
 
-// navbar
+// ======================================
+// NAVBAR
+// ======================================
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  const links = [
-    "Home",
-    "Properties",
-    "Locations",
-    "Services",
-    "About",
-    "Contact",
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -623,54 +645,81 @@ function Navbar() {
 
   return (
     <header
-      className={`site-header ${scrolled ? "scrolled" : ""}`}
+      className={`site-header ${
+        scrolled ? "scrolled" : ""
+      }`}
     >
       <nav className="nav-shell">
 
         {/* Logo */}
-      <a href="#home" className="brand">
-  <img
-    src={logo}
-    alt="Milesquare Realty"
-    className="brand-logo"
-  />
 
- 
-</a>
+        <Link
+          to="/"
+          className="brand"
+          onClick={() => setOpen(false)}
+        >
+          <img
+            src={logo}
+            alt="Milesquare Realty"
+            className="brand-logo"
+          />
+        </Link>
 
         {/* Navigation */}
+
         <div
           className={`nav-links ${
             open ? "is-open" : ""
           }`}
         >
-          {links.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              onClick={() => setOpen(false)}
-            >
-              {link}
-            </a>
-          ))}
+          <a
+            href="#home"
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </a>
+
+          <a
+            href="#properties"
+            onClick={() => setOpen(false)}
+          >
+            Properties
+          </a>
+
+          <a
+            href="#services"
+            onClick={() => setOpen(false)}
+          >
+            Services
+          </a>
+
+          <Link
+            to="/contact"
+            onClick={() => setOpen(false)}
+          >
+            Contact
+          </Link>
         </div>
 
         {/* Right Side */}
+
         <div className="nav-right">
 
-          <a
-            href="tel:+919876543210"
+          <Link
+            to="/contact"
             className="nav-cta"
           >
             <Phone size={17} />
             Contact Us
-          </a>
+          </Link>
 
           <button
             type="button"
             className="menu-btn"
             aria-label="Toggle Navigation"
-            onClick={() => setOpen(!open)}
+            onClick={() =>
+              setOpen(!open)
+            }
           >
             {open ? (
               <X size={22} />
@@ -685,6 +734,8 @@ function Navbar() {
     </header>
   );
 }
+
+
 // ======================================
 // HERO (with all enhancements)
 // ======================================
@@ -719,15 +770,7 @@ return ( <section className="premium-hero">
 
     <div className="hero-left">
 
-      <motion.div
-        className="trust-badge "
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <ShieldCheck size={18} mt-8/>
-        Verified Real Estate Advisory
-      </motion.div>
+ 
 
       <motion.h1
         initial="hidden"
@@ -792,13 +835,13 @@ return ( <section className="premium-hero">
           Watch Tour
         </button>
 
-        <a
-          href="#contact"
-          className="secondary-btn glass-btn"
-        >
-          <CalendarDays size={18} />
-          Book Site Visit
-        </a>
+       <Link
+  to="/contact"
+  className="secondary-btn glass-btn"
+>
+  <CalendarDays size={18} />
+  Book Site Visit
+</Link>
       </motion.div>
 
     </div>
@@ -1561,237 +1604,6 @@ function PremiumFAQ() {
   );
 }
 
-// ======================================
-// CONTACT US
-// ======================================
-function ContactSection() {
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setStatus(
-      "Thank you! Our property advisor will contact you shortly."
-    );
-
-    e.target.reset();
-
-    setTimeout(() => {
-      setStatus("");
-    }, 5000);
-  };
-
-  return (
-    <section
-      id="contact"
-      className="section contact-section"
-    >
-      <div className="site-container contact-grid">
-
-        {/* LEFT */}
-
-        <div className="contact-info">
-
-          <span className="section-kicker">
-            Contact Us
-          </span>
-
-          <h2>
-            Let's Find Your
-            <span className="gold-text">
-              {" "}Perfect Property
-            </span>
-          </h2>
-
-          <p>
-            Whether you're looking for a dream
-            home, luxury investment or commercial
-            opportunity, our experts are here to
-            guide you every step of the way.
-          </p>
-
-          <div className="contact-benefits">
-
-            <div>
-              <CheckCircle size={18}/>
-              Verified Properties Only
-            </div>
-
-            <div>
-              <CheckCircle size={18}/>
-              Free Consultation
-            </div>
-
-            <div>
-              <CheckCircle size={18}/>
-              End-to-End Support
-            </div>
-
-            <div>
-              <CheckCircle size={18}/>
-              Fast Response Within 30 Minutes
-            </div>
-
-          </div>
-
-          <div className="contact-cards">
-
-            <div className="contact-card">
-
-              <Phone size={22}/>
-
-              <div>
-                <strong>Call Us</strong>
-                <span>+91 98765 43210</span>
-              </div>
-
-            </div>
-
-            <div className="contact-card">
-
-              <Mail size={22}/>
-
-              <div>
-                <strong>Email Us</strong>
-                <span>
-                  info@milesquarerealty.com
-                </span>
-              </div>
-
-            </div>
-
-            <div className="contact-card">
-
-              <MapPin size={22}/>
-
-              <div>
-                <strong>Office Address</strong>
-                <span>
-                  Gurgaon, NCR, India
-                </span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* RIGHT */}
-
-        <form
-          className="contact-form"
-          onSubmit={handleSubmit}
-        >
-
-          <h3>
-            Request Free Consultation
-          </h3>
-
-          <div className="form-row">
-
-            <input
-              type="text"
-              placeholder="Full Name"
-              required
-            />
-
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              required
-            />
-
-          </div>
-
-          <div className="form-row">
-
-            <input
-              type="email"
-              placeholder="Email Address"
-            />
-
-            <select required>
-
-              <option>
-                Preferred Location
-              </option>
-
-              <option>Noida</option>
-              <option>Gurgaon</option>
-              <option>Delhi</option>
-              <option>Greater Noida</option>
-
-            </select>
-
-          </div>
-
-          <div className="form-row">
-
-            <select>
-
-              <option>
-                Budget Range
-              </option>
-
-              <option>
-                ₹50L - ₹1Cr
-              </option>
-
-              <option>
-                ₹1Cr - ₹2Cr
-              </option>
-
-              <option>
-                ₹2Cr - ₹5Cr
-              </option>
-
-              <option>
-                ₹5Cr+
-              </option>
-
-            </select>
-
-            <select>
-
-              <option>
-                Property Type
-              </option>
-
-              <option>Apartment</option>
-              <option>Villa</option>
-              <option>Plot</option>
-              <option>Commercial</option>
-
-            </select>
-
-          </div>
-
-          <textarea
-            rows="5"
-            placeholder="Tell us about your requirements..."
-          />
-
-          <button
-            className="primary-btn gold-btn full-width"
-            type="submit"
-          >
-            Get Free Consultation
-            <ArrowRight size={18}/>
-          </button>
-
-          {status && (
-            <p className="form-status success">
-              {status}
-            </p>
-          )}
-
-        </form>
-
-      </div>
-    </section>
-  );
-}
 
 // ======================================
 // CTA
@@ -1819,9 +1631,9 @@ function LuxuryCTASection() {
           variants={fadeUp}
           transition={{ delay: 0.1 }}
         >
-          <a href="#contact" className="primary-btn gold-btn large">
+          <Link to="/contact" className="primary-btn gold-btn large">
             Book Consultation <CalendarDays size={20} />
-          </a>
+         </Link>
           <a href="tel:+919876543210" className="secondary-btn glass-btn large">
             Talk to Expert <Headphones size={20} />
           </a>
@@ -1863,7 +1675,7 @@ function PremiumFooter() {
             <a href="#properties">Properties</a>
             <a href="#locations">Locations</a>
             <a href="#services">Services</a>
-            <a href="#contact">Contact Us</a>
+           <Link to="/contact">Contact Us</Link>
             <a href="#">About Us</a>
           </div>
           <div>
@@ -1913,9 +1725,9 @@ function FloatingActions() {
         <a href="tel:+919876543210" className="floating-btn call">
           <Phone size={24} />
         </a>
-        <a href="#contact" className="floating-btn book">
+        <Link to="/contact" className="floating-btn book">
           <CalendarDays size={24} />
-        </a>
+        </Link>
       </div>
     </>
   );
@@ -1957,7 +1769,7 @@ function HomePage() {
         <SectionDivider />
         <PremiumFAQ />
         <SectionDivider />
-      <ContactSection />
+   
         <SectionDivider />
         <LuxuryCTASection />
         <PremiumFooter />

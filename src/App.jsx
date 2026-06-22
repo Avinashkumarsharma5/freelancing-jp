@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
 import PropertyTypePage from "./pages/PropertyTypePage";
 import LocationDetailsPage from "./pages/LocationDetailsPage";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
       <Route
         path="/location/:slug"
         element={<LocationDetailsPage />}
+      />
+
+      <Route
+        path="/contact"
+        element={<Contact />}
       />
 
     </Routes>
