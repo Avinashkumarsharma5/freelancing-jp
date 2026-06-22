@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, 
@@ -14,7 +15,7 @@ import {
   ChevronRight,
   Phone,
   CalendarDays,
-  MessageCircle,
+  MessageCircle, 
   TrendingUp,
   Heart,
   GitCompare,
@@ -242,7 +243,6 @@ export default function PropertyTypePage() {
         <div className="hero-background">
           <div className="hero-gradient"></div>
           <div className="hero-particles"></div>
-          {/* 👑 Luxury Pattern Overlay */}
           <div className="hero-pattern-overlay"></div>
         </div>
         
@@ -287,7 +287,7 @@ export default function PropertyTypePage() {
             {propertyData.description}
           </motion.p>
 
-          {/* 🆕 Hero Property Stats */}
+          {/* Hero Property Stats */}
           <motion.div 
             className="hero-property-stats"
             initial={{ opacity: 0, y: 30 }}
@@ -319,10 +319,10 @@ export default function PropertyTypePage() {
             <button className="primary-btn gold-btn">
               Explore Properties <ArrowRight size={18} />
             </button>
-            <button className="secondary-btn glass-btn">
+            <Link to="/contact" className="secondary-btn glass-btn">
               <Phone size={18} />
               Talk to Expert
-            </button>
+            </Link>
           </motion.div>
 
           <motion.div 
@@ -336,7 +336,7 @@ export default function PropertyTypePage() {
             <span><Users size={16} /> 15K+ Happy Families</span>
           </motion.div>
 
-          {/* 🆕 Trust Strip */}
+          {/* Trust Strip */}
           <motion.div 
             className="trust-strip"
             initial={{ opacity: 0, y: 20 }}
@@ -442,7 +442,6 @@ export default function PropertyTypePage() {
                 <img src={property.image} alt={property.title} loading="lazy" />
                 <div className="property-image-overlay"></div>
                 
-                {/* 🆕 Exclusive Ribbon */}
                 <div className="exclusive-ribbon">
                   Exclusive Collection
                 </div>
@@ -479,15 +478,14 @@ export default function PropertyTypePage() {
                   <span>🛡 Security</span>
                 </div>
 
-                {/* 🆕 Enhanced Card Footer with Price Block */}
                 <div className="card-footer-premium">
                   <div className="price-block">
                     <span>Starting From</span>
                     <strong>{property.price}</strong>
                   </div>
-                  <button className="property-cta-premium">
+                  <Link to="/contact" className="property-cta-premium">
                     Explore <ArrowRight size={16} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -594,7 +592,7 @@ export default function PropertyTypePage() {
       )}
 
       {/* ============================================================
-          CTA SECTION
+          CTA SECTION (All Links Updated to React Router)
       ============================================================ */}
       <section className="cta-premium">
         <div className="cta-premium-container">
@@ -610,14 +608,14 @@ export default function PropertyTypePage() {
             <p>Get expert consultation and access to exclusive deals</p>
             
             <div className="cta-actions-premium">
-              <button className="primary-btn gold-btn large">
+              <Link to="/contact" className="primary-btn gold-btn large">
                 <Phone size={18} />
                 Book Consultation
-              </button>
-              <button className="secondary-btn glass-btn large">
+              </Link>
+              <Link to="/contact" className="secondary-btn glass-btn large">
                 <MessageCircle size={18} />
                 WhatsApp Us
-              </button>
+              </Link>
             </div>
 
             <div className="cta-features">
