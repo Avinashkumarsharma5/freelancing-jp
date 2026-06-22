@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   ArrowRight, 
   Star, 
@@ -14,17 +14,14 @@ import {
   Sparkles,
   ChevronRight,
   Phone,
-  CalendarDays,
   MessageCircle, 
-  TrendingUp,
   Heart,
   GitCompare,
   Eye,
   CheckCircle,
-  Layers,
   Crown,
   Gem,
-  Infinity,
+  Infinity as InfinityIcon,
   Droplets,
   Wind,
   Coffee,
@@ -36,12 +33,7 @@ import {
   Trees,
   Lock,
   Sun,
-  Moon,
   Cloud,
-  Zap,
-  BadgeCheck,
-  CircleDollarSign,
-  Landmark
 } from "lucide-react";
 import "./PropertyTypePage.css";
 
@@ -149,7 +141,7 @@ export default function PropertyTypePage() {
           }
         ],
         amenities: [
-          { icon: Infinity, label: "Infinity Pool" },
+          { icon: InfinityIcon, label: "Infinity Pool" },
           { icon: Dumbbell, label: "State-of-art Gym" },
           { icon: Trees, label: "Private Garden" },
           { icon: ShieldCheck, label: "24/7 Security" },

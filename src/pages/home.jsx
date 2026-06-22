@@ -1,48 +1,35 @@
 import { Link, useNavigate } from "react-router-dom";
-import heroVideo from "../assets/jpmp5.mp4";
-import Spline from "@splinetool/react-spline";
 import logo from "../assets/logo2.png";
-
+import heroVideo from "../assets/jpmp5.mp4";
 import logo2 from "../assets/logo.png";
-import React, { useMemo, useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   ArrowRight,
-  BadgeCheck,
   Building2,
-  
   CalendarDays,
   CircleDollarSign,
   FileCheck2,
-  Gavel,
   Home,
   Landmark,
   Mail,
-  Map,
   Menu,
-  Mic,
   Heart,
   MapPin,
   Train,
   School,
   Hospital,
   Phone,
-  Search,
   ShieldCheck,
   TrendingUp,
   WalletCards,
   X,
   Star,
   MessageCircle,
-  Users,
   GitCompare,
-  Clock,
   Award,
   Sparkles,
-  Video,
-  Zap,
   ChevronRight,
-  CheckCircle,
   Headphones,
   Briefcase,
   Globe,
@@ -60,16 +47,9 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: "easeOut" } }
 };
 
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8 } }
-};
-
 // ======================================
 // STATIC DATA (unchanged)
 // ======================================
-const quickFilters = ['Luxury', 'Ready To Move', 'New Launch', 'Smart Homes', 'Golf View'];
-
 const browseTypes = [
   {
     title: "Luxury Apartment",
@@ -169,48 +149,47 @@ const featuredProperties = [
 ];
 
 const premiumLocations = [
-  
   {
     name: "Noida",
     slug: "noida",
     properties: 245,
     growth: 15.2,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80"
   },
   {
     name: "Greater Noida",
     slug: "greater-noida",
     properties: 186,
     growth: 22.8,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
   },
   {
     name: "Gurgaon",
     slug: "gurgaon",
     properties: 340,
     growth: 18.5,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1494524983934-85a5d6126f96?auto=format&fit=crop&w=900&q=80"
   },
   {
     name: "Delhi",
     slug: "delhi",
     properties: 198,
     growth: 12.3,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80"
   },
   {
     name: "Noida Extension",
     slug: "noida-extension",
     properties: 167,
     growth: 28.4,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
   },
   {
     name: "Dwarka Expressway",
     slug: "dwarka-expressway",
     properties: 234,
     growth: 25.7,
-    image: "..."
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80"
   }
 ];
 const services = [
@@ -433,19 +412,19 @@ function HeroGlow() {
 }
 
 // 4. Floating Particles
-function FloatingParticles() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 8 + 4,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 10,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-  }));
+const floatingParticlesData = Array.from({ length: 30 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 8 + 4,
+  duration: Math.random() * 20 + 10,
+  delay: Math.random() * 10,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+}));
 
+function FloatingParticles() {
   return (
     <div className="floating-particles">
-      {particles.map((p) => (
+      {floatingParticlesData.map((p) => (
         <div
           key={p.id}
           className="particle"
@@ -482,31 +461,6 @@ function VideoPopup({ videoSrc, isOpen, onClose }) {
 }
 
 // 6. Counter with comma formatting
-function Counter({ end, suffix = "", duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef();
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const increment = end / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, end, duration]);
-
-  const formatted = new Intl.NumberFormat('en-IN').format(count);
-  return <strong ref={ref}>{formatted}{suffix}</strong>;
-}
-
 // 7. Animated Location Counter
 function LocationCounter({ target, suffix = "", duration = 1500 }) {
   const [count, setCount] = useState(0);
@@ -740,127 +694,119 @@ function Navbar() {
 // HERO (with all enhancements)
 // ======================================
 function PremiumVideoHero() {
-const [videoOpen, setVideoOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
 
-return ( <section className="premium-hero">
-
-```
-  {/* BLACK BACKGROUND + SPLINE */}
-  <div className="hero-video-container">
-
-  <video
-    className="hero-video"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-  >
-    <source src={heroVideo} type="video/mp4" />
-  </video>
-
-  <div className="hero-video-overlay"></div>
-
-</div>
-
-  <HeroGlow />
-  <FloatingParticles />
-
-  <div className="site-container hero-content">
-
-    <div className="hero-left">
-
- 
-
-      <motion.h1
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        Luxury Living
-
-        <span className="gold-text">
-          Beyond Expectations
-        </span>
-      </motion.h1>
-
-      <p className="hero-description">
-        Discover handpicked residences,
-        exclusive investment opportunities,
-        and premium living experiences
-        across NCR.
-      </p>
-
-      <motion.div
-        className="hero-stats"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <div className="stat">
-          <strong>₹800Cr+</strong>
-          <span>Transaction Value</span>
-        </div>
-
-        <div className="stat">
-          <strong>15000+</strong>
-          <span>Families Served</span>
-        </div>
-
-        <div className="stat">
-          <strong>4.9★</strong>
-          <span>Client Rating</span>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="hero-buttons"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <a
-          href="#properties"
-          className="primary-btn gold-btn"
+  return (
+    <section className="premium-hero">
+      {/* Background Video */}
+      <div className="hero-video-container">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         >
-          Explore Properties
-          <ArrowRight size={18} />
-        </a>
+          <source src={heroVideo} type="video/mp4" />
+        </video>
 
-        <button
-          className="secondary-btn glass-btn"
-          onClick={() => setVideoOpen(true)}
-        >
-          <Play size={18} />
-          Watch Tour
-        </button>
+        <div className="hero-video-overlay"></div>
+      </div>
 
-       <Link
-  to="/contact"
-  className="secondary-btn glass-btn"
->
-  <CalendarDays size={18} />
-  Book Site Visit
-</Link>
-      </motion.div>
+      {/* Effects */}
+      <HeroGlow />
+      <FloatingParticles />
 
-    </div>
+      <div className="site-container hero-content">
+        <div className="hero-left">
 
-  </div>
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+          >
+            Luxury Living
+            <span className="gold-text">
+              Beyond Expectations
+            </span>
+          </motion.h1>
 
-  <VideoPopup
-    videoSrc="https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-luxury-villa-32879.mp4"
-    isOpen={videoOpen}
-    onClose={() => setVideoOpen(false)}
-  />
+          <motion.p
+            className="hero-description"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+          >
+            Discover handpicked residences, exclusive investment
+            opportunities, and premium living experiences across NCR.
+          </motion.p>
 
-</section>
+          <motion.div
+            className="hero-stats"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+          >
+            <div className="stat">
+              <strong>₹800Cr+</strong>
+              <span>Transaction Value</span>
+            </div>
 
+            <div className="stat">
+              <strong>15000+</strong>
+              <span>Families Served</span>
+            </div>
 
-);
+            <div className="stat">
+              <strong>4.9★</strong>
+              <span>Client Rating</span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="hero-buttons"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+          >
+            <a
+              href="#properties"
+              className="primary-btn gold-btn"
+            >
+              Explore Properties
+              <ArrowRight size={18} />
+            </a>
+
+            <button
+              className="secondary-btn glass-btn"
+              onClick={() => setVideoOpen(true)}
+            >
+              <Play size={18} />
+              Watch Tour
+            </button>
+
+            <Link
+              to="/contact"
+              className="secondary-btn glass-btn"
+            >
+              <CalendarDays size={18} />
+              Book Site Visit
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Popup Video */}
+      <VideoPopup
+        videoSrc={heroVideo}
+        isOpen={videoOpen}
+        onClose={() => setVideoOpen(false)}
+      />
+    </section>
+  );
 }
 
-    
 // ======================================
 // SECTION HEADING
 // ======================================
@@ -1719,7 +1665,7 @@ function FloatingActions() {
   return (
     <>
       <div className="floating-actions">
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="floating-btn whatsapp">
+        <a href="https://wa.me/916201486202" target="_blank" rel="noreferrer" className="floating-btn whatsapp">
           <MessageCircle size={24} />
         </a>
         <a href="tel:+919876543210" className="floating-btn call">
@@ -1753,7 +1699,7 @@ function HomePage() {
         <SectionDivider />
         <PremiumFeaturedProperties />
         <SectionDivider />
-       
+        <PremiumLocations />
         <SectionDivider />
         <PremiumWhyChooseUs />
         <SectionDivider />
