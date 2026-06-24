@@ -2,6 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import heroVideo from "../assets/jpmp5.mp4";
 import logo2 from "../assets/logo.png";
+import astrathumImg from "../assets/astrathum.png";
+import foodzaniImg from "../assets/foodzani.png";
+import citycenterImg from "../assets/citycenter.png";
+import mayurforestImg from "../assets/mayurforest.png";
+import noidaImg from "../assets/noida.png";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -65,7 +70,7 @@ const featuredProperties = [
     area: "Commercial",
     builder: "Bhutani Infra",
     rating: 4.9,
-    image: "/images/astrathum.jpg"
+   image: astrathumImg,
   },
   {
     badge: "FOOD COURT",
@@ -75,7 +80,7 @@ const featuredProperties = [
     area: "Retail",
     builder: "Bhutani Infra",
     rating: 4.8,
-    image: "/images/foodzani.jpg"
+    image: foodzaniImg
   },
   {
     badge: "HOT DEAL",
@@ -85,7 +90,7 @@ const featuredProperties = [
     area: "Food Court",
     builder: "Bhutani Infra",
     rating: 4.9,
-    image: "/images/citycenter.jpg"
+    image: citycenterImg
   },
   {
     badge: "NEW LAUNCH",
@@ -95,7 +100,7 @@ const featuredProperties = [
     area: "Plots",
     builder: "Mirrikh Infratech",
     rating: 4.7,
-    image: "/images/mayurforest.jpg"
+    image: mayurforestImg
   }
 ];
 
@@ -141,13 +146,12 @@ const premiumAgents = [
 ];
 
 // 2. UPDATED: Premium Locations
-const premiumLocations = [
+{/*const premiumLocations = [
   {
     name: "Noida",
     properties: 850,
     growth: 24.5,
-    image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80",
-    slug: "noida"
+    image: noidaImg 
   },
   {
     name: "Greater Noida",
@@ -170,7 +174,7 @@ const premiumLocations = [
     image: "https://images.unsplash.com/photo-1538842679288-5940c9cb042c?auto=format&fit=crop&w=800&q=80",
     slug: "gurgaon"
   }
-];
+];*/}
 
 // 3. UPDATED: Browse By Type
 const browseTypes = [
@@ -1478,7 +1482,7 @@ return (
         <SectionDivider />
         <PremiumFeaturedProperties />
         <SectionDivider />
-        <PremiumLocations />
+       
         <SectionDivider />
         <CommercialInvestmentSection />
         <SectionDivider />
