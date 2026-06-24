@@ -382,7 +382,7 @@ img {
   overflow:hidden;
 }
 .hero-left{
-  padding-top: 80px;
+  padding-top:150px;
 }
 
 /* VIDEO BG */
@@ -3609,6 +3609,208 @@ img {
   .slider-arrow svg {
     width: 18px;
     height: 18px;
+  }
+}
+
+/* =========================
+COMMERCIAL INVESTMENT
+========================= */
+
+.commercial-investment-section {
+  padding: 100px 0;
+  background: #faf7f1;
+}
+
+.commercial-investment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.commercial-investment-card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: all .4s ease;
+}
+
+.commercial-investment-card:hover {
+  transform: translateY(-10px);
+}
+
+.investment-image {
+  position: relative;
+  height: 240px;
+}
+
+.investment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.investment-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #b8892d;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.investment-content {
+  padding: 24px;
+}
+
+.investment-location {
+  color: #666;
+  margin: 10px 0 20px;
+}
+
+.investment-metrics {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+}
+
+.metric-value {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.metric-value.gold {
+  color: #b8892d;
+}
+
+
+/* =========================
+DHOLERA SECTION
+========================= */
+
+.dholera-investment-section {
+  padding: 100px 0;
+  background: white;
+}
+
+.dholera-investment-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #f8f5ef
+  );
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.08);
+}
+
+.dholera-image {
+  position: relative;
+}
+
+.dholera-image img {
+  width: 100%;
+  border-radius: 24px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.dholera-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #b8892d;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.dholera-content h2 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.dholera-location {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.dholera-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.dholera-stat {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.dholera-stat strong {
+  display: block;
+  margin-top: 8px;
+  color: #b8892d;
+  font-size: 20px;
+}
+
+.dholera-stat.highlight {
+  background: #b8892d;
+  color: white;
+}
+
+.dholera-stat.highlight strong {
+  color: white;
+}
+
+.dholera-ctas {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .dholera-investment-card {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  .dholera-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .investment-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .dholera-content h2 {
+    font-size: 30px;
   }
 }
 

@@ -6,6 +6,7 @@ import {
   Star, 
   MapPin, 
   Building2, 
+  TrendingUp, // ✅ ADDED TrendingUp
   Home, 
   Users, 
   Award, 
@@ -62,161 +63,159 @@ const staggerContainer = {
 export default function PropertyTypePage() {
   const { slug } = useParams();
 
-  // Dynamic property data based on slug
+  // ======================================
+  // UPDATED DATA STRUCTURE
+  // ======================================
   const getPropertyData = () => {
     const data = {
-      "luxury-apartment": {
-        title: "Luxury Apartments",
-        subtitle: "Elegant Living Redefined",
-        description: "Experience unparalleled luxury with our premium apartments featuring world-class amenities, breathtaking views, and prime locations across NCR.",
-        startingPrice: "₹1.8 Cr",
-        projects: "25+",
+      // 2. NEW: Commercial Space Data
+      "commercial-space": {
+        title: "Commercial Investments",
+        subtitle: "High ROI Commercial Assets",
+        description: "Explore premium commercial opportunities including office spaces, retail shops, food courts and SOHO suites in NCR's fastest growing corridors.",
+        startingPrice: "₹34.9 L",
+        projects: "50+",
         rating: "4.9★",
         stats: [
-          { value: "450+", label: "Luxury Units", icon: Building2 },
-          { value: "25+", label: "Premium Projects", icon: Crown },
-          { value: "4.9★", label: "Average Rating", icon: Star },
-          { value: "24/7", label: "Concierge Service", icon: Clock }
+          { value: "50+", label: "Commercial Projects", icon: Building2 },
+          { value: "8-12%", label: "Rental Yield", icon: TrendingUp },
+          { value: "4.9★", label: "Investor Rating", icon: Star },
+          { value: "100%", label: "RERA Verified", icon: ShieldCheck }
         ],
         properties: [
           { 
-            title: "The Royal Heights", 
-            location: "Sector 150, Noida", 
-            price: "₹2.8 Cr", 
-            bhk: "4 BHK", 
-            area: "2,850 sq.ft",
-            badge: "Luxury Collection",
+            title: "Bhutani Astrathum", 
+            location: "Sector 133 Noida", 
+            price: "₹6,990/sq.ft", 
+            bhk: "Office Space", 
+            area: "Commercial",
+            badge: "TOP PICK",
             rating: 4.9,
-            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
+            image: "/images/astrathum.jpg"
           },
           { 
-            title: "Panorama Towers", 
-            location: "Golf Course Road, Gurgaon", 
-            price: "₹4.2 Cr", 
-            bhk: "5 BHK", 
-            area: "3,400 sq.ft",
-            badge: "Premium",
-            rating: 5.0,
-            image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
-          },
-          { 
-            title: "The Sapphire", 
-            location: "Sector 62, Noida", 
-            price: "₹1.9 Cr", 
-            bhk: "3 BHK", 
-            area: "1,950 sq.ft",
-            badge: "Hot Deal",
+            title: "Foodzani", 
+            location: "Noida", 
+            price: "₹32,990/sq.ft", 
+            bhk: "Food Court", 
+            area: "Retail",
+            badge: "HOT DEAL",
             rating: 4.8,
-            image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+            image: "/images/foodzani.jpg"
           },
           { 
-            title: "Riverfront Estate", 
-            location: "Greater Noida West", 
-            price: "₹3.6 Cr", 
-            bhk: "4 BHK", 
-            area: "3,100 sq.ft",
-            badge: "Exclusive",
-            rating: 4.7,
-            image: "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&h=600&fit=crop"
-          },
-          { 
-            title: "The Orchid", 
-            location: "Sector 128, Noida", 
-            price: "₹2.2 Cr", 
-            bhk: "3.5 BHK", 
-            area: "2,100 sq.ft",
-            badge: "Top Pick",
+            title: "City Center 32", 
+            location: "Sector 32 Noida", 
+            price: "₹33,000/sq.ft", 
+            bhk: "Retail", 
+            area: "Commercial",
+            badge: "PREMIUM",
             rating: 4.9,
-            image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop"
+            image: "/images/citycenter.jpg"
           },
           { 
-            title: "Golden Gate Estate", 
-            location: "Sector 45, Gurgaon", 
-            price: "₹5.8 Cr", 
-            bhk: "5 BHK", 
-            area: "4,200 sq.ft",
-            badge: "Signature",
-            rating: 5.0,
-            image: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&h=600&fit=crop"
+            title: "133 Avenue", 
+            location: "Noida", 
+            price: "₹26,990/sq.ft", 
+            bhk: "Retail Shop", 
+            area: "Investment",
+            badge: "INVESTMENT",
+            rating: 4.8,
+            image: "/images/133avenue.jpg"
           }
         ],
         amenities: [
-          { icon: InfinityIcon, label: "Infinity Pool" },
-          { icon: Dumbbell, label: "State-of-art Gym" },
-          { icon: Trees, label: "Private Garden" },
+          { icon: Building2, label: "Grade A Offices" },
+          { icon: Coffee, label: "Food Court" },
+          { icon: Wifi, label: "Business Lounge" },
+          { icon: Car, label: "Parking" },
           { icon: ShieldCheck, label: "24/7 Security" },
-          { icon: Tv, label: "Home Theatre" },
-          { icon: Coffee, label: "Cafe Lounge" },
-          { icon: Wifi, label: "High-speed WiFi" },
-          { icon: Car, label: "Covered Parking" },
-          { icon: Utensils, label: "Fine Dining" },
-          { icon: Droplets, label: "Spa & Sauna" },
-          { icon: Wind, label: "Central AC" },
-          { icon: Lock, label: "Biometric Access" }
+          { icon: Tv, label: "Entertainment Zone" }
         ],
         testimonials: [
-          { name: "Dr. Ananya Sharma", review: "The attention to detail and quality of construction is unmatched. Truly a premium experience.", rating: 5, image: "https://randomuser.me/api/portraits/women/44.jpg" },
-          { name: "Mr. Rajat Kapoor", review: "Excellent location, world-class amenities, and the team was incredibly helpful throughout.", rating: 5, image: "https://randomuser.me/api/portraits/men/32.jpg" }
+          { name: "Mr. Rajesh Kumar", review: "Bhutani Astrathum is a game-changer for commercial investment. The location and ROI potential are unmatched.", rating: 5, image: "https://randomuser.me/api/portraits/men/32.jpg" },
+          { name: "Ms. Priya Singh", review: "Excellent commercial properties with great rental yields. The team provided exceptional guidance throughout.", rating: 5, image: "https://randomuser.me/api/portraits/women/44.jpg" }
         ]
       },
-      "premium-villa": {
-        title: "Premium Villas",
-        subtitle: "Exclusive Estate Living",
-        description: "Discover the epitome of luxury with our premium villas offering unmatched privacy, spacious living, and exquisite architecture.",
-        startingPrice: "₹4.8 Cr",
-        projects: "15+",
-        rating: "5.0★",
+
+      // 2. NEW: Dholera Investment Data
+      "dholera-investment": {
+        title: "Dholera Smart City",
+        subtitle: "Future Growth Destination",
+        description: "Invest in one of India's most ambitious smart city developments with residential plots and long-term appreciation potential.",
+        startingPrice: "₹13.8 L",
+        projects: "300+",
+        rating: "4.7★",
         stats: [
-          { value: "180+", label: "Luxury Villas", icon: Home },
-          { value: "15+", label: "Gated Communities", icon: ShieldCheck },
-          { value: "5.0★", label: "Average Rating", icon: Star },
-          { value: "100%", label: "Customer Satisfaction", icon: Users }
+          { value: "35%", label: "Growth Potential", icon: TrendingUp },
+          { value: "300+", label: "Available Plots", icon: MapPin },
+          { value: "36 Months", label: "Return Plan", icon: Clock },
+          { value: "Smart City", label: "Govt Backed", icon: Crown }
         ],
         properties: [
           { 
-            title: "The Crown Estate", 
-            location: "Sector 42, Noida", 
-            price: "₹6.5 Cr", 
-            bhk: "5 BHK", 
-            area: "4,800 sq.ft",
-            badge: "Royal",
-            rating: 5.0,
-            image: "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800&h=600&fit=crop"
-          },
-          { 
-            title: "Heritage Villas", 
-            location: "Golf Course Extn, Gurgaon", 
-            price: "₹8.2 Cr", 
-            bhk: "6 BHK", 
-            area: "5,500 sq.ft",
-            badge: "Heritage",
-            rating: 4.9,
-            image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=600&fit=crop"
-          },
-          { 
-            title: "Emerald Valley", 
-            location: "Greater Noida", 
-            price: "₹4.8 Cr", 
-            bhk: "4 BHK", 
-            area: "3,600 sq.ft",
-            badge: "Premium",
-            rating: 4.8,
-            image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop"
+            title: "Mayur Forest Villa", 
+            location: "Dholera Smart City", 
+            price: "₹10,450/sq.yd", 
+            bhk: "Residential Plot", 
+            area: "301 sq.yd",
+            badge: "NEW LAUNCH",
+            rating: 4.7,
+            image: "/images/dholera.jpg"
           }
         ],
         amenities: [
-          { icon: Crown, label: "Private Pool" },
-          { icon: Trees, label: "Landscaped Garden" },
-          { icon: ShieldCheck, label: "Gated Security" },
-          { icon: Gem, label: "Premium Finishes" },
-          { icon: Sun, label: "Solar Power" },
-          { icon: Cloud, label: "Smart Home" }
+          { icon: Trees, label: "Green Township" },
+          { icon: Car, label: "Road Network" },
+          { icon: ShieldCheck, label: "Gated Entry" },
+          { icon: Sun, label: "Smart Infrastructure" }
+        ],
+        testimonials: [
+          { name: "Mr. Amit Bansal", review: "Dholera Smart City is the next big thing. Mayur Forest Villa offers incredible value and growth potential.", rating: 4.9, image: "https://randomuser.me/api/portraits/men/62.jpg" }
+        ]
+      },
+
+      // 4. REMOVED: luxury-apartment and premium-villa
+      // Keeping for fallback but removing from browse types
+      "default": {
+        title: "Premium Properties",
+        subtitle: "Exclusive Collection",
+        description: "Discover our curated selection of premium properties across NCR.",
+        startingPrice: "₹34.9 L",
+        projects: "50+",
+        rating: "4.9★",
+        stats: [
+          { value: "50+", label: "Projects", icon: Building2 },
+          { value: "4.9★", label: "Rating", icon: Star },
+          { value: "100%", label: "RERA Verified", icon: ShieldCheck },
+          { value: "24/7", label: "Support", icon: Clock }
+        ],
+        properties: [
+          { 
+            title: "Bhutani Astrathum", 
+            location: "Sector 133 Noida", 
+            price: "₹6,990/sq.ft", 
+            bhk: "Office Space", 
+            area: "Commercial",
+            badge: "TOP PICK",
+            rating: 4.9,
+            image: "/images/astrathum.jpg"
+          }
+        ],
+        amenities: [
+          { icon: Building2, label: "Premium Spaces" },
+          { icon: ShieldCheck, label: "RERA Approved" },
+          { icon: Wifi, label: "Smart Infrastructure" },
+          { icon: Car, label: "Parking" }
         ],
         testimonials: []
       }
     };
-    return data[slug] || data["luxury-apartment"];
+    
+    return data[slug] || data["default"];
   };
+
+  // ✅ REMOVED: const TrendingUp = ({ size, color }) => <span>📈</span>;
 
   const propertyData = getPropertyData();
 
@@ -224,7 +223,7 @@ export default function PropertyTypePage() {
     <div className="property-page">
 
       {/* ============================================================
-          HERO SECTION (Enhanced with Stats & Trust Strip)
+          HERO SECTION
       ============================================================ */}
       <motion.section 
         className="property-hero-premium"
@@ -262,6 +261,7 @@ export default function PropertyTypePage() {
             Premium Collection
           </motion.div>
 
+          {/* 5. UPDATED: Hero Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -355,7 +355,7 @@ export default function PropertyTypePage() {
       </motion.section>
 
       {/* ============================================================
-          STATS SECTION
+          STATS SECTION - ✅ REPLACED with simplified version
       ============================================================ */}
       <motion.section 
         className="stats-premium"
@@ -372,7 +372,9 @@ export default function PropertyTypePage() {
               variants={fadeUp}
               whileHover={{ y: -8 }}
             >
-              <stat.icon size={32} color="#B8892D" />
+              <div className="stat-icon-wrapper">
+                <stat.icon size={32} color="#B8892D" />
+              </div>
               <div>
                 <h3>{stat.value}</h3>
                 <p>{stat.label}</p>
@@ -383,7 +385,7 @@ export default function PropertyTypePage() {
       </motion.section>
 
       {/* ============================================================
-          PROPERTY GRID (Enhanced Cards)
+          PROPERTY GRID (6. UPDATED: Listing Title)
       ============================================================ */}
       <section className="listing-premium">
         <div className="listing-premium-header">
@@ -397,8 +399,9 @@ export default function PropertyTypePage() {
               <Building2 size={16} />
               Featured Properties
             </span>
-            <h2>Exclusive <span className="gold-text">Luxury</span> Collection</h2>
-            <p>Handpicked premium residences designed for the discerning few</p>
+            {/* 6. UPDATED: Listing Title */}
+            <h2>Top <span className="gold-text">Commercial & Investment</span> Projects</h2>
+            <p>Handpicked premium properties designed for the discerning investor</p>
           </motion.div>
           
           <motion.div 
@@ -409,10 +412,10 @@ export default function PropertyTypePage() {
             variants={fadeUp}
           >
             <button className="filter-btn active">All</button>
-            <button className="filter-btn">3 BHK</button>
-            <button className="filter-btn">4 BHK</button>
-            <button className="filter-btn">5 BHK+</button>
-            <button className="filter-btn">Luxury</button>
+            <button className="filter-btn">Commercial</button>
+            <button className="filter-btn">Retail</button>
+            <button className="filter-btn">Plots</button>
+            <button className="filter-btn">Investment</button>
           </motion.div>
         </div>
 
@@ -435,7 +438,7 @@ export default function PropertyTypePage() {
                 <div className="property-image-overlay"></div>
                 
                 <div className="exclusive-ribbon">
-                  Exclusive Collection
+                  Premium Investment
                 </div>
                 
                 <span className="property-badge-premium">{property.badge}</span>
@@ -465,9 +468,9 @@ export default function PropertyTypePage() {
                 </div>
 
                 <div className="property-amenities-mini">
-                  <span>🏊 Pool</span>
-                  <span>🏋 Gym</span>
-                  <span>🛡 Security</span>
+                  <span>🏢 Commercial</span>
+                  <span>📈 High ROI</span>
+                  <span>🛡 RERA</span>
                 </div>
 
                 <div className="card-footer-premium">
@@ -486,7 +489,7 @@ export default function PropertyTypePage() {
       </section>
 
       {/* ============================================================
-          AMENITIES SECTION (Enhanced with Glow)
+          AMENITIES SECTION - ✅ REPLACED with simplified version
       ============================================================ */}
       <section className="amenities-premium">
         <div className="amenities-premium-container">
@@ -501,8 +504,8 @@ export default function PropertyTypePage() {
               <Gem size={16} />
               World-Class Amenities
             </span>
-            <h2>Designed for <span className="gold-text">Luxury</span> Living</h2>
-            <p>Every detail crafted to elevate your lifestyle experience</p>
+            <h2>Designed for <span className="gold-text">Investment</span> Success</h2>
+            <p>Every detail crafted to maximize value and returns</p>
           </motion.div>
 
           <motion.div 
@@ -531,9 +534,9 @@ export default function PropertyTypePage() {
       </section>
 
       {/* ============================================================
-          TESTIMONIALS (Enhanced with Left Border)
+          TESTIMONIALS
       ============================================================ */}
-      {propertyData.testimonials.length > 0 && (
+      {propertyData.testimonials && propertyData.testimonials.length > 0 && (
         <section className="testimonials-premium">
           <div className="testimonials-premium-container">
             <motion.div 
@@ -545,9 +548,9 @@ export default function PropertyTypePage() {
             >
               <span className="section-kicker">
                 <Award size={16} />
-                Client Testimonials
+                Investor Testimonials
               </span>
-              <h2>What Our <span className="gold-text">Clients</span> Say</h2>
+              <h2>What Our <span className="gold-text">Investors</span> Say</h2>
             </motion.div>
 
             <motion.div 
@@ -573,7 +576,7 @@ export default function PropertyTypePage() {
                     <img src={testimonial.image} alt={testimonial.name} />
                     <div>
                       <strong>{testimonial.name}</strong>
-                      <span>Verified Buyer</span>
+                      <span>Verified Investor</span>
                     </div>
                   </div>
                 </motion.div>
@@ -584,7 +587,7 @@ export default function PropertyTypePage() {
       )}
 
       {/* ============================================================
-          CTA SECTION (All Links Updated to React Router)
+          CTA SECTION
       ============================================================ */}
       <section className="cta-premium">
         <div className="cta-premium-container">
@@ -595,9 +598,9 @@ export default function PropertyTypePage() {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <span className="cta-badge">Ready to Move</span>
-            <h2>Find Your <span className="gold-text">Dream</span> Property Today</h2>
-            <p>Get expert consultation and access to exclusive deals</p>
+            <span className="cta-badge">Ready to Invest</span>
+            <h2>Find Your <span className="gold-text">Dream</span> Investment Today</h2>
+            <p>Get expert consultation and access to exclusive investment deals</p>
             
             <div className="cta-actions-premium">
               <Link to="/contact" className="primary-btn gold-btn large">
