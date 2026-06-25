@@ -1,5 +1,6 @@
 // PropertyDetails.jsx
 import { useState, useEffect } from "react";
+import { sendEnquiry } from "../services/email";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {

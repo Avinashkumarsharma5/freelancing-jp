@@ -1,6 +1,10 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import BhutaniAstrathumImage from "../assets/bhutani astrathum.png"
+import FoodzaniImage from "../assets/foodzani.png"
+import CityCenter32Image from "../assets/citycenter.png"
+import mayurimg from "../assets/mayur forest villa.png"
 import { 
   ArrowRight, 
   Star, 
@@ -62,7 +66,7 @@ const staggerContainer = {
 // ======================================
 export default function PropertyTypePage() {
   const { slug } = useParams();
-
+console.log("Slug:", slug);
   // ======================================
   // UPDATED DATA STRUCTURE
   // ======================================
@@ -91,7 +95,7 @@ export default function PropertyTypePage() {
             area: "Commercial",
             badge: "TOP PICK",
             rating: 4.9,
-            image: "/images/astrathum.jpg"
+            image: BhutaniAstrathumImage,
           },
           { 
             title: "Foodzani", 
@@ -101,7 +105,7 @@ export default function PropertyTypePage() {
             area: "Retail",
             badge: "HOT DEAL",
             rating: 4.8,
-            image: "/images/foodzani.jpg"
+            image: FoodzaniImage,
           },
           { 
             title: "City Center 32", 
@@ -111,7 +115,7 @@ export default function PropertyTypePage() {
             area: "Commercial",
             badge: "PREMIUM",
             rating: 4.9,
-            image: "/images/citycenter.jpg"
+            image: CityCenter32Image,
           },
           { 
             title: "133 Avenue", 
@@ -121,7 +125,7 @@ export default function PropertyTypePage() {
             area: "Investment",
             badge: "INVESTMENT",
             rating: 4.8,
-            image: "/images/133avenue.jpg"
+            image: mayurimg,
           }
         ],
         amenities: [
@@ -161,7 +165,7 @@ export default function PropertyTypePage() {
             area: "301 sq.yd",
             badge: "NEW LAUNCH",
             rating: 4.7,
-            image: "/images/dholera.jpg"
+            image: mayurimg
           }
         ],
         amenities: [
@@ -199,7 +203,7 @@ export default function PropertyTypePage() {
             area: "Commercial",
             badge: "TOP PICK",
             rating: 4.9,
-            image: "/images/astrathum.jpg"
+            image: BhutaniAstrathumImage
           }
         ],
         amenities: [
@@ -212,10 +216,21 @@ export default function PropertyTypePage() {
       }
     };
     
-    return data[slug] || data["default"];
-  };
+    const slugMap = {
+  "commercial-office": "commercial-space",
+  "retail-shops": "commercial-space",
+  "food-court": "commercial-space",
+  "soho-suites": "commercial-space",
+  "studio-apartments": "commercial-space",
+  "residential-plots": "dholera-investment",
+};
 
-  // ✅ REMOVED: const TrendingUp = ({ size, color }) => <span>📈</span>;
+console.log("Mapped:", slugMap[slug] || slug);
+console.log("Data:", data[slugMap[slug] || slug]);
+
+return data[slugMap[slug] || slug] || data["default"];
+
+  };
 
   const propertyData = getPropertyData();
 

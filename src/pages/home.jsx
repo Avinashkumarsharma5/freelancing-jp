@@ -514,6 +514,41 @@ const dholeraData = {
 // 9. NEW: Commercial Investment Section
 // ======================================
 function CommercialInvestmentSection() {
+const openWhatsApp = (property) => {
+  const phone = "916201486202";
+
+  const message = `🏢 *Milesquare Realty - Property Enquiry*
+
+Hello Team,
+
+I am interested in the following property:
+
+━━━━━━━━━━━━━━━━━━
+🏢 Property : ${property.title}
+📍 Location : ${property.location}
+💰 Price : ${property.price}
+📈 ROI : ${property.roi}
+💵 Rental Yield : ${property.rentalYield}
+━━━━━━━━━━━━━━━━━━
+
+Please share:
+
+✅ Brochure
+✅ Floor Plan
+✅ Price List
+✅ Payment Plan
+✅ Site Visit Details
+
+Current Page:
+${window.location.href}
+
+Thank you.`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
   return (
     <section className="section commercial-investment-section">
       <div className="site-container">
@@ -557,9 +592,12 @@ function CommercialInvestmentSection() {
                     <strong className="metric-value">{item.rentalYield}</strong>
                   </div>
                 </div>
-                <button className="btn-primary-luxury small">
-                  Invest Now <ArrowRight size={16} />
-                </button>
+                <button
+  className="btn-primary-luxury small"
+  onClick={() => openWhatsApp(item)}
+>
+  Invest Now <ArrowRight size={16} />
+</button>
               </div>
             </motion.article>
           ))}
@@ -574,6 +612,41 @@ function CommercialInvestmentSection() {
 // ======================================
 function DholeraInvestmentSection() {
   const navigate = useNavigate();
+  const openWhatsApp = () => {
+  const phone = "916201486202";
+
+  const message = `🏡 *Milesquare Realty - Dholera Smart City Enquiry*
+
+Hello Team,
+
+I am interested in the following investment:
+
+━━━━━━━━━━━━━━━━━━
+🏗 Project : ${dholeraData.title}
+📍 Location : ${dholeraData.location}
+💰 Starting Price : ${dholeraData.startingPrice}
+📈 Expected Return : ${dholeraData.expectedReturn}
+🚀 36 Months Return : ${dholeraData.return36Months}
+━━━━━━━━━━━━━━━━━━
+
+Please share:
+
+✅ Brochure
+✅ Master Plan
+✅ Price List
+✅ Payment Plan
+✅ Site Visit Details
+
+Current Page:
+${window.location.href}
+
+Thank you.`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
   
   return (
     <section className="section dholera-investment-section">
@@ -615,12 +688,18 @@ function DholeraInvestmentSection() {
               </div>
             </div>
             <div className="dholera-ctas">
-              <button className="btn-primary-luxury" onClick={() => navigate('/property-type/dholera-investment')}>
-                Explore Investment <ArrowRight size={18} />
-              </button>
-              <button className="btn-secondary-luxury" onClick={() => navigate('/contact')}>
-                <Phone size={16} /> Talk to Expert
-              </button>
+             <button
+  className="btn-primary-luxury"
+  onClick={openWhatsApp}
+>
+  Explore Investment <ArrowRight size={18} />
+</button>
+              <button
+  className="btn-secondary-luxury"
+  onClick={openWhatsApp}
+>
+  <Phone size={16} /> Talk to Expert
+</button>
             </div>
           </div>
         </motion.div>
@@ -1260,6 +1339,39 @@ function PremiumServicesSection() {
 // 4. UPDATED: LAUNCH SECTION
 // ======================================
 function PremiumLaunchAndReady() {
+
+  const openWhatsApp = (launch, action) => {
+  const phone = "916201486202";
+
+  const message = `🏢 *Milesquare Realty - ${action}*
+
+Hello Team,
+
+I am interested in the following project:
+
+━━━━━━━━━━━━━━━━━━
+🏗 Project : ${launch.name}
+📅 Status : ${launch.launchDate}
+💰 Price : ${launch.price}
+🏢 Builder : ${launch.builder}
+🏠 Type : ${launch.possession}
+━━━━━━━━━━━━━━━━━━
+
+Request:
+${action === "Download Brochure"
+  ? "📄 Please send me the project brochure, price list, floor plan and payment plan."
+  : "📞 Please contact me and arrange a site visit."}
+
+Current Page:
+${window.location.href}
+
+Thank you.`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
   return (
     <section className="section launch-section premium-launch">
       <div className="site-container">
@@ -1301,8 +1413,12 @@ function PremiumLaunchAndReady() {
                     </div>
                   </div>
                   <div className="launch-ctas">
-                    <button className="primary-btn small">Download Brochure</button>
-                    <button className="secondary-btn small">Contact Advisor</button>
+                    <button className="primary-btn small" onClick={() => openWhatsApp(launch, "Download Brochure")}>
+                      Download Brochure
+                    </button>
+                    <button className="secondary-btn small" onClick={() => openWhatsApp(launch, "Contact Advisor")}>
+                      Contact Advisor
+                    </button>
                   </div>
                 </div>
               </motion.article>

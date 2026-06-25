@@ -1,22 +1,22 @@
 import emailjs from "@emailjs/browser";
 
-const SERVICE_ID = "YOUR_SERVICE_ID";
-const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const SERVICE_ID = "service_iqy7euk";
+const TEMPLATE_ID = "template_f6pw4e9";
+const PUBLIC_KEY = "d7BYcSdGORMNW6tBf"; // Regenerate karke yahan paste karo
 
-export const sendEnquiry = async (data) => {
+export const sendEnquiry = async (formData) => {
   try {
     const response = await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
       {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        property: data.property,
-        city: data.city,
-        budget: data.budget,
-        message: data.message,
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        property: formData.property,
+        city: formData.city,
+        budget: formData.budget,
+        message: formData.message,
       },
       PUBLIC_KEY
     );
@@ -26,7 +26,7 @@ export const sendEnquiry = async (data) => {
       response,
     };
   } catch (error) {
-    console.error(error);
+    console.error("EmailJS Error:", error);
 
     return {
       success: false,
