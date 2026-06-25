@@ -2707,22 +2707,12 @@ padding:20px;
 }
 
 .modal-panel{
-
-width:min(620px,100%);
-
-background:#fff;
-
-border-radius:30px;
-
-padding:40px;
-
-position:relative;
-
-animation:fadeUp .35s;
-
-box-shadow:
-0 35px 80px rgba(0,0,0,.22);
-
+    width:min(620px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:24px;
+    padding:35px;
 }
 
 .modal-close{
