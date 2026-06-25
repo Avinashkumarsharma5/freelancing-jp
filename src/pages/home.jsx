@@ -71,8 +71,11 @@ const fadeUp = {
 // ======================================
 
 // 1. UPDATED: Featured Properties
-const featuredProperties = [
+export const featuredProperties = [
   {
+    id: 1,
+    slug: "bhutani-astrathum",
+
     badge: "PRE-LAUNCH",
     title: "Bhutani Astrathum",
     location: "Sector 133 Noida",
@@ -80,9 +83,43 @@ const featuredProperties = [
     area: "Commercial",
     builder: "Bhutani Infra",
     rating: 4.9,
-   image: astrathumImg,
+
+    image: astrathumImg,
+
+    images: [
+      astrathumImg,
+      astrathumImg,
+      astrathumImg,
+      astrathumImg,
+    ],
+
+    type: "Commercial Office",
+    status: "Ready To Move",
+    rera: "UPRERAPRJ123456",
+    possession: "2028",
+    size: "500 - 2500 Sq.ft",
+    investment: "High ROI",
+    brochure: "/brochures/astrathum.pdf",
+
+    description:
+      "Bhutani Astrathum is a premium commercial project located in Sector 133 Noida offering retail shops, food court, office spaces and high investment returns.",
+
+    amenities: [
+      "Parking",
+      "Power Backup",
+      "Food Court",
+      "High Speed Lift",
+      "CCTV",
+      "24x7 Security",
+      "Metro Connectivity",
+      "Fire Safety"
+    ]
   },
+
   {
+    id: 2,
+    slug: "foodzani",
+
     badge: "FOOD COURT",
     title: "Foodzani",
     location: "133 Avenue Noida",
@@ -90,9 +127,40 @@ const featuredProperties = [
     area: "Retail",
     builder: "Bhutani Infra",
     rating: 4.8,
-    image: foodzaniImg
+
+    image: foodzaniImg,
+
+    images: [
+      foodzaniImg,
+      foodzaniImg,
+      foodzaniImg,
+      foodzaniImg,
+    ],
+
+    type: "Food Court",
+    status: "Ready For Leasing",
+    rera: "UPRERAPRJ654321",
+    possession: "Ready",
+    size: "250 - 1200 Sq.ft",
+    investment: "Rental Income",
+
+    description:
+      "Foodzani is one of Noida's premium food court investment destinations offering excellent rental returns.",
+
+    amenities: [
+      "Food Court",
+      "Parking",
+      "Escalator",
+      "Lift",
+      "Security",
+      "CCTV"
+    ]
   },
+
   {
+    id: 3,
+    slug: "city-center-32",
+
     badge: "HOT DEAL",
     title: "City Center 32",
     location: "Sector 32 Noida",
@@ -100,9 +168,41 @@ const featuredProperties = [
     area: "Food Court",
     builder: "Bhutani Infra",
     rating: 4.9,
-    image: citycenterImg
+
+    image: citycenterImg,
+
+    images: [
+      citycenterImg,
+      citycenterImg,
+      citycenterImg,
+      citycenterImg,
+    ],
+
+    type: "Retail & Food Court",
+    status: "Operational",
+    rera: "UPRERAPRJ852741",
+    possession: "Ready",
+
+    size: "300 - 2000 Sq.ft",
+
+    investment: "Premium",
+
+    description:
+      "City Center 32 is a premium commercial destination offering retail, food court and entertainment spaces.",
+
+    amenities: [
+      "Parking",
+      "Food Court",
+      "Lift",
+      "Security",
+      "Power Backup"
+    ]
   },
+
   {
+    id: 4,
+    slug: "mayur-forest-villa",
+
     badge: "NEW LAUNCH",
     title: "Mayur Forest Villa",
     location: "Dholera Smart City",
@@ -110,7 +210,36 @@ const featuredProperties = [
     area: "Plots",
     builder: "Mirrikh Infratech",
     rating: 4.7,
-    image: mayurforestImg
+
+    image: mayurforestImg,
+
+    images: [
+      mayurforestImg,
+      mayurforestImg,
+      mayurforestImg,
+      mayurforestImg,
+    ],
+
+    type: "Residential Plot",
+
+    status: "New Launch",
+
+    possession: "2027",
+
+    size: "100 - 500 Sq.yd",
+
+    investment: "Future Growth",
+
+    description:
+      "Mayur Forest Villa offers premium residential plots in Dholera Smart City with excellent long-term appreciation potential.",
+
+    amenities: [
+      "Wide Roads",
+      "Garden",
+      "Club House",
+      "Security",
+      "Street Lights"
+    ]
   }
 ];
 
@@ -879,7 +1008,7 @@ function BrowseByType() {
 // ======================================
 function PremiumFeaturedProperties() {
   const [savedProperties, setSavedProperties] = useState([]);
-
+ const navigate = useNavigate(); 
   const toggleSave = (title) => {
     setSavedProperties((prev) =>
       prev.includes(title) ? prev.filter((item) => item !== title) : [...prev, title]
@@ -946,9 +1075,14 @@ function PremiumFeaturedProperties() {
                   <div className="spec-item"><strong>{property.builder}</strong><span>Builder</span></div>
                 </div>
                 <div className="property-ctas">
-                  <button className="btn-primary-luxury">Explore Property <ArrowRight size={18} /></button>
-                  <button className="btn-secondary-luxury"><CalendarDays size={16} /> Site Visit</button>
-                </div>
+                  <button
+ className="btn-primary-luxury"
+ onClick={() => navigate(`/property/${property.slug}`)}
+>
+   Explore Property
+   <ArrowRight size={18}/>
+</button>
+                  </div>
               </div>
             </motion.article>
           ))}

@@ -4,6 +4,7 @@ import HomePage from "./pages/home";
 import PropertyTypePage from "./pages/PropertyTypePage";
 import LocationDetailsPage from "./pages/LocationDetailsPage";
 import Contact from "./pages/Contact";
+import PropertyDetails from "./pages/PropertyDetails";
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
         path="/contact"
         element={<Contact />}
       />
+
+      <Route
+path="/property/:slug"
+element={<PropertyDetails/>}
+/>
 
     </Routes>
   );
