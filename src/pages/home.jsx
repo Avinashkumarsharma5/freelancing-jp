@@ -2,6 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import heroVideo from "../assets/jpmp5.mp4";
 import logo2 from "../assets/logo.png";
+import CityCenter32 from "../assets/city center 32.png";
+
+import MayurForestVilla from "../assets/mayurforest.png";
+import BhutaniAstrathum from "../assets/astrathum.png";
+import ResidentialPlots from "../assets/residential plots.png";
+import StudioApartments from "../assets/studio apartments.png";
+import SOHOSuites from "../assets/soho suites.png";
+import CommercialOffice from "../assets/commercial office.png";
+import RetailShops from "../assets/retail shops.png";  
+import FoodCourt from "../assets/food court.png";
 import astrathumImg from "../assets/astrathum.png";
 import foodzaniImg from "../assets/foodzani.png";
 import citycenterImg from "../assets/citycenter.png";
@@ -181,42 +191,42 @@ const browseTypes = [
   {
     title: "Commercial Office",
     slug: "commercial-office",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+    image: CommercialOffice,
     count: "156 Properties",
   },
 
   {
     title: "Retail Shops",
     slug: "retail-shops",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+    image: RetailShops,
     count: "89 Properties",
   },
 
   {
     title: "Food Court",
     slug: "food-court",
-    image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80",
+    image: FoodCourt,
     count: "42 Properties",
   },
 
   {
     title: "SOHO Suites",
     slug: "soho-suites",
-    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80",
+    image: SOHOSuites,
     count: "67 Properties",
   },
 
   {
     title: "Studio Apartments",
     slug: "studio-apartments",
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+    image: StudioApartments,
     count: "128 Properties",
   },
 
   {
     title: "Residential Plots",
     slug: "residential-plots",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80",
+    image: ResidentialPlots,
     count: "245 Properties",
   }
 ];
@@ -230,7 +240,7 @@ const launches = [
     possession: 'Commercial',
     builder: 'Bhutani Infra',
     brochure: '#',
-    image: '/images/astrathum.jpg'
+    image:BhutaniAstrathum,
   },
   {
     name: 'Mayur Forest Villa',
@@ -239,7 +249,7 @@ const launches = [
     possession: 'Plots',
     builder: 'Mirrikh Infratech',
     brochure: '#',
-    image: '/images/mayurforest.jpg'
+    image: MayurForestVilla,
   },
   {
     name: 'Foodzani',
@@ -248,7 +258,7 @@ const launches = [
     possession: 'Retail',
     builder: 'Bhutani Infra',
     brochure: '#',
-    image: '/images/foodzani.jpg'
+    image: foodzaniImg,
   },
   {
     name: 'City Center 32',
@@ -257,7 +267,7 @@ const launches = [
     possession: 'Food Court',
     builder: 'Bhutani Infra',
     brochure: '#',
-    image: '/images/citycenter.jpg'
+    image: CityCenter32,
   },
 ];
 
@@ -333,7 +343,7 @@ const commercialInvestments = [
     roi: "24.5%",
     rentalYield: "8.2%",
     location: "Sector 133 Noida",
-    image: "/images/astrathum.jpg"
+   image:BhutaniAstrathum,
   },
   {
     title: "Foodzani",
@@ -341,7 +351,7 @@ const commercialInvestments = [
     roi: "21.3%",
     rentalYield: "9.5%",
     location: "133 Avenue Noida",
-    image: "/images/foodzani.jpg"
+    image: foodzaniImg
   },
   {
     title: "City Center 32",
@@ -349,7 +359,7 @@ const commercialInvestments = [
     roi: "26.8%",
     rentalYield: "10.2%",
     location: "Sector 32 Noida",
-    image: "/images/citycenter.jpg"
+    image: CityCenter32
   },
   {
     title: "133 Avenue",
@@ -357,7 +367,7 @@ const commercialInvestments = [
     roi: "22.7%",
     rentalYield: "8.8%",
     location: "Sector 133 Noida",
-    image: "/images/133avenue.jpg"
+    image: StudioApartments
   }
 ];
 
@@ -368,7 +378,7 @@ const dholeraData = {
   expectedReturn: "₹25,976/month",
   return36Months: "₹9,35,136",
   location: "Dholera Smart City",
-  image: "/images/mayurforest.jpg"
+  image: MayurForestVilla
 };
 
 // ======================================
