@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import BhutaniAstrathumImage from "../assets/bhutani astrathum.png"
+import BhutaniAstrathumImage from "../assets/Bhutani Astrathum.png"
 import FoodzaniImage from "../assets/foodzani.png"
-import CityCenter32Image from "../assets/citycenter.png"
-import mayurimg from "../assets/mayur forest villa.png"
+import CityCenter32Image from "../assets/City Center 32.png"
+import mayurimg from "../assets/Mayur Forest Villa.png"
 import { 
   ArrowRight, 
   Star, 
