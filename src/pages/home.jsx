@@ -752,14 +752,31 @@ function ScrollProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let frameId = null;
+
     const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setProgress(progress);
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const nextProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        setProgress((prev) => (prev === nextProgress ? prev : nextProgress));
+      });
     };
-    window.addEventListener('scroll', updateProgress);
-    return () => window.removeEventListener('scroll', updateProgress);
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+
+    return () => {
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   return (
@@ -944,11 +961,25 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let frameId = null;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        setScrolled(window.scrollY > 30);
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   return (
@@ -1061,8 +1092,8 @@ function BrowseByType() {
             <motion.article
               key={type.title}
               className="premium-type-card"
-              whileHover={{ y: -10, scale: 1.02, rotateX: 3, rotateY: -3 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ y: -8, scale: 1.01 }}
+              transition={{ duration: 0.2 }}
               onClick={() => navigate(`/property-type/${type.slug}`)}
             >
               <img src={type.image} alt={type.title} />
@@ -1108,7 +1139,7 @@ function PremiumFeaturedProperties() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ y: -15, rotateX: 3, rotateY: -3, transition: { duration: 0.3 } }}
+              whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.2 } }}
             >
               <div className="property-image-container">
                 <img src={property.image} alt={property.title} loading="lazy" />
@@ -1192,7 +1223,7 @@ function PremiumLocations() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ y: -6, scale: 1.01 }}
             >
               <img src={location.image} alt={location.name} loading="lazy" />
               <div className="location-overlay">
@@ -1319,7 +1350,7 @@ function PremiumServicesSection() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -6 }}
             >
               <div className="service-icon" style={{ backgroundColor: service.color === '#B8892D' ? 'rgba(184, 137, 45, 0.1)' : 'rgba(27, 27, 27, 0.05)' }}>
                 <service.icon size={32} color={service.color} />
@@ -1519,7 +1550,7 @@ function LuxuryAgentShowcase() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -12 }}
+              whileHover={{ y: -6 }}
             >
               <div className="agent-badge premium">{agent.badge}</div>
               <img src={agent.image} alt={agent.name} className="agent-photo" loading="lazy" />
