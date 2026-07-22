@@ -56,7 +56,6 @@ body {
   color: var(--charcoal);
   line-height: 1.5;
   overflow-x: hidden;
-  overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
   backface-visibility: hidden;
   transform: translateZ(0);
