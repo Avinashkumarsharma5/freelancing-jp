@@ -714,8 +714,17 @@ Thank you.`;
 
 function LoadingScreen({ onComplete }) {
   useEffect(() => {
-    const timer = setTimeout(onComplete, 3500);
-    return () => clearTimeout(timer);
+    console.log('LoadingScreen mounted');
+    // prevent background scroll while loader is visible
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const timer = setTimeout(onComplete, 4500);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = prevOverflow;
+      console.log('LoadingScreen unmounted');
+    };
   }, [onComplete]);
 
   return (
