@@ -56,39 +56,9 @@ body {
   color: var(--charcoal);
   line-height: 1.5;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  backface-visibility: hidden;
-  transform: translateZ(0);
   background-image:
     radial-gradient(circle at top right, rgba(184, 137, 45, 0.06), transparent 40%),
     radial-gradient(circle at bottom left, rgba(110, 31, 31, 0.04), transparent 40%);
-}
-
-#root {
-  isolation: isolate;
-}
-
-.premium-hero,
-.site-header,
-.premium-type-card,
-.premium-property-card,
-.premium-location-card,
-.premium-feature-card,
-.premium-service-card,
-.luxury-agent-card,
-.premium-launch-card,
-.premium-testimonial-card {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {

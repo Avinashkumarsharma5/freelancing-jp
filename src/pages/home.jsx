@@ -714,17 +714,8 @@ Thank you.`;
 
 function LoadingScreen({ onComplete }) {
   useEffect(() => {
-    console.log('LoadingScreen mounted');
-    // prevent background scroll while loader is visible
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const timer = setTimeout(onComplete, 4500);
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = prevOverflow;
-      console.log('LoadingScreen unmounted');
-    };
+    const timer = setTimeout(onComplete, 3500);
+    return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
@@ -761,31 +752,14 @@ function ScrollProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let frameId = null;
-
     const updateProgress = () => {
-      if (frameId !== null) return;
-
-      frameId = window.requestAnimationFrame(() => {
-        frameId = null;
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const nextProgress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        setProgress((prev) => (prev === nextProgress ? prev : nextProgress));
-      });
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setProgress(progress);
     };
-
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
-
-    return () => {
-      window.removeEventListener('scroll', updateProgress);
-      window.removeEventListener('resize', updateProgress);
-      if (frameId !== null) {
-        window.cancelAnimationFrame(frameId);
-      }
-    };
+    window.addEventListener('scroll', updateProgress);
+    return () => window.removeEventListener('scroll', updateProgress);
   }, []);
 
   return (
@@ -970,25 +944,11 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    let frameId = null;
-
     const handleScroll = () => {
-      if (frameId !== null) return;
-
-      frameId = window.requestAnimationFrame(() => {
-        frameId = null;
-        setScrolled(window.scrollY > 30);
-      });
+      setScrolled(window.scrollY > 30);
     };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (frameId !== null) {
-        window.cancelAnimationFrame(frameId);
-      }
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -1101,8 +1061,8 @@ function BrowseByType() {
             <motion.article
               key={type.title}
               className="premium-type-card"
-              whileHover={{ y: -8, scale: 1.01 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ y: -10, scale: 1.02, rotateX: 3, rotateY: -3 }}
+              transition={{ duration: 0.3 }}
               onClick={() => navigate(`/property-type/${type.slug}`)}
             >
               <img src={type.image} alt={type.title} />
@@ -1148,7 +1108,7 @@ function PremiumFeaturedProperties() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.2 } }}
+              whileHover={{ y: -15, rotateX: 3, rotateY: -3, transition: { duration: 0.3 } }}
             >
               <div className="property-image-container">
                 <img src={property.image} alt={property.title} loading="lazy" />
@@ -1232,7 +1192,7 @@ function PremiumLocations() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ y: -6, scale: 1.01 }}
+              whileHover={{ scale: 1.02 }}
             >
               <img src={location.image} alt={location.name} loading="lazy" />
               <div className="location-overlay">
@@ -1359,7 +1319,7 @@ function PremiumServicesSection() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8 }}
             >
               <div className="service-icon" style={{ backgroundColor: service.color === '#B8892D' ? 'rgba(184, 137, 45, 0.1)' : 'rgba(27, 27, 27, 0.05)' }}>
                 <service.icon size={32} color={service.color} />
@@ -1559,7 +1519,7 @@ function LuxuryAgentShowcase() {
               viewport={{ once: true }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -12 }}
             >
               <div className="agent-badge premium">{agent.badge}</div>
               <img src={agent.image} alt={agent.name} className="agent-photo" loading="lazy" />
