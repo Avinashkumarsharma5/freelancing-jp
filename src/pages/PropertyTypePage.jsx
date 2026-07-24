@@ -46,8 +46,17 @@ import "./PropertyTypePage.css";
 // ANIMATION VARIANTS
 // ======================================
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 70 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 18,
+      mass: 0.8
+    }
+  }
 };
 
 const staggerContainer = {
@@ -376,16 +385,17 @@ return data[slugMap[slug] || slug] || data["default"];
         className="stats-premium"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={staggerContainer}
       >
         <div className="stats-premium-container">
           {propertyData.stats.map((stat, index) => (
             <motion.div 
-              className="stat-premium-card" 
+              className="stat-premium-card motion-element" 
               key={index}
               variants={fadeUp}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -12, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="stat-icon-wrapper">
                 <stat.icon size={32} color="#B8892D" />
@@ -407,7 +417,7 @@ return data[slugMap[slug] || slug] || data["default"];
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
           >
             <span className="section-kicker">
@@ -423,7 +433,7 @@ return data[slugMap[slug] || slug] || data["default"];
             className="listing-filter"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
           >
             <button className="filter-btn active">All</button>
@@ -438,18 +448,19 @@ return data[slugMap[slug] || slug] || data["default"];
           className="property-grid-premium"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
         >
           {propertyData.properties.map((property, index) => (
             <motion.div 
-              className="property-card-premium" 
+              className="property-card-premium motion-element" 
               key={index}
               variants={fadeUp}
-              whileHover="hover"
+              whileHover={{ y: -12, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="property-image-wrapper">
-                <img src={property.image} alt={property.title} loading="lazy" />
+                <img src={property.image} alt={property.title} loading="lazy" decoding="async" />
                 <div className="property-image-overlay"></div>
                 
                 <div className="exclusive-ribbon">
@@ -512,7 +523,7 @@ return data[slugMap[slug] || slug] || data["default"];
             className="amenities-header"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
           >
             <span className="section-kicker">
@@ -527,15 +538,16 @@ return data[slugMap[slug] || slug] || data["default"];
             className="amenities-grid-premium"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
           >
             {propertyData.amenities.map((amenity, index) => (
               <motion.div 
-                className="amenity-premium-item" 
+                className="amenity-premium-item motion-element" 
                 key={index}
                 variants={fadeUp}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={{ y: -12, scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 250, damping: 18 }}
               >
                 <div className="amenity-icon-wrapper">
                   <amenity.icon size={24} color="#B8892D" />
@@ -558,7 +570,7 @@ return data[slugMap[slug] || slug] || data["default"];
               className="testimonials-header"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
             >
               <span className="section-kicker">
@@ -572,12 +584,12 @@ return data[slugMap[slug] || slug] || data["default"];
               className="testimonials-grid-premium"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={staggerContainer}
             >
               {propertyData.testimonials.map((testimonial, index) => (
-                <motion.div 
-                  className="testimonial-premium-card" 
+                  <motion.div 
+                    className="testimonial-premium-card motion-element" 
                   key={index}
                   variants={fadeUp}
                 >
@@ -588,7 +600,7 @@ return data[slugMap[slug] || slug] || data["default"];
                   </div>
                   <p>"{testimonial.review}"</p>
                   <div className="testimonial-author">
-                    <img src={testimonial.image} alt={testimonial.name} />
+                    <img src={testimonial.image} alt={testimonial.name} loading="lazy" decoding="async" />
                     <div>
                       <strong>{testimonial.name}</strong>
                       <span>Verified Investor</span>
@@ -610,7 +622,7 @@ return data[slugMap[slug] || slug] || data["default"];
             className="cta-content-premium"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
           >
             <span className="cta-badge">Ready to Invest</span>

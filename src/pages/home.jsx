@@ -558,19 +558,20 @@ Thank you.`;
           align="center" 
         />
         <div className="commercial-investment-grid">
-          {commercialInvestments.map((item, idx) => (
+              {commercialInvestments.map((item, idx) => (
             <motion.article
               className="commercial-investment-card"
               key={item.title}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ y: -10 }}
+                  whileHover={{ y: -12, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="investment-image">
-                <img src={item.image} alt={item.title} />
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
                 <div className="investment-badge">Premium</div>
               </div>
               <div className="investment-content">
@@ -660,12 +661,13 @@ Thank you.`;
           className="dholera-investment-card"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={fadeUp}
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ y: -12, scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 250, damping: 18 }}
         >
           <div className="dholera-image">
-            <img src={dholeraData.image} alt={dholeraData.title} />
+            <img src={dholeraData.image} alt={dholeraData.title} loading="lazy" decoding="async" />
             <span className="dholera-badge">🚀 High Growth Zone</span>
           </div>
           <div className="dholera-content">
@@ -1061,11 +1063,11 @@ function BrowseByType() {
             <motion.article
               key={type.title}
               className="premium-type-card"
-              whileHover={{ y: -10, scale: 1.02, rotateX: 3, rotateY: -3 }}
-              transition={{ duration: 0.3 }}
+                whileHover={{ y: -12, scale: 1.03, rotateX: 3, rotateY: -3 }}
+                transition={{ type: "spring", stiffness: 250, damping: 18 }}
               onClick={() => navigate(`/property-type/${type.slug}`)}
             >
-              <img src={type.image} alt={type.title} />
+                <img src={type.image} alt={type.title} loading="lazy" decoding="async" />
               <div className="premium-overlay">
                 <div>
                   <span className="property-tag">{type.count}</span>
@@ -1100,18 +1102,18 @@ function PremiumFeaturedProperties() {
         <SectionHeading kicker="Featured Collection" title="Handpicked Luxury Homes Across NCR" />
         <div className="property-grid premium-property-grid">
           {featuredProperties.map((property, idx) => (
-            <motion.article
+              <motion.article
               className="premium-property-card"
               key={property.title}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
               whileHover={{ y: -15, rotateX: 3, rotateY: -3, transition: { duration: 0.3 } }}
             >
               <div className="property-image-container">
-                <img src={property.image} alt={property.title} loading="lazy" />
+                <img src={property.image} alt={property.title} loading="lazy" decoding="async" />
                 <div className="property-image-overlay"></div>
                 <span className={`property-badge ${property.badge.toLowerCase().replace(/\s+/g, "-")}`}>
                   {property.badge}
@@ -1183,18 +1185,18 @@ function PremiumLocations() {
         <SectionHeading kicker="Top Locations" title="Explore NCR's Most Desirable Destinations" />
         <div className="premium-location-grid">
           {premiumLocations.map((location, idx) => (
-            <motion.article
+              <motion.article
               onClick={() => navigate(`/location/${location.slug}`)}
               key={location.name}
               className="premium-location-card"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.08 }}
               whileHover={{ scale: 1.02 }}
             >
-              <img src={location.image} alt={location.name} loading="lazy" />
+              <img src={location.image} alt={location.name} loading="lazy" decoding="async" />
               <div className="location-overlay">
                 <div className="location-top">
                   <span className="location-tag">Investment Hotspot</span>
@@ -1271,7 +1273,7 @@ function PremiumWhyChooseUs() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
               <span className="feature-number">{String(idx + 1).padStart(2, "0")}</span>
@@ -1316,10 +1318,11 @@ function PremiumServicesSection() {
               key={service.title}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -12, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="service-icon" style={{ backgroundColor: service.color === '#B8892D' ? 'rgba(184, 137, 45, 0.1)' : 'rgba(27, 27, 27, 0.05)' }}>
                 <service.icon size={32} color={service.color} />
@@ -1391,11 +1394,11 @@ Thank you.`;
                 key={launch.name}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className="launch-image-wrapper">
-                  <img src={launch.image} alt={launch.name} className="launch-image" />
+                  <img src={launch.image} alt={launch.name} className="launch-image" loading="lazy" decoding="async" />
                   <span className="launch-badge">{launch.launchDate.includes('Launch') ? 'NEW LAUNCH' : launch.launchDate.includes('Leasing') ? 'READY FOR LEASING' : 'OPERATIONAL'}</span>
                 </div>
                 <div className="launch-body">
@@ -1472,12 +1475,12 @@ function PremiumTestimonials() {
               key={testimonial.name}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
             >
               <div className="testimonial-header">
-                <img src={testimonial.image} alt={testimonial.name} />
+                <img src={testimonial.image} alt={testimonial.name} loading="lazy" decoding="async" />
                 <div>
                   <h3>{testimonial.name}</h3>
                   <span>{testimonial.location}</span>
@@ -1516,10 +1519,11 @@ function LuxuryAgentShowcase() {
               key={agent.name}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: idx * 0.05 }}
-              whileHover={{ y: -12 }}
+              whileHover={{ y: -12, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="agent-badge premium">{agent.badge}</div>
               <img src={agent.image} alt={agent.name} className="agent-photo" loading="lazy" />
@@ -1569,7 +1573,7 @@ function PremiumFAQ() {
               key={faq.q}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ delay: index * 0.05 }}
             >
@@ -1607,7 +1611,7 @@ function LuxuryCTASection() {
           className="cta-text"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={fadeUp}
         >
           <span className="cta-kicker">Ready to invest?</span>
@@ -1618,7 +1622,7 @@ function LuxuryCTASection() {
           className="cta-buttons"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={fadeUp}
           transition={{ delay: 0.1 }}
         >

@@ -22,6 +22,7 @@
     "aos": "^2.3.4",
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.40.0",
+    "@studio-freight/lenis": "^0.2.29",
     "gsap": "^3.15.0",
     "lucide-react": "^1.17.0",
     "postcss": "^8.5.15",

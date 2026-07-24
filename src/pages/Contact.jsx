@@ -199,7 +199,7 @@ ${formData.message || "No Message"}
             </div>
 
             <div className="advisor-box">
-              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300" alt="Corporate Property Lead Advisor" />
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300" alt="Corporate Property Lead Advisor" loading="lazy" decoding="async" />
               <div>
                 <h4>Dedicated Property Advisor</h4>
                 <p>Get personalized asset guidance profiles for custom requirements natively.</p>

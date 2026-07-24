@@ -397,12 +397,27 @@ img {
   width:100%;
   height:100%;
   object-fit:cover;
-
-  transform:scale(1.05);
-
+  animation: zoomHero 20s ease-in-out infinite alternate;
   filter:
     brightness(.85)
     contrast(1.05);
+}
+
+@keyframes zoomHero{
+
+  0%{
+    transform:scale(1);
+  }
+
+  100%{
+    transform:scale(1.12);
+  }
+
+}
+
+.hero-glow{
+  transition: left .25s ease, top .25s ease;
+  filter: blur(120px);
 }
 
 /* SPLINE OVERLAY */

@@ -405,7 +405,7 @@ ${formData.message || "No Message"}
                   <div className="gallery-grid">
                     {property.images.map((image, index) => (
                       <button key={index} className="gallery-item" onClick={() => setCurrentImage(index)}>
-                        <img src={image} alt={`${property.title} - ${index + 1}`} />
+                        <img src={image} alt={`${property.title} - ${index + 1}`} loading="lazy" decoding="async" />
                         <div className="gallery-overlay"><ZoomIn size={18} /></div>
                       </button>
                     ))}
