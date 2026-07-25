@@ -213,8 +213,8 @@ ${formData.message || "No Message"}
               <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 82929 67359</p></div></div>
               <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 94714 36181</p></div></div>
               <div className="info-card"><Mail size={20} /><div><h4>Official Mailbox</h4><p>info@milesquarerealty.com</p></div></div>
-              <div className="info-card"><MapPin size={20} /><div><h4>Office 1</h4><p>Golf Course Road, Gurgaon, Haryana</p></div></div>
-              <div className="info-card"><MapPin size={20} /><div><h4>Office 2</h4><p>Sector 62, Noida, Uttar Pradesh</p></div></div>
+              <div className="info-card"><MapPin size={20} /><div><h4>Office Address</h4><p>185 'B', Sahdeo Mahto Marg, Opp. Children's Park, Boring Road, Patna - 800001 | milesquareinfracon.com</p></div></div>
+              <div className="info-card"><MapPin size={20} /><div><h4>Office Address</h4><p>Dholera: More Than a City, a Vision of the Future Brought to Life. 401, Baidyanath Complex, Raja Bazar, Near Pillor No. 10, Patna - 14</p></div></div>
             </div>
           </div>
 

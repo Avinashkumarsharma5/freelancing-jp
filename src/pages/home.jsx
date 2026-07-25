@@ -1747,8 +1747,8 @@ function PremiumFooter() {
               <a href="tel:+918292967359"><Phone size={18} /> +91 82929 67359</a>
               <a href="tel:+919471436181"><Phone size={18} /> +91 94714 36181</a>
               <a href="mailto:hello@milesquare.com"><Mail size={18} /> hello@milesquare.com</a>
-              <p><MapPin size={18} /> Office 1: Golf Course Road, Gurgaon, Haryana</p>
-              <p><MapPin size={18} /> Office 2: Sector 62, Noida, Uttar Pradesh</p>
+              <p><MapPin size={18} /> 185 'B', Sahdeo Mahto Marg, Opp. Children's Park, Boring Road, Patna - 800001 | milesquareinfracon.com</p>
+              <p><MapPin size={18} /> Dholera: More Than a City, a Vision of the Future Brought to Life. 401, Baidyanath Complex, Raja Bazar, Near Pillor No. 10, Patna - 14</p>
             </div>
             <div className="footer-social">
               <a href="#" aria-label="Facebook"><Globe size={20} /></a>
