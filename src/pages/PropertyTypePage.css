@@ -643,11 +643,17 @@
 /* 🆕 Card Footer with Price Block */
 .card-footer-premium {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.property-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .price-block {
@@ -690,6 +696,17 @@
 .property-cta-premium:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 25px rgba(184, 137, 45, 0.3);
+}
+
+.property-cta-premium.secondary-cta {
+  background: #fff;
+  border: 1px solid rgba(184, 137, 45, 0.2);
+  color: #6E1F1F;
+  box-shadow: none;
+}
+
+.property-cta-premium.secondary-cta:hover {
+  background: #FAF7F1;
 }
 
 /* ======================================

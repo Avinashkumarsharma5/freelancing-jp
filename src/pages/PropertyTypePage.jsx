@@ -81,60 +81,52 @@ console.log("Slug:", slug);
   // ======================================
   const getPropertyData = () => {
     const data = {
-      // 2. NEW: Commercial Space Data
-      "commercial-space": {
-        title: "Commercial Investments",
-        subtitle: "High ROI Commercial Assets",
-        description: "Explore premium commercial opportunities including office spaces, retail shops, food courts and SOHO suites in NCR's fastest growing corridors.",
-        startingPrice: "₹34.9 L",
-        projects: "50+",
+      "bhutani-astrathum": {
+        title: "Bhutani Astrathum",
+        subtitle: "Premium Commercial Investment",
+        description: "A high-growth commercial destination in Sector 133 Noida with office spaces, retail shops, food court and premium investor demand.",
+        startingPrice: "₹6,990/sq.ft",
+        projects: "4+",
         rating: "4.9★",
         stats: [
-          { value: "50+", label: "Commercial Projects", icon: Building2 },
+          { value: "4+", label: "Investment Options", icon: Building2 },
           { value: "8-12%", label: "Rental Yield", icon: TrendingUp },
           { value: "4.9★", label: "Investor Rating", icon: Star },
           { value: "100%", label: "RERA Verified", icon: ShieldCheck }
         ],
         properties: [
-          { 
-            title: "Bhutani Astrathum", 
-            location: "Sector 133 Noida", 
-            price: "₹6,990/sq.ft", 
-            bhk: "Office Space", 
-            area: "Commercial",
-            badge: "TOP PICK",
+          {
+            title: "Office Spaces",
+            location: "Sector 133 Noida",
+            price: "₹6,990/sq.ft",
+            bhk: "Commercial Office",
+            area: "500 - 2500 Sq.ft",
+            badge: "PRE-LAUNCH",
             rating: 4.9,
             image: BhutaniAstrathumImage,
+            slug: "bhutani-astrathum",
           },
-          { 
-            title: "Foodzani", 
-            location: "Noida", 
-            price: "₹32,990/sq.ft", 
-            bhk: "Food Court", 
-            area: "Retail",
+          {
+            title: "Retail Shops",
+            location: "Sector 133 Noida",
+            price: "₹16,000/sq.ft",
+            bhk: "Retail Shop",
+            area: "300 - 1200 Sq.ft",
             badge: "HOT DEAL",
             rating: 4.8,
-            image: FoodzaniImage,
+            image: BhutaniAstrathumImage,
+            slug: "bhutani-astrathum",
           },
-          { 
-            title: "City Center 32", 
-            location: "Sector 32 Noida", 
-            price: "₹33,000/sq.ft", 
-            bhk: "Retail", 
-            area: "Commercial",
-            badge: "PREMIUM",
-            rating: 4.9,
-            image: CityCenter32Image,
-          },
-          { 
-            title: "133 Avenue", 
-            location: "Noida", 
-            price: "₹26,990/sq.ft", 
-            bhk: "Retail Shop", 
-            area: "Investment",
-            badge: "INVESTMENT",
+          {
+            title: "Food Court Units",
+            location: "Sector 133 Noida",
+            price: "₹32,990/sq.ft",
+            bhk: "Food Court",
+            area: "250 - 1000 Sq.ft",
+            badge: "HIGH FOOTFALL",
             rating: 4.8,
-            image: mayurimg,
+            image: FoodzaniImage,
+            slug: "foodzani",
           }
         ],
         amenities: [
@@ -151,30 +143,159 @@ console.log("Slug:", slug);
         ]
       },
 
-      // 2. NEW: Dholera Investment Data
-      "dholera-investment": {
-        title: "Dholera Smart City",
-        subtitle: "Future Growth Destination",
-        description: "Invest in one of India's most ambitious smart city developments with residential plots and long-term appreciation potential.",
-        startingPrice: "₹13.8 L",
-        projects: "300+",
-        rating: "4.7★",
+      "foodzani": {
+        title: "Foodzani",
+        subtitle: "Retail & Food Court Investment",
+        description: "Premium food court and retail leasing opportunities with strong footfall, premium branding and attractive rental income.",
+        startingPrice: "₹32,990/sq.ft",
+        projects: "3+",
+        rating: "4.8★",
         stats: [
-          { value: "35%", label: "Growth Potential", icon: TrendingUp },
-          { value: "300+", label: "Available Plots", icon: MapPin },
-          { value: "36 Months", label: "Return Plan", icon: Clock },
-          { value: "Smart City", label: "Govt Backed", icon: Crown }
+          { value: "3+", label: "Retail Options", icon: Store },
+          { value: "7-10%", label: "Lease Yield", icon: TrendingUp },
+          { value: "4.8★", label: "Investor Rating", icon: Star },
+          { value: "Ready", label: "Leasing Status", icon: ShieldCheck }
         ],
         properties: [
-          { 
-            title: "Mayur Forest Villa", 
-            location: "Dholera Smart City", 
-            price: "₹10,450/sq.yd", 
-            bhk: "Residential Plot", 
-            area: "301 sq.yd",
+          {
+            title: "Food Court Units",
+            location: "133 Avenue Noida",
+            price: "₹32,990/sq.ft",
+            bhk: "Food Court",
+            area: "250 - 1200 Sq.ft",
+            badge: "RENTAL INCOME",
+            rating: 4.8,
+            image: FoodzaniImage,
+            slug: "foodzani",
+          },
+          {
+            title: "Retail Kiosks",
+            location: "133 Avenue Noida",
+            price: "₹24,000/sq.ft",
+            bhk: "Retail",
+            area: "150 - 700 Sq.ft",
+            badge: "FAST LEASING",
+            rating: 4.7,
+            image: FoodzaniImage,
+            slug: "foodzani",
+          },
+          {
+            title: "Brand Zone Spaces",
+            location: "133 Avenue Noida",
+            price: "₹27,000/sq.ft",
+            bhk: "Brand Zone",
+            area: "200 - 900 Sq.ft",
+            badge: "PREMIUM",
+            rating: 4.8,
+            image: FoodzaniImage,
+            slug: "foodzani",
+          }
+        ],
+        amenities: [
+          { icon: Utensils, label: "Food Court" },
+          { icon: Car, label: "Parking" },
+          { icon: ShieldCheck, label: "24/7 Security" },
+          { icon: Wifi, label: "High Footfall" }
+        ],
+        testimonials: [
+          { name: "Mr. Aman Verma", review: "Foodzani is one of the strongest retail food court investments in Noida. The demand is very healthy.", rating: 5, image: "https://randomuser.me/api/portraits/men/42.jpg" }
+        ]
+      },
+
+      "city-center-32": {
+        title: "City Center 32",
+        subtitle: "Premium Retail & Food Court",
+        description: "An operational retail and food court destination with active footfall, entertainment value and strong investment demand.",
+        startingPrice: "₹33,000/sq.ft",
+        projects: "3+",
+        rating: "4.9★",
+        stats: [
+          { value: "3+", label: "Commercial Spaces", icon: Building2 },
+          { value: "4.9★", label: "Investor Rating", icon: Star },
+          { value: "Operational", label: "Status", icon: ShieldCheck },
+          { value: "High", label: "Demand", icon: TrendingUp }
+        ],
+        properties: [
+          {
+            title: "Food Court Spaces",
+            location: "Sector 32 Noida",
+            price: "₹33,000/sq.ft",
+            bhk: "Food Court",
+            area: "300 - 2000 Sq.ft",
+            badge: "OPERATIONAL",
+            rating: 4.9,
+            image: CityCenter32Image,
+            slug: "city-center-32",
+          },
+          {
+            title: "Retail Frontage",
+            location: "Sector 32 Noida",
+            price: "₹29,500/sq.ft",
+            bhk: "Retail",
+            area: "350 - 1500 Sq.ft",
+            badge: "PREMIUM",
+            rating: 4.8,
+            image: CityCenter32Image,
+            slug: "city-center-32",
+          },
+          {
+            title: "Entertainment Zones",
+            location: "Sector 32 Noida",
+            price: "₹31,000/sq.ft",
+            bhk: "Entertainment",
+            area: "400 - 1800 Sq.ft",
+            badge: "HOT DEAL",
+            rating: 4.9,
+            image: CityCenter32Image,
+            slug: "city-center-32",
+          }
+        ],
+        amenities: [
+          { icon: Building2, label: "Retail Frontage" },
+          { icon: Coffee, label: "Food Court" },
+          { icon: Car, label: "Parking" },
+          { icon: ShieldCheck, label: "Security" }
+        ],
+        testimonials: [
+          { name: "Mr. Kartik Singh", review: "City Center 32 delivers premium commercial visibility and strong footfall for investment.", rating: 5, image: "https://randomuser.me/api/portraits/men/58.jpg" }
+        ]
+      },
+
+      "mayur-forest-villa": {
+        title: "Mayur Forest Villa",
+        subtitle: "Future Growth Destination",
+        description: "Residential plots in Dholera Smart City with long-term appreciation, premium planning and government-backed growth potential.",
+        startingPrice: "₹10,450/sq.yd",
+        projects: "2+",
+        rating: "4.7★",
+        stats: [
+          { value: "2+", label: "Plot Options", icon: Home },
+          { value: "35%", label: "Growth Potential", icon: TrendingUp },
+          { value: "4.7★", label: "Investor Rating", icon: Star },
+          { value: "Smart City", label: "Location", icon: Crown }
+        ],
+        properties: [
+          {
+            title: "Premium Residential Plots",
+            location: "Dholera Smart City",
+            price: "₹10,450/sq.yd",
+            bhk: "Residential Plot",
+            area: "100 - 500 Sq.yd",
             badge: "NEW LAUNCH",
             rating: 4.7,
-            image: mayurimg
+            image: mayurimg,
+            slug: "mayur-forest-villa",
+          },
+          {
+            title: "Garden Facing Plots",
+            location: "Dholera Smart City",
+            price: "₹11,200/sq.yd",
+            bhk: "Premium Plot",
+            area: "150 - 450 Sq.yd",
+            badge: "FUTURE GROWTH",
+            rating: 4.7,
+            image: mayurimg,
+            slug: "mayur-forest-villa",
           }
         ],
         amenities: [
@@ -188,8 +309,6 @@ console.log("Slug:", slug);
         ]
       },
 
-      // 4. REMOVED: luxury-apartment and premium-villa
-      // Keeping for fallback but removing from browse types
       "default": {
         title: "Premium Properties",
         subtitle: "Exclusive Collection",
@@ -204,15 +323,16 @@ console.log("Slug:", slug);
           { value: "24/7", label: "Support", icon: Clock }
         ],
         properties: [
-          { 
-            title: "Bhutani Astrathum", 
-            location: "Sector 133 Noida", 
-            price: "₹6,990/sq.ft", 
-            bhk: "Office Space", 
+          {
+            title: "Bhutani Astrathum",
+            location: "Sector 133 Noida",
+            price: "₹6,990/sq.ft",
+            bhk: "Commercial Office",
             area: "Commercial",
             badge: "TOP PICK",
             rating: 4.9,
-            image: BhutaniAstrathumImage
+            image: BhutaniAstrathumImage,
+            slug: "bhutani-astrathum"
           }
         ],
         amenities: [
@@ -224,21 +344,17 @@ console.log("Slug:", slug);
         testimonials: []
       }
     };
-    
+
     const slugMap = {
-  "commercial-office": "commercial-space",
-  "retail-shops": "commercial-space",
-  "food-court": "commercial-space",
-  "soho-suites": "commercial-space",
-  "studio-apartments": "commercial-space",
-  "residential-plots": "dholera-investment",
-};
+      "commercial-office": "bhutani-astrathum",
+      "retail-shops": "foodzani",
+      "food-court": "foodzani",
+      "soho-suites": "bhutani-astrathum",
+      "studio-apartments": "bhutani-astrathum",
+      "residential-plots": "mayur-forest-villa",
+    };
 
-console.log("Mapped:", slugMap[slug] || slug);
-console.log("Data:", data[slugMap[slug] || slug]);
-
-return data[slugMap[slug] || slug] || data["default"];
-
+    return data[slug] || data[slugMap[slug] || "default"] || data["default"];
   };
 
   const propertyData = getPropertyData();
@@ -425,8 +541,8 @@ return data[slugMap[slug] || slug] || data["default"];
               Featured Properties
             </span>
             {/* 6. UPDATED: Listing Title */}
-            <h2>Top <span className="gold-text">Commercial & Investment</span> Projects</h2>
-            <p>Handpicked premium properties designed for the discerning investor</p>
+            <h2>{propertyData.title} <span className="gold-text">Investment Options</span></h2>
+            <p>{propertyData.description}</p>
           </motion.div>
           
           <motion.div 
@@ -504,9 +620,14 @@ return data[slugMap[slug] || slug] || data["default"];
                     <span>Starting From</span>
                     <strong>{property.price}</strong>
                   </div>
-                  <Link to="/contact" className="property-cta-premium">
-                    Explore <ArrowRight size={16} />
-                  </Link>
+                  <div className="property-actions-stack">
+                    <Link to={`/property/${property.slug}`} className="property-cta-premium">
+                      Explore <ArrowRight size={16} />
+                    </Link>
+                    <Link to="/contact" className="property-cta-premium secondary-cta">
+                      Contact <Phone size={16} />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

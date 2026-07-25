@@ -318,46 +318,40 @@ const premiumAgents = [
 // 3. UPDATED: Browse By Type
 const browseTypes = [
   {
-    title: "Commercial Office",
-    slug: "commercial-office",
-    image: CommercialOffice,
-    count: "156 Properties",
+    title: "Bhutani Astrathum",
+    slug: "bhutani-astrathum",
+    image: BhutaniAstrathum,
+    count: "4 Investment Options",
+    tag: "High ROI",
+    description: "Commercial offices, retail, food court and premium investment avenues in Sector 133 Noida.",
   },
 
   {
-    title: "Retail Shops",
-    slug: "retail-shops",
-    image: RetailShops,
-    count: "89 Properties",
+    title: "Foodzani",
+    slug: "foodzani",
+    image: foodzaniImg,
+    count: "3 Retail Options",
+    tag: "Rental Income",
+    description: "Premium food court and retail leasing opportunities with strong footfall and returns.",
   },
 
   {
-    title: "Food Court",
-    slug: "food-court",
-    image: FoodCourt,
-    count: "42 Properties",
+    title: "City Center 32",
+    slug: "city-center-32",
+    image: citycenterImg,
+    count: "3 Premium Spaces",
+    tag: "Operational",
+    description: "Retail and food court investment options in one of Noida’s most active commercial hubs.",
   },
 
   {
-    title: "SOHO Suites",
-    slug: "soho-suites",
-    image: SOHOSuites,
-    count: "67 Properties",
+    title: "Mayur Forest Villa",
+    slug: "mayur-forest-villa",
+    image: mayurforestImg,
+    count: "2 Plot Options",
+    tag: "Future Growth",
+    description: "Residential plots in Dholera Smart City with long-term appreciation and premium planning.",
   },
-
-  {
-    title: "Studio Apartments",
-    slug: "studio-apartments",
-    image: StudioApartments,
-    count: "128 Properties",
-  },
-
-  {
-    title: "Residential Plots",
-    slug: "residential-plots",
-    image: ResidentialPlots,
-    count: "245 Properties",
-  }
 ];
 
 // 4. UPDATED: Launches
@@ -1057,22 +1051,23 @@ function BrowseByType() {
   return (
     <section className="section type-section">
       <div className="site-container">
-        <SectionHeading kicker="Browse by type" title="Choose the property style that fits your plan." />
+        <SectionHeading kicker="Browse by type" title="Explore the projects we are actively offering for investment." />
         <div className="type-grid">
           {browseTypes.map((type) => (
             <motion.article
               key={type.title}
               className="premium-type-card"
-                whileHover={{ y: -12, scale: 1.03, rotateX: 3, rotateY: -3 }}
-                transition={{ type: "spring", stiffness: 250, damping: 18 }}
+              whileHover={{ y: -12, scale: 1.03, rotateX: 3, rotateY: -3 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18 }}
               onClick={() => navigate(`/property-type/${type.slug}`)}
             >
-                <img src={type.image} alt={type.title} loading="lazy" decoding="async" />
+              <img src={type.image} alt={type.title} loading="lazy" decoding="async" />
               <div className="premium-overlay">
-                <div>
+                <div className="type-card-content">
                   <span className="property-tag">{type.count}</span>
+                  <span className="project-pill">{type.tag}</span>
                   <h3>{type.title}</h3>
-                  <p>Explore premium listings, luxury amenities and investment opportunities.</p>
+                  <p>{type.description}</p>
                 </div>
                 <div className="arrow-circle"><ArrowRight size={22} /></div>
               </div>
