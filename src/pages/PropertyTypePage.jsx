@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -5,12 +6,15 @@ import BhutaniAstrathumImage from "../assets/Bhutani Astrathum.png"
 import FoodzaniImage from "../assets/foodzani.png"
 import CityCenter32Image from "../assets/City Center 32.png"
 import mayurimg from "../assets/Mayur Forest Villa.png"
+import StudioApartmentsImage from "../assets/studio apartments.png"
+import CommercialOfficeImage from "../assets/Commercial Office.png"
+import ResidentialPlotsImage from "../assets/residential plots.png"
 import { 
   ArrowRight, 
   Star, 
   MapPin, 
   Building2, 
-  TrendingUp, // ✅ ADDED TrendingUp
+  TrendingUp,
   Store,
   Home, 
   Users, 
@@ -19,6 +23,7 @@ import {
   ShieldCheck,
   Sparkles,
   ChevronRight,
+  ChevronLeft,
   Phone,
   MessageCircle, 
   Heart,
@@ -76,7 +81,9 @@ const staggerContainer = {
 // ======================================
 export default function PropertyTypePage() {
   const { slug } = useParams();
-console.log("Slug:", slug);
+  const [activeGalleryImage, setActiveGalleryImage] = useState(0);
+  const [openFaq, setOpenFaq] = useState(0);
+
   // ======================================
   // UPDATED DATA STRUCTURE
   // ======================================
@@ -310,6 +317,238 @@ console.log("Slug:", slug);
         ]
       },
 
+      "gaur-codename-bento": {
+        title: "Gaur Codename Bento",
+        subtitle: "Fully Furnished Studio Apartments",
+        description: "Luxury studio apartments on Yamuna Expressway with premium interiors, smart layouts, and strong rental potential.",
+        startingPrice: "₹85 Lakh",
+        projects: "1+",
+        rating: "4.8★",
+        heroImage: StudioApartmentsImage,
+        stats: [
+          { value: "1+", label: "Studio Options", icon: Building2 },
+          { value: "4.8★", label: "Buyer Rating", icon: Star },
+          { value: "650-675", label: "Sq. Ft", icon: Home },
+          { value: "Ready", label: "Status", icon: ShieldCheck }
+        ],
+        highlights: [
+          "RERA Approved",
+          "Fully Furnished Studios",
+          "Airport Connectivity",
+          "Premium Lifestyle"
+        ],
+        gallery: [
+          StudioApartmentsImage,
+          CommercialOfficeImage,
+          ResidentialPlotsImage,
+          BhutaniAstrathumImage
+        ],
+        properties: [
+          {
+            title: "Studio Apartment",
+            location: "Yamuna Expressway",
+            price: "₹85 Lakh",
+            bhk: "Studio",
+            area: "650 - 675 Sq.ft",
+            badge: "NEW LAUNCH",
+            rating: 4.8,
+            image: StudioApartmentsImage,
+            slug: "gaur-codename-bento"
+          }
+        ],
+        amenities: [
+          { icon: Home, label: "Fully Furnished" },
+          { icon: Wifi, label: "High Speed Internet" },
+          { icon: Car, label: "Parking" },
+          { icon: ShieldCheck, label: "Security" }
+        ],
+        masterPlan: StudioApartmentsImage,
+        floorPlan: CommercialOfficeImage,
+        paymentPlan: [
+          { stage: "Booking", amount: "10%" },
+          { stage: "Construction", amount: "40%" },
+          { stage: "Possession", amount: "50%" }
+        ],
+        locationAdvantages: [
+          { place: "Airport", distance: "25 Min" },
+          { place: "Expressway", distance: "5 Min" },
+          { place: "Metro", distance: "15 Min" }
+        ],
+        testimonials: [
+          { name: "Mr. Arjun Nair", review: "Excellent investment opportunity with premium design and strong appreciation potential.", rating: 5, image: "https://randomuser.me/api/portraits/men/24.jpg" }
+        ],
+        faq: [
+          { question: "Is the project ready for possession?", answer: "Yes, the project is scheduled for early possession with complete legal approval." },
+          { question: "What is the size of studio units?", answer: "Studio apartments range from 650 to 675 sq. ft." }
+        ],
+        contact: {
+          phone: "+91 98765 43210",
+          whatsapp: "919876543210"
+        }
+      },
+
+      "gaur-plume": {
+        title: "Gaur Codename Plume",
+        subtitle: "Luxury 3 & 4 BHK Residences",
+        description: "Premium residences near Noida International Airport with elegant interiors, club amenities, and strong investment value.",
+        startingPrice: "₹84.99/sq.ft",
+        projects: "2+",
+        rating: "4.9★",
+        heroImage: ResidentialPlotsImage,
+        stats: [
+          { value: "2+", label: "BHK Options", icon: Building2 },
+          { value: "4.9★", label: "Buyer Rating", icon: Star },
+          { value: "1600+", label: "Sq. Ft", icon: Home },
+          { value: "Airport", label: "Location", icon: Crown }
+        ],
+        highlights: [
+          "3 & 4 BHK Luxury",
+          "Clubhouse & Pool",
+          "Airport Proximity",
+          "Premium Smart Homes"
+        ],
+        gallery: [
+          ResidentialPlotsImage,
+          StudioApartmentsImage,
+          BhutaniAstrathumImage,
+          FoodzaniImage
+        ],
+        properties: [
+          {
+            title: "3 BHK Residence",
+            location: "Near Airport",
+            price: "₹1.36 Cr",
+            bhk: "3 BHK",
+            area: "1600 Sq.ft",
+            badge: "LUXURY",
+            rating: 4.9,
+            image: ResidentialPlotsImage,
+            slug: "gaur-plume"
+          },
+          {
+            title: "4 BHK Residence",
+            location: "Near Airport",
+            price: "₹1.75 Cr",
+            bhk: "4 BHK",
+            area: "2000 Sq.ft",
+            badge: "PREMIUM",
+            rating: 4.9,
+            image: CommercialOfficeImage,
+            slug: "gaur-plume"
+          }
+        ],
+        amenities: [
+          { icon: Building2, label: "Clubhouse" },
+          { icon: Droplets, label: "Swimming Pool" },
+          { icon: Dumbbell, label: "Fitness Center" },
+          { icon: ShieldCheck, label: "24/7 Security" }
+        ],
+        masterPlan: ResidentialPlotsImage,
+        floorPlan: StudioApartmentsImage,
+        paymentPlan: [
+          { stage: "Booking", amount: "15%" },
+          { stage: "Construction", amount: "35%" },
+          { stage: "Possession", amount: "50%" }
+        ],
+        locationAdvantages: [
+          { place: "Airport", distance: "20 Min" },
+          { place: "Expressway", distance: "10 Min" },
+          { place: "Hospital", distance: "12 Min" }
+        ],
+        testimonials: [
+          { name: "Ms. Neha Kapoor", review: "The design, facilities, and location make this a premium long-term investment.", rating: 5, image: "https://randomuser.me/api/portraits/women/27.jpg" }
+        ],
+        faq: [
+          { question: "What are the available unit types?", answer: "The project offers 3 BHK and 4 BHK residences with luxury finishing." },
+          { question: "Is the project close to the airport?", answer: "Yes, it is located close to the airport with excellent road connectivity." }
+        ],
+        contact: {
+          phone: "+91 98765 43211",
+          whatsapp: "919876543211"
+        }
+      },
+
+      "gaur-meloddy-30": {
+        title: "Gaur Meloddy 30",
+        subtitle: "Ultra Luxury Apartments",
+        description: "3 & 4 BHK apartments in Greater Noida West with premium amenities, lush surroundings, and smart living features.",
+        startingPrice: "₹2.24 Cr",
+        projects: "2+",
+        rating: "4.9★",
+        heroImage: CommercialOfficeImage,
+        stats: [
+          { value: "2+", label: "Apartment Options", icon: Building2 },
+          { value: "4.9★", label: "Buyer Rating", icon: Star },
+          { value: "3 & 4", label: "BHK", icon: Home },
+          { value: "Ultra", label: "Luxury", icon: Crown }
+        ],
+        highlights: [
+          "Ultra Luxury Residences",
+          "Greater Noida West",
+          "Smart Home Features",
+          "Green Surroundings"
+        ],
+        gallery: [
+          CommercialOfficeImage,
+          ResidentialPlotsImage,
+          StudioApartmentsImage,
+          CityCenter32Image
+        ],
+        properties: [
+          {
+            title: "3 BHK Apartment",
+            location: "Greater Noida West",
+            price: "₹2.24 Cr",
+            bhk: "3 BHK",
+            area: "1700 Sq.ft",
+            badge: "ULTRA LUXURY",
+            rating: 4.9,
+            image: CommercialOfficeImage,
+            slug: "gaur-meloddy-30"
+          },
+          {
+            title: "4 BHK Apartment",
+            location: "Greater Noida West",
+            price: "₹2.6 Cr",
+            bhk: "4 BHK",
+            area: "2200 Sq.ft",
+            badge: "PRESTIGE",
+            rating: 4.9,
+            image: ResidentialPlotsImage,
+            slug: "gaur-meloddy-30"
+          }
+        ],
+        amenities: [
+          { icon: Trees, label: "Landscaped Greens" },
+          { icon: Wifi, label: "Smart Security" },
+          { icon: Car, label: "Vehicle Parking" },
+          { icon: Sun, label: "Open Balconies" }
+        ],
+        masterPlan: CommercialOfficeImage,
+        floorPlan: ResidentialPlotsImage,
+        paymentPlan: [
+          { stage: "Booking", amount: "20%" },
+          { stage: "Construction", amount: "30%" },
+          { stage: "Possession", amount: "50%" }
+        ],
+        locationAdvantages: [
+          { place: "Metro", distance: "18 Min" },
+          { place: "School", distance: "10 Min" },
+          { place: "Hospital", distance: "12 Min" }
+        ],
+        testimonials: [
+          { name: "Mr. Vikram Das", review: "A premium address with excellent amenities and a peaceful lifestyle environment.", rating: 5, image: "https://randomuser.me/api/portraits/men/33.jpg" }
+        ],
+        faq: [
+          { question: "Are these apartments ready to move-in?", answer: "They are available with flexible payment plans and possession timelines." },
+          { question: "What amenities are included?", answer: "The project includes clubhouse, parking, green spaces, and smart security features." }
+        ],
+        contact: {
+          phone: "+91 98765 43212",
+          whatsapp: "919876543212"
+        }
+      },
+
       "default": {
         title: "Premium Properties",
         subtitle: "Exclusive Collection",
@@ -317,12 +556,19 @@ console.log("Slug:", slug);
         startingPrice: "₹34.9 L",
         projects: "50+",
         rating: "4.9★",
+        heroImage: BhutaniAstrathumImage,
         stats: [
           { value: "50+", label: "Projects", icon: Building2 },
           { value: "4.9★", label: "Rating", icon: Star },
           { value: "100%", label: "RERA Verified", icon: ShieldCheck },
           { value: "24/7", label: "Support", icon: Clock }
         ],
+        highlights: [
+          "Trusted Developer",
+          "Premium Locations",
+          "High ROI"
+        ],
+        gallery: [BhutaniAstrathumImage, FoodzaniImage, CityCenter32Image, mayurimg],
         properties: [
           {
             title: "Bhutani Astrathum",
@@ -342,7 +588,13 @@ console.log("Slug:", slug);
           { icon: Wifi, label: "Smart Infrastructure" },
           { icon: Car, label: "Parking" }
         ],
-        testimonials: []
+        masterPlan: BhutaniAstrathumImage,
+        floorPlan: FoodzaniImage,
+        paymentPlan: [],
+        locationAdvantages: [],
+        testimonials: [],
+        faq: [],
+        contact: { phone: "+91 98765 43210", whatsapp: "919876543210" }
       }
     };
 
@@ -351,8 +603,11 @@ console.log("Slug:", slug);
       "retail-shops": "foodzani",
       "food-court": "foodzani",
       "soho-suites": "bhutani-astrathum",
-      "studio-apartments": "bhutani-astrathum",
-      "residential-plots": "mayur-forest-villa",
+      "studio-apartments": "gaur-codename-bento",
+      "residential-plots": "gaur-plume",
+      "gaur-codename-bento": "gaur-codename-bento",
+      "gaur-plume": "gaur-plume",
+      "gaur-meloddy-30": "gaur-meloddy-30"
     };
 
     return data[slug] || data[slugMap[slug] || "default"] || data["default"];
@@ -372,7 +627,7 @@ console.log("Slug:", slug);
         animate="visible"
         variants={fadeUp}
       >
-        <div className="hero-background">
+        <div className="hero-background" style={{ backgroundImage: `url(${propertyData.heroImage || BhutaniAstrathumImage})` }}>
           <div className="hero-gradient"></div>
           <div className="hero-particles"></div>
           <div className="hero-pattern-overlay"></div>
@@ -525,6 +780,84 @@ console.log("Slug:", slug);
           ))}
         </div>
       </motion.section>
+
+      {/* ============================================================
+          HIGHLIGHTS SECTION
+      ============================================================ */}
+      {propertyData.highlights && propertyData.highlights.length > 0 && (
+        <section className="highlights-premium">
+          <div className="highlights-premium-container">
+            <motion.div
+              className="highlights-header"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <span className="section-kicker"><Sparkles size={16} /> Key Highlights</span>
+              <h2>Why <span className="gold-text">Invest</span> Here</h2>
+            </motion.div>
+
+            <motion.div
+              className="highlights-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainer}
+            >
+              {propertyData.highlights.map((item, index) => (
+                <motion.div key={index} className="highlight-card motion-element" variants={fadeUp}>
+                  <CheckCircle size={18} color="#B8892D" />
+                  <span>{item}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          GALLERY SECTION
+      ============================================================ */}
+      {propertyData.gallery && propertyData.gallery.length > 0 && (
+        <section className="gallery-premium">
+          <div className="gallery-premium-container">
+            <motion.div
+              className="gallery-header"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <span className="section-kicker"><Eye size={16} /> Project Gallery</span>
+              <h2>Explore the <span className="gold-text">Visuals</span></h2>
+            </motion.div>
+
+            <motion.div
+              className="gallery-visual"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <div className="gallery-main-image">
+                <img src={propertyData.gallery[activeGalleryImage]} alt="Project gallery" />
+              </div>
+              <div className="gallery-thumbs">
+                {propertyData.gallery.map((image, index) => (
+                  <button
+                    key={index}
+                    className={`gallery-thumb ${index === activeGalleryImage ? "active" : ""}`}
+                    onClick={() => setActiveGalleryImage(index)}
+                  >
+                    <img src={image} alt={`Gallery ${index + 1}`} />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* ============================================================
           PROPERTY GRID (6. UPDATED: Listing Title)
@@ -683,6 +1016,96 @@ console.log("Slug:", slug);
       </section>
 
       {/* ============================================================
+          MASTER PLAN
+      ============================================================ */}
+      {propertyData.masterPlan && (
+        <section className="plan-premium">
+          <div className="plan-premium-container">
+            <motion.div
+              className="plan-header"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <span className="section-kicker"><Building2 size={16} /> Master Plan</span>
+              <h2>Blueprint of the <span className="gold-text">Project</span></h2>
+            </motion.div>
+            <motion.div className="plan-image-card" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <img src={propertyData.masterPlan} alt="Master plan" />
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          FLOOR PLAN
+      ============================================================ */}
+      {propertyData.floorPlan && (
+        <section className="plan-premium secondary-plan">
+          <div className="plan-premium-container">
+            <motion.div
+              className="plan-header"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <span className="section-kicker"><Home size={16} /> Floor Plan</span>
+              <h2>Thoughtful <span className="gold-text">Spaces</span></h2>
+            </motion.div>
+            <motion.div className="plan-image-card" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <img src={propertyData.floorPlan} alt="Floor plan" />
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          PAYMENT PLAN
+      ============================================================ */}
+      {propertyData.paymentPlan && propertyData.paymentPlan.length > 0 && (
+        <section className="payment-premium">
+          <div className="payment-premium-container">
+            <motion.div className="payment-header" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <span className="section-kicker"><WalletCards size={16} /> Payment Plan</span>
+              <h2>Simple <span className="gold-text">Payment</span> Structure</h2>
+            </motion.div>
+            <div className="payment-table">
+              {propertyData.paymentPlan.map((plan, index) => (
+                <div key={index} className="payment-row">
+                  <span>{plan.stage}</span>
+                  <strong>{plan.amount}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          LOCATION ADVANTAGES
+      ============================================================ */}
+      {propertyData.locationAdvantages && propertyData.locationAdvantages.length > 0 && (
+        <section className="location-premium">
+          <div className="location-premium-container">
+            <motion.div className="location-header" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <span className="section-kicker"><MapPin size={16} /> Location Advantage</span>
+              <h2>Connected to <span className="gold-text">Everything</span></h2>
+            </motion.div>
+            <div className="location-grid">
+              {propertyData.locationAdvantages.map((item, index) => (
+                <div key={index} className="location-card">
+                  <h3>{item.place}</h3>
+                  <p>{item.distance}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
           TESTIMONIALS
       ============================================================ */}
       {propertyData.testimonials && propertyData.testimonials.length > 0 && (
@@ -736,6 +1159,52 @@ console.log("Slug:", slug);
       )}
 
       {/* ============================================================
+          FAQ SECTION
+      ============================================================ */}
+      {propertyData.faq && propertyData.faq.length > 0 && (
+        <section className="faq-premium">
+          <div className="faq-premium-container">
+            <motion.div className="faq-header" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <span className="section-kicker"><ShieldCheck size={16} /> FAQs</span>
+              <h2>Common <span className="gold-text">Questions</span></h2>
+            </motion.div>
+            <div className="faq-list">
+              {propertyData.faq.map((item, index) => (
+                <div key={index} className="faq-item">
+                  <button className="faq-question" onClick={() => setOpenFaq(index === openFaq ? -1 : index)}>
+                    <span>{item.question}</span>
+                    <ChevronRight size={16} className={openFaq === index ? "faq-icon rotated" : "faq-icon"} />
+                  </button>
+                  {openFaq === index && <div className="faq-answer">{item.answer}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          CONTACT SECTION
+      ============================================================ */}
+      {propertyData.contact && (
+        <section className="contact-premium">
+          <div className="contact-premium-container">
+            <motion.div className="contact-card" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+              <div>
+                <span className="section-kicker"><Phone size={16} /> Book a Consultation</span>
+                <h2>Talk to our <span className="gold-text">Experts</span></h2>
+                <p>Get complete details on pricing, possession, and site visit availability.</p>
+              </div>
+              <div className="contact-actions">
+                <a href={`tel:${propertyData.contact.phone}`} className="primary-btn gold-btn">Call Now</a>
+                <a href={`https://wa.me/${propertyData.contact.whatsapp}`} target="_blank" rel="noreferrer" className="secondary-btn glass-btn">WhatsApp</a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
           CTA SECTION
       ============================================================ */}
       <section className="cta-premium">
@@ -770,6 +1239,16 @@ console.log("Slug:", slug);
           </motion.div>
         </div>
       </section>
+
+      <footer className="property-footer">
+        <div className="property-footer-container">
+          <p>© 2026 Milesquare Realty. Premium property investments across NCR.</p>
+          <div className="footer-links">
+            <Link to="/">Home</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );
