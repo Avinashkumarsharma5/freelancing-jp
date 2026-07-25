@@ -11,6 +11,7 @@ import {
   MapPin, 
   Building2, 
   TrendingUp, // ✅ ADDED TrendingUp
+  Store,
   Home, 
   Users, 
   Award, 
