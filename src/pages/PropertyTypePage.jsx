@@ -29,6 +29,7 @@ import {
   Heart,
   GitCompare,
   Eye,
+  WalletCards,
   CheckCircle,
   Crown,
   Gem,
