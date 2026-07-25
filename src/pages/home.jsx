@@ -314,32 +314,30 @@ export const featuredProperties = [
 
 const premiumAgents = [
   {
-    name: "Kalyani Shree (Founder & Owner)",
+    name: "Kalyani Mam",
     image: DomanImage,
-    rating: 5.0,
-    specialization: "Founder & Chairman",
-    experience: "20+ Years",
-    deals: "500+",
+    rating: 4.9,
+    specialization: "Luxury Property Advisor",
+    experience: "10+ Years",
+    deals: "120+",
     languages: ["Hindi", "English"],
-    whatsapp: "916201486202",
-    phone: "+919876543210",
-    badge: "Founder"
+    whatsapp: "918969404028",
+    phone: "+918969404028",
+    badge: "Senior Advisor"
   },
 
   {
-    name: "Jaiprakash Kumar (Co-Founder)",
+    name: "Jaiprakash",
     image: JaiprakashImage,
-    rating: 4.9,
-    specialization: "Director & Business Head",
-    experience: "15+ Years",
-    deals: "350+",
-    languages: ["Hindi", "English"],
-    whatsapp: "916201486202",
-    phone: "+919876543210",
-    badge: "Co-Founder"
-  },
-
-  
+    rating: 4.8,
+    specialization: "Commercial & Residential Expert",
+    experience: "12+ Years",
+    deals: "180+",
+    languages: ["Hindi", "English", "Bhojpuri"],
+    whatsapp: "919471436181",
+    phone: "+919471436181",
+    badge: "Trusted Consultant"
+  }
 ];
 
 // 2. UPDATED: Premium Locations
@@ -1603,7 +1601,9 @@ function LuxuryAgentShowcase() {
               transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="agent-badge premium">{agent.badge}</div>
-              <img src={agent.image} alt={agent.name} className="agent-photo" loading="lazy" />
+              <div className="agent-image-shell">
+                <img src={agent.image} alt={agent.name} className="agent-photo" loading="lazy" />
+              </div>
               <h3 className="agent-name">{agent.name}</h3>
               <div className="agent-rating">
                 {[...Array(5)].map((_, i) => (
