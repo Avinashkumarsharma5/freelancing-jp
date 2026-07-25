@@ -47,7 +47,9 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -56,6 +58,7 @@ body {
   color: var(--charcoal);
   line-height: 1.5;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
   background-image:
     radial-gradient(circle at top right, rgba(184, 137, 45, 0.06), transparent 40%),
     radial-gradient(circle at bottom left, rgba(110, 31, 31, 0.04), transparent 40%);
