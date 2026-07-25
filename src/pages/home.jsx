@@ -3,6 +3,8 @@ import logo from "../assets/logo2.png";
 import heroVideo from "../assets/jpmp5.mp4";
 import logo2 from "../assets/logo.png";
 import CityCenter32 from "../assets/City Center 32.png";
+import DomanImage from "../assets/domam.png";
+import JaiprakashImage from "../assets/jp.png";
 
 import MayurForestVilla from "../assets/Mayur Forest Villa.png";
 import BhutaniAstrathum from "../assets/Bhutani Astrathum.png";
@@ -312,43 +314,32 @@ export const featuredProperties = [
 
 const premiumAgents = [
   {
-    name: "Rahul Sharma",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    rating: 4.9,
-    specialization: "Commercial Property Consultant",
-    experience: "12+ Years",
-    deals: "180+",
-    languages: ["Hindi", "English"],
-    whatsapp: "916201486202",
-    phone: "+919876543210",
-    badge: "Top Performer"
-  },
-
-  {
-    name: "Priya Malhotra",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    rating: 4.8,
-    specialization: "Luxury Investment Advisor",
-    experience: "10+ Years",
-    deals: "150+",
-    languages: ["Hindi", "English"],
-    whatsapp: "916201486202",
-    phone: "+919876543210",
-    badge: "Investment Expert"
-  },
-
-  {
-    name: "Amit Bansal",
-    image: "https://randomuser.me/api/portraits/men/62.jpg",
+    name: "Kalyani Shree (Founder & Owner)",
+    image: DomanImage,
     rating: 5.0,
-    specialization: "Dholera & Commercial Specialist",
-    experience: "15+ Years",
-    deals: "250+",
-    languages: ["Hindi", "English", "Punjabi"],
+    specialization: "Founder & Chairman",
+    experience: "20+ Years",
+    deals: "500+",
+    languages: ["Hindi", "English"],
     whatsapp: "916201486202",
     phone: "+919876543210",
-    badge: "Senior Consultant"
-  }
+    badge: "Founder"
+  },
+
+  {
+    name: "Jaiprakash Kumar (Co-Founder)",
+    image: JaiprakashImage,
+    rating: 4.9,
+    specialization: "Director & Business Head",
+    experience: "15+ Years",
+    deals: "350+",
+    languages: ["Hindi", "English"],
+    whatsapp: "916201486202",
+    phone: "+919876543210",
+    badge: "Co-Founder"
+  },
+
+  
 ];
 
 // 2. UPDATED: Premium Locations
