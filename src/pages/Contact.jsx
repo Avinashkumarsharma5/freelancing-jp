@@ -105,7 +105,7 @@ ${formData.message || "No Message"}
 `;
 
     window.open(
-      `https://wa.me/916201486202?text=${encodeURIComponent(
+      `https://wa.me/918969404028?text=${encodeURIComponent(
         whatsappMessage
       )}`,
       "_blank"
@@ -138,7 +138,7 @@ ${formData.message || "No Message"}
     <main className="contact-page">
       {/* Floating Action Navigation Anchors */}
       <a
-        href="https://wa.me/916201486202"
+        href="https://wa.me/918969404028"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-contact whatsapp-btn"
@@ -148,7 +148,7 @@ ${formData.message || "No Message"}
         </svg>
       </a>
 
-      <a href="tel:+916201486202" className="floating-contact call-btn">
+      <a href="tel:+918969404028" className="floating-contact call-btn">
         <Phone size={24} />
       </a>
 
@@ -165,7 +165,7 @@ ${formData.message || "No Message"}
             </p>
             <div className="hero-actions">
               <a href="#contact-form" className="hero-primary-btn">Get Free Consultation</a>
-              <a href="tel:+916201486202" className="hero-secondary-btn">Call Now</a>
+              <a href="tel:+918969404028" className="hero-secondary-btn">Call Now</a>
             </div>
           </div>
 
@@ -207,9 +207,14 @@ ${formData.message || "No Message"}
             </div>
 
             <div className="contact-cards">
-              <div className="info-card"><Phone size={20} /><div><h4>Call Node</h4><p>+91 62014 86202</p></div></div>
+              <div className="info-card"><Phone size={20} /><div><h4>Call / WhatsApp</h4><p>+91 89694 04028</p></div></div>
+              <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 84090 70556</p></div></div>
+              <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 79709 70556</p></div></div>
+              <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 82929 67359</p></div></div>
+              <div className="info-card"><Phone size={20} /><div><h4>Alternate</h4><p>+91 94714 36181</p></div></div>
               <div className="info-card"><Mail size={20} /><div><h4>Official Mailbox</h4><p>info@milesquarerealty.com</p></div></div>
-              <div className="info-card"><MapPin size={20} /><div><h4>Visit Office HQ</h4><p>Golf Course Road, Gurgaon, Haryana</p></div></div>
+              <div className="info-card"><MapPin size={20} /><div><h4>Office 1</h4><p>Golf Course Road, Gurgaon, Haryana</p></div></div>
+              <div className="info-card"><MapPin size={20} /><div><h4>Office 2</h4><p>Sector 62, Noida, Uttar Pradesh</p></div></div>
             </div>
           </div>
 

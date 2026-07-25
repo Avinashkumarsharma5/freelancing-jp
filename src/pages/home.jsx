@@ -1741,9 +1741,14 @@ function PremiumFooter() {
             </a>
             <p>India's most trusted real estate advisory, helping you find luxury homes with verified listings and expert guidance.</p>
             <div className="footer-contact">
-              <a href="tel:+919876543210"><Phone size={18} /> +91 98765 43210</a>
+              <a href="tel:+918969404028"><Phone size={18} /> +91 89694 04028</a>
+              <a href="tel:+918409070556"><Phone size={18} /> +91 84090 70556</a>
+              <a href="tel:+917970970556"><Phone size={18} /> +91 79709 70556</a>
+              <a href="tel:+918292967359"><Phone size={18} /> +91 82929 67359</a>
+              <a href="tel:+919471436181"><Phone size={18} /> +91 94714 36181</a>
               <a href="mailto:hello@milesquare.com"><Mail size={18} /> hello@milesquare.com</a>
-              <p><MapPin size={18} /> Sector 62, Noida | Gurgaon | Delhi NCR</p>
+              <p><MapPin size={18} /> Office 1: Golf Course Road, Gurgaon, Haryana</p>
+              <p><MapPin size={18} /> Office 2: Sector 62, Noida, Uttar Pradesh</p>
             </div>
             <div className="footer-social">
               <a href="#" aria-label="Facebook"><Globe size={20} /></a>
@@ -1800,10 +1805,10 @@ function FloatingActions() {
   return (
     <>
       <div className="floating-actions">
-        <a href="https://wa.me/916201486202" target="_blank" rel="noreferrer" className="floating-btn whatsapp">
+        <a href="https://wa.me/918969404028" target="_blank" rel="noreferrer" className="floating-btn whatsapp">
           <MessageCircle size={24} />
         </a>
-        <a href="tel:+919876543210" className="floating-btn call">
+        <a href="tel:+918969404028" className="floating-btn call">
           <Phone size={24} />
         </a>
         <Link to="/contact" className="floating-btn book">
