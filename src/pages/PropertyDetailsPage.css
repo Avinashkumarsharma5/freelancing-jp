@@ -2137,6 +2137,25 @@ font-size:.95rem;
 
 }
 
+.gallery-video{
+    min-height:0;
+    background:#102536;
+}
+
+.gallery-video video{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+}
+
+.gallery-video-label{
+    padding:12px 16px;
+    color:#fff;
+    font-weight:700;
+    text-align:center;
+}
+
 .gallery-item:hover img{
 
     transform:scale(1.12);

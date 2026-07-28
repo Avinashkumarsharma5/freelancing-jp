@@ -29,6 +29,10 @@ import AgentPlaceholder from "../assets/agent-placeholder.png";
 import YamunaIndustryGrowth from "../assets/yamuna-industry-growth.png";
 import YamunaEducationHub from "../assets/yamuna-education-hub.png";
 import YamunaEmployment from "../assets/yamuna-employment.png";
+import BentoExteriorDay from "../assets/gaur-bento-exterior-day.png";
+import BentoTowersView from "../assets/gaur-bento-towers-view.png";
+import BentoRetailFront from "../assets/gaur-bento-retail-front.png";
+import BentoWalkthrough from "../assets/gaur-bento-walkthrough.mp4";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -263,7 +267,8 @@ export const featuredProperties = [
     price: "₹85 Lakh*",
     area: "650 Sq.ft Studio",
     image: BentoLaunch,
-    images: [BentoLaunch, BentoTower, BentoTerracePlan, YamunaIndustryGrowth, YamunaEmployment],
+    images: [BentoLaunch, BentoExteriorDay, BentoTowersView, BentoRetailFront, BentoTerracePlan],
+    videos: [BentoWalkthrough],
     type: "Fully Furnished Luxury Studio",
     size: "650 Sq.ft",
     investment: "Expected rental ₹60–70K/month",

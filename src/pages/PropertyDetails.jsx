@@ -434,6 +434,14 @@ ${formData.message || "No Message"}
                         <div className="gallery-overlay"><ZoomIn size={18} /></div>
                       </button>
                     ))}
+                    {property.videos?.map((video, index) => (
+                      <div key={video} className="gallery-item gallery-video">
+                        <video controls preload="metadata" aria-label={`${property.title} walkthrough ${index + 1}`}>
+                          <source src={video} type="video/mp4" />
+                        </video>
+                        <div className="gallery-video-label">Project walkthrough</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
