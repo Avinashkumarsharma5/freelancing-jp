@@ -356,10 +356,17 @@ ${formData.message || "No Message"}
                   <div className="overview-grid">
                     <div className="overview-copy">
                       <p>{property.description}</p>
+                      {property.highlights?.length > 0 && (
+                        <div className="project-highlights">
+                          {property.highlights.map((highlight) => (
+                            <span key={highlight}>{highlight}</span>
+                          ))}
+                        </div>
+                      )}
                       <ul className="overview-list">
-                        <li>Ready for corporate tenants and premium retail brands.</li>
-                        <li>Strong location advantage in primary commercial corridors.</li>
-                        <li>Proven track record with premium certified structural safety.</li>
+                        <li>{property.landArea || "Premium location and thoughtfully planned development."}</li>
+                        <li>{property.towers || "Designed for a high-quality modern lifestyle."}</li>
+                        <li>{property.launchPrice ? `Launch price: ${property.launchPrice}` : "Excellent long-term investment potential."}</li>
                       </ul>
                     </div>
 
@@ -373,6 +380,24 @@ ${formData.message || "No Message"}
                     </div>
                   </div>
                 </div>
+                {property.floorProgram?.length > 0 && (
+                  <div className="section-card floor-program-card">
+                    <div className="section-header">
+                      <div>
+                        <h2>Vertical Experience</h2>
+                        <p>A thoughtfully layered destination—from retail and leisure to hospitality.</p>
+                      </div>
+                    </div>
+                    <div className="floor-program-grid">
+                      {property.floorProgram.map((item) => (
+                        <div className="floor-program-item" key={item.floors}>
+                          <strong>{item.floors}</strong>
+                          <span>{item.use}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             )}
 

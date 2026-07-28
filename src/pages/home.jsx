@@ -19,6 +19,12 @@ import foodzaniImg from "../assets/foodzani.png";
 import citycenterImg from "../assets/citycenter.png";
 import mayurforestImg from "../assets/mayurforest.png";
 import noidaImg from "../assets/noida.png";
+import BentoLaunch from "../assets/gaur-bento-launch.png";
+import BentoTower from "../assets/gaur-bento-tower.png";
+import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
+import PlumeLaunch from "../assets/gaur-plume-launch.png";
+import PlumeOverview from "../assets/gaur-plume-overview.png";
+import PlumeClubhouse from "../assets/gaur-plume-clubhouse.png";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -268,7 +274,29 @@ export const featuredProperties = [
     size: "650 - 675 Sq.ft",
     investment: "High Rental Demand",
     description: "Luxury studio apartments with premium interiors and excellent connectivity near the upcoming airport corridor.",
-    amenities: ["Fully Furnished", "Parking", "Security", "Power Backup"]
+    amenities: ["Fully Furnished", "Parking", "Security", "Power Backup"],
+    location: "Gaur Yamuna City, Yamuna Expressway",
+    price: "₹85 Lakh*",
+    area: "650 Sq.ft Studio",
+    image: BentoLaunch,
+    images: [BentoLaunch, BentoTower, BentoTerracePlan],
+    type: "Fully Furnished Luxury Studio",
+    size: "650 Sq.ft",
+    investment: "Expected rental ₹60–70K/month",
+    launchPrice: "₹1.07 Cr",
+    landArea: "6 acres within a 250-acre delivered township",
+    towers: "2 towers · G+40 floors",
+    description: "Bento is a fully furnished luxury studio destination combining retail, leisure, serviced studios and a five-star hotel in one integrated address.",
+    highlights: ["Pre-launch offer ₹85 Lakh*", "Launch price ₹1.07 Cr", "Expected rental ₹60–70K/month", "Fully furnished 650 Sq.ft studios"],
+    floorProgram: [
+      { floors: "LG to 3", use: "Mall & multiplex" },
+      { floors: "4 to 9", use: "Podium parking" },
+      { floors: "10 & 11", use: "Club, sky bar lounge & restaurants" },
+      { floors: "12", use: "Service floor" },
+      { floors: "13 to 35", use: "Luxury serviced studios" },
+      { floors: "36 to 40", use: "Five-star hotel" }
+    ],
+    amenities: ["Fully furnished studios", "Luxury clubhouse", "Sky bar & lounges", "Restaurants", "Mall & multiplex", "Terrace leisure spaces", "24×7 security", "Ample podium parking"]
   },
   {
     id: 6,
@@ -288,7 +316,16 @@ export const featuredProperties = [
     size: "1600 - 2000 Sq.ft",
     investment: "Premium Growth",
     description: "Premium 3 and 4 BHK residences with clubhouse facilities and strong airport-linked value appreciation.",
-    amenities: ["Clubhouse", "Swimming Pool", "Fitness Center", "24/7 Security"]
+    amenities: ["Clubhouse", "Swimming Pool", "Fitness Center", "24/7 Security"],
+    location: "Sector 22D, Yamuna Expressway",
+    image: PlumeLaunch,
+    images: [PlumeLaunch, PlumeOverview, PlumeClubhouse],
+    landArea: "11.8 acres planned development",
+    towers: "8 towers · G+34 floors · only 4 homes per floor",
+    launchPrice: "₹12,000/sq.ft",
+    description: "Peacock-inspired 3 & 4 BHK luxury residences near Noida International Airport, with approximately 8 acres of landscaped greens and a grand clubhouse.",
+    highlights: ["Pre-launch BSP ₹8,499/sq.ft*", "3 & 4 BHK: 1,560–1,950 Sq.ft", "Only 4 residences per floor", "1 lakh Sq.ft clubhouse"],
+    amenities: ["Peacock-inspired clubhouse", "Swimming pool", "Fitness & wellness centre", "Landscaped greens", "Indoor games", "Café & lounge", "24/7 security", "Family leisure spaces"]
   },
   {
     id: 7,
