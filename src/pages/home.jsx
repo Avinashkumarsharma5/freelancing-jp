@@ -25,6 +25,10 @@ import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
 import PlumeLaunch from "../assets/gaur-plume-launch.png";
 import PlumeOverview from "../assets/gaur-plume-overview.png";
 import PlumeClubhouse from "../assets/gaur-plume-clubhouse.png";
+import AgentPlaceholder from "../assets/agent-placeholder.png";
+import YamunaIndustryGrowth from "../assets/yamuna-industry-growth.png";
+import YamunaEducationHub from "../assets/yamuna-education-hub.png";
+import YamunaEmployment from "../assets/yamuna-employment.png";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
@@ -101,12 +105,7 @@ export const featuredProperties = [
 
     image: astrathumImg,
 
-    images: [
-      astrathumImg,
-      astrathumImg,
-      astrathumImg,
-      astrathumImg,
-    ],
+    images: [astrathumImg, CommercialOffice, RetailShops, FoodCourt],
 
     type: "Commercial Office",
     status: "Ready To Move",
@@ -145,12 +144,7 @@ export const featuredProperties = [
 
     image: foodzaniImg,
 
-    images: [
-      foodzaniImg,
-      foodzaniImg,
-      foodzaniImg,
-      foodzaniImg,
-    ],
+    images: [foodzaniImg, FoodCourt, RetailShops, citycenterImg],
 
     type: "Food Court",
     status: "Ready For Leasing",
@@ -186,12 +180,7 @@ export const featuredProperties = [
 
     image: citycenterImg,
 
-    images: [
-      citycenterImg,
-      citycenterImg,
-      citycenterImg,
-      citycenterImg,
-    ],
+    images: [citycenterImg, CityCenter32, FoodCourt, RetailShops],
 
     type: "Retail & Food Court",
     status: "Operational",
@@ -228,12 +217,7 @@ export const featuredProperties = [
 
     image: mayurforestImg,
 
-    images: [
-      mayurforestImg,
-      mayurforestImg,
-      mayurforestImg,
-      mayurforestImg,
-    ],
+    images: [mayurforestImg, MayurForestVilla, ResidentialPlots, noidaImg],
 
     type: "Residential Plot",
 
@@ -279,7 +263,7 @@ export const featuredProperties = [
     price: "₹85 Lakh*",
     area: "650 Sq.ft Studio",
     image: BentoLaunch,
-    images: [BentoLaunch, BentoTower, BentoTerracePlan],
+    images: [BentoLaunch, BentoTower, BentoTerracePlan, YamunaIndustryGrowth, YamunaEmployment],
     type: "Fully Furnished Luxury Studio",
     size: "650 Sq.ft",
     investment: "Expected rental ₹60–70K/month",
@@ -319,7 +303,7 @@ export const featuredProperties = [
     amenities: ["Clubhouse", "Swimming Pool", "Fitness Center", "24/7 Security"],
     location: "Sector 22D, Yamuna Expressway",
     image: PlumeLaunch,
-    images: [PlumeLaunch, PlumeOverview, PlumeClubhouse],
+    images: [PlumeLaunch, PlumeOverview, PlumeClubhouse, YamunaEducationHub, YamunaEmployment],
     landArea: "11.8 acres planned development",
     towers: "8 towers · G+34 floors · only 4 homes per floor",
     launchPrice: "₹12,000/sq.ft",
@@ -374,6 +358,18 @@ const premiumAgents = [
     whatsapp: "919471436181",
     phone: "+919471436181",
     badge: "Trusted Consultant"
+  },
+  {
+    name: "Your Agent Name",
+    image: AgentPlaceholder,
+    rating: 4.8,
+    specialization: "Property Investment Advisor",
+    experience: "5+ Years",
+    deals: "80+",
+    languages: ["Hindi", "English"],
+    whatsapp: "919999999999",
+    phone: "+919999999999",
+    badge: "Advisor"
   }
 ];
 
