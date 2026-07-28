@@ -222,6 +222,7 @@ ${formData.message || "No Message"}
     { label: "Possession", value: property.possession || "Immediate" },
     { label: "Size Range", value: property.size || property.area },
     { label: "Investment", value: property.investment || "High Growth" },
+    ...(property.paymentPlan ? [{ label: "Payment Plan", value: property.paymentPlan }] : []),
   ];
 
   const nearbyPlaces = [

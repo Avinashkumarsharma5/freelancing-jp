@@ -25,7 +25,7 @@ import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
 import PlumeLaunch from "../assets/gaur-plume-launch.png";
 import PlumeOverview from "../assets/gaur-plume-overview.png";
 import PlumeClubhouse from "../assets/gaur-plume-clubhouse.png";
-import AgentPlaceholder from "../assets/agent-placeholder.png";
+import NirajKumar from "../assets/niraj-kumar.png";
 import YamunaIndustryGrowth from "../assets/yamuna-industry-growth.png";
 import YamunaEducationHub from "../assets/yamuna-education-hub.png";
 import YamunaEmployment from "../assets/yamuna-employment.png";
@@ -254,7 +254,7 @@ export const featuredProperties = [
     area: "Studio",
     builder: "Gaursons",
     rating: 4.8,
-    image: StudioApartments,
+    image: BentoLaunch,
     images: [StudioApartments, CommercialOffice, ResidentialPlots],
     type: "Studio Apartment",
     status: "New Launch",
@@ -285,7 +285,9 @@ export const featuredProperties = [
       { floors: "13 to 35", use: "Luxury serviced studios" },
       { floors: "36 to 40", use: "Five-star hotel" }
     ],
-    amenities: ["Fully furnished studios", "Luxury clubhouse", "Sky bar & lounges", "Restaurants", "Mall & multiplex", "Terrace leisure spaces", "24×7 security", "Ample podium parking"]
+    amenities: ["Fully furnished studios", "Luxury clubhouse", "Sky bar & lounges", "Restaurants", "Mall & multiplex", "Terrace leisure spaces", "24×7 security", "Ample podium parking"],
+    possession: "2030",
+    paymentPlan: "20% × 5 instalments"
   },
   {
     id: 6,
@@ -297,7 +299,7 @@ export const featuredProperties = [
     area: "3 & 4 BHK",
     builder: "Gaursons",
     rating: 4.9,
-    image: ResidentialPlots,
+    image: PlumeOverview,
     images: [ResidentialPlots, StudioApartments, CommercialOffice],
     type: "Luxury Homes",
     status: "New Launch",
@@ -307,14 +309,17 @@ export const featuredProperties = [
     description: "Premium 3 and 4 BHK residences with clubhouse facilities and strong airport-linked value appreciation.",
     amenities: ["Clubhouse", "Swimming Pool", "Fitness Center", "24/7 Security"],
     location: "Sector 22D, Yamuna Expressway",
-    image: PlumeLaunch,
-    images: [PlumeLaunch, PlumeOverview, PlumeClubhouse, YamunaEducationHub, YamunaEmployment],
+    image: PlumeOverview,
+    images: [PlumeOverview, PlumeLaunch, PlumeClubhouse, YamunaEducationHub, YamunaEmployment],
     landArea: "11.8 acres planned development",
     towers: "8 towers · G+34 floors · only 4 homes per floor",
     launchPrice: "₹12,000/sq.ft",
     description: "Peacock-inspired 3 & 4 BHK luxury residences near Noida International Airport, with approximately 8 acres of landscaped greens and a grand clubhouse.",
-    highlights: ["Pre-launch BSP ₹8,499/sq.ft*", "3 & 4 BHK: 1,560–1,950 Sq.ft", "Only 4 residences per floor", "1 lakh Sq.ft clubhouse"],
-    amenities: ["Peacock-inspired clubhouse", "Swimming pool", "Fitness & wellness centre", "Landscaped greens", "Indoor games", "Café & lounge", "24/7 security", "Family leisure spaces"]
+    highlights: ["Pre-launch BSP ₹8,499/sq.ft*", "3 BHK: 1,550 Sq.ft · 4 BHK: 1,950 Sq.ft", "Only 4 residences per floor", "1 lakh Sq.ft clubhouse"],
+    amenities: ["Peacock-inspired clubhouse", "Swimming pool", "Fitness & wellness centre", "Landscaped greens", "Indoor games", "Café & lounge", "24/7 security", "Family leisure spaces"],
+    possession: "2030",
+    size: "1,550 Sq.ft (3 BHK) · 1,950 Sq.ft (4 BHK)",
+    paymentPlan: "20% × 5 instalments"
   },
   {
     id: 7,
@@ -334,7 +339,8 @@ export const featuredProperties = [
     size: "1700 - 2200 Sq.ft",
     investment: "Prestige Living",
     description: "Ultra-luxury apartments with green surroundings and smart amenities in Greater Noida West.",
-    amenities: ["Landscaped Greens", "Parking", "Smart Security", "Balcony"]
+    amenities: ["Landscaped Greens", "Parking", "Smart Security", "Balcony"],
+    paymentPlan: "30% now · 70% on possession"
   }
 ];
 
@@ -365,15 +371,15 @@ const premiumAgents = [
     badge: "Trusted Consultant"
   },
   {
-    name: "Your Agent Name",
-    image: AgentPlaceholder,
+    name: "Niraj Kumar",
+    image: NirajKumar,
     rating: 4.8,
     specialization: "Property Investment Advisor",
     experience: "5+ Years",
     deals: "80+",
     languages: ["Hindi", "English"],
-    whatsapp: "919999999999",
-    phone: "+919999999999",
+    whatsapp: "917004571219",
+    phone: "+917004571219",
     badge: "Advisor"
   }
 ];
