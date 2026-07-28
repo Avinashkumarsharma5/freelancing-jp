@@ -346,7 +346,7 @@ export const featuredProperties = [
 
 const premiumAgents = [
   {
-    name: "Kalyani Mam",
+    name: "Kalyani Shree",
     image: DomanImage,
     rating: 4.9,
     specialization: "Luxury Property Advisor",
