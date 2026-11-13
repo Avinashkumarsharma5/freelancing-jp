@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo2.png";
 import heroVideo from "../assets/jpmp5.mp4";
-import logo2 from "../assets/logo.png";
+import heroPoster from "../assets/hero-poster.svg";
 import CityCenter32 from "../assets/City Center 32.png";
 import DomanImage from "../assets/domam.png";
 import JaiprakashImage from "../assets/jp.png";
@@ -10,7 +10,6 @@ import MayurForestVilla from "../assets/Mayur Forest Villa.png";
 import BhutaniAstrathum from "../assets/Bhutani Astrathum.png";
 import ResidentialPlots from "../assets/residential plots.png";
 import StudioApartments from "../assets/studio apartments.png";
-import SOHOSuites from "../assets/soho suites.png";
 import CommercialOffice from "../assets/Commercial Office.png";
 import RetailShops from "../assets/Retail Shops.png";
 import FoodCourt from "../assets/food court.png";
@@ -20,13 +19,11 @@ import citycenterImg from "../assets/citycenter.png";
 import mayurforestImg from "../assets/mayurforest.png";
 import noidaImg from "../assets/noida.png";
 import BentoLaunch from "../assets/gaur-bento-launch.png";
-import BentoTower from "../assets/gaur-bento-tower.png";
 import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
 import PlumeLaunch from "../assets/gaur-plume-launch.png";
 import PlumeOverview from "../assets/gaur-plume-overview.png";
 import PlumeClubhouse from "../assets/gaur-plume-clubhouse.png";
 import NirajKumar from "../assets/niraj-kumar.png";
-import YamunaIndustryGrowth from "../assets/yamuna-industry-growth.png";
 import YamunaEducationHub from "../assets/yamuna-education-hub.png";
 import YamunaEmployment from "../assets/yamuna-employment.png";
 import BentoExteriorDay from "../assets/gaur-bento-exterior-day.png";
@@ -34,26 +31,20 @@ import BentoTowersView from "../assets/gaur-bento-towers-view.png";
 import BentoRetailFront from "../assets/gaur-bento-retail-front.png";
 import BentoWalkthrough from "../assets/gaur-bento-walkthrough.mp4";
 import { useMemo, useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import SandalwoodFarmImage from "../assets/sandalwood-farm.svg";
 import {
   ArrowRight,
   Building2,
   CalendarDays,
-  CircleDollarSign,
   FileCheck2,
-  Home,
-  Landmark,
   Mail,
   Menu,
   Heart,
   MapPin,
-  Train,
-  School,
-  Hospital,
   Phone,
   ShieldCheck,
   TrendingUp,
-  WalletCards,
   X,
   Star,
   MessageCircle,
@@ -67,10 +58,7 @@ import {
   Languages,
   Play,
   ChevronLeft,
-  Store,
-  Utensils,
   BriefcaseBusiness,
-  Building,
 } from "lucide-react";
 import './home.css';
 
@@ -94,6 +82,8 @@ const fadeUp = {
 // ======================================
 
 // 1. UPDATED: Featured Properties
+// Shared with the property detail route; this module also exports the homepage component.
+// eslint-disable-next-line react-refresh/only-export-components
 export const featuredProperties = [
   {
     id: 1,
@@ -245,24 +235,117 @@ export const featuredProperties = [
     ]
   },
   {
+    id: 8,
+    slug: "tilhari-estates-sandalwood-farm",
+    badge: "PHASE 1 LAUNCH",
+    title: "Tilhari Estates – Sandalwood Farm Land",
+    location: "Tilhari Estates · Phase 1",
+    price: "₹62 Lakh*",
+    area: "Agricultural Farmland",
+    builder: "Tilhari Estates",
+    image: SandalwoodFarmImage,
+    images: [SandalwoodFarmImage],
+    type: "Managed Sandalwood Farmland",
+    status: "Phase 1 · 100 Acres",
+    possession: "15-year plantation period",
+    size: "¼, ½ & 1 Acre plots",
+    investment: "Land ownership + managed plantation",
+    investmentOutlook: "Indicative estimates only",
+    priceLabel: "Land + plantation cost",
+    heroTag: "Agricultural farmland investment",
+    overviewSubtitle: "Plot options, indicative plantation projections and management details.",
+    cardSecondaryBadge: "15-Year Management",
+    nearbyPlaces: [],
+    locationNote: "Please enquire for precise site location and approach details.",
+    showLocationMap: false,
+    overviewPoints: [
+      "Phase 1 covers 100 acres of the company’s total 1,000-acre agricultural land offering.",
+      "Heartwood is to manage the plantation for the agreed 15-year period.",
+      "Harvesting and selling at maturity are subject to the Plantation Management Agreement.",
+    ],
+    cardHighlights: ["🌱 Managed plantation", "🌳 70–280 trees per plot", "📊 Indicative estimates"],
+    heroHighlights: ["🌱 Professionally managed plantation", "🤝 65:35 revenue-sharing model", "📄 15-year management agreement"],
+    trustItems: ["15-year management agreement", "65:35 revenue-sharing model"],
+    amenitiesIntro: "Plantation activities described for the agreed 15-year management period.",
+    description:
+      "Phase 1 of Tilhari Estates covers 100 acres of a 1,000-acre agricultural land offering. The farmland is planned for professionally managed sandalwood plantations, with plot sizes from ¼ acre to 1 acre.",
+    highlights: [
+      "Phase 1 launch across 100 acres",
+      "70, 140 or 280 sandalwood trees by plot size",
+      "Plantation management by Heartwood for the agreed 15-year period",
+      "Illustrative projections only; actual results may vary",
+    ],
+    plotOptions: [
+      { size: "1 Acre", trees: "280 sandalwood trees" },
+      { size: "½ Acre", trees: "140 sandalwood trees" },
+      { size: "¼ Acre", trees: "70 sandalwood trees" },
+    ],
+    investmentCalculation: [
+      { label: "Estimated sandalwood output", value: "18 kg per tree" },
+      { label: "Illustrative output for 1 acre", value: "280 × 18 kg = 5,040 kg" },
+      { label: "Assumed sandalwood price after 15 years", value: "₹25,000 per kg" },
+      { label: "Illustrative gross sandalwood value", value: "5,040 kg × ₹25,000 = ₹12.60 Crore" },
+      { label: "Investor share under stated 65:35 model", value: "65% = ₹8.19 Crore" },
+      { label: "Current 1-acre cost, including plantation", value: "Approximately ₹62 lakh" },
+      { label: "Estimated maintenance over 15 years", value: "₹1 lakh/year × 15 = ₹15 lakh" },
+      { label: "Approximate 1-acre total investment", value: "₹62 lakh + ₹15 lakh = ₹77 lakh" },
+      { label: "Assumed annual land appreciation", value: "Approximately 10–11%" },
+      { label: "Illustrative land value after 15 years", value: "Approximately ₹2.6–3 Crore" },
+      { label: "Combined potential value (share + land)", value: "Approximately ₹10.8–11.2 Crore" },
+    ],
+    faqItems: [
+      {
+        q: "What plot sizes are available?",
+        a: "The stated plot options are 1 acre, ½ acre and ¼ acre, with 280, 140 and 70 sandalwood trees respectively.",
+      },
+      {
+        q: "How is the 1-acre sandalwood estimate calculated?",
+        a: "The illustration assumes 280 trees, 18 kg per tree and a future price of ₹25,000 per kg. Actual yield and market price may differ.",
+      },
+      {
+        q: "How is plantation revenue shared?",
+        a: "The stated model is a 65:35 revenue share. The executed agreement should specify the parties’ shares and all applicable terms.",
+      },
+      {
+        q: "Who manages the plantation?",
+        a: "Heartwood is described as managing planting, irrigation, moisture, tree care and monitoring for the agreed 15-year period, subject to the Plantation Management Agreement.",
+      },
+      {
+        q: "Are the projected returns guaranteed?",
+        a: "No. Yield, future sandalwood prices and land appreciation are estimates, not guaranteed returns.",
+      },
+      {
+        q: "How will harvesting and selling be handled?",
+        a: "The process at maturity is to be handled as per the agreed terms of the Plantation Management Agreement.",
+      },
+    ],
+    plantationManagement: [
+      "Planting sandalwood saplings",
+      "Watering and irrigation",
+      "Moisture management",
+      "Regular tree care and maintenance",
+      "Monitoring and overall plantation management",
+      "Harvesting and selling at maturity as per the agreed terms",
+    ],
+    investmentDisclaimer:
+      "These figures are estimates based on assumed yield, future sandalwood price and land appreciation. They are not guaranteed returns. Actual outcomes depend on actual yield, market prices, land appreciation and the executed agreements. The 15-year Plantation Management Agreement and harvesting and selling terms should be reviewed before investing.",
+    amenities: [
+      "Sandalwood sapling planting",
+      "Watering and irrigation",
+      "Moisture management",
+      "Tree care and maintenance",
+      "Plantation monitoring",
+      "Harvesting and selling as agreed",
+    ],
+  },
+  {
     id: 5,
     slug: "gaur-codename-bento",
     badge: "STUDIO LIVING",
     title: "Gaur Codename Bento",
-    location: "Yamuna Expressway",
-    price: "₹85 Lakh",
-    area: "Studio",
     builder: "Gaursons",
     rating: 4.8,
-    image: BentoLaunch,
-    images: [StudioApartments, CommercialOffice, ResidentialPlots],
-    type: "Studio Apartment",
     status: "New Launch",
-    possession: "2027",
-    size: "650 - 675 Sq.ft",
-    investment: "High Rental Demand",
-    description: "Luxury studio apartments with premium interiors and excellent connectivity near the upcoming airport corridor.",
-    amenities: ["Fully Furnished", "Parking", "Security", "Power Backup"],
     location: "Gaur Yamuna City, Yamuna Expressway",
     price: "₹85 Lakh*",
     area: "650 Sq.ft Studio",
@@ -294,20 +377,9 @@ export const featuredProperties = [
     slug: "gaur-plume",
     badge: "LUXURY RESIDENCE",
     title: "Gaur Codename Plume",
-    location: "Near Noida Airport",
-    price: "₹1.36 Cr",
-    area: "3 & 4 BHK",
     builder: "Gaursons",
     rating: 4.9,
-    image: PlumeOverview,
-    images: [ResidentialPlots, StudioApartments, CommercialOffice],
-    type: "Luxury Homes",
     status: "New Launch",
-    possession: "2028",
-    size: "1600 - 2000 Sq.ft",
-    investment: "Premium Growth",
-    description: "Premium 3 and 4 BHK residences with clubhouse facilities and strong airport-linked value appreciation.",
-    amenities: ["Clubhouse", "Swimming Pool", "Fitness Center", "24/7 Security"],
     location: "Sector 22D, Yamuna Expressway",
     image: PlumeOverview,
     images: [PlumeOverview, PlumeLaunch, PlumeClubhouse, YamunaEducationHub, YamunaEmployment],
@@ -383,37 +455,6 @@ const premiumAgents = [
     badge: "Advisor"
   }
 ];
-
-// 2. UPDATED: Premium Locations
-{/*const premiumLocations = [
-  {
-    name: "Noida",
-    properties: 850,
-    growth: 24.5,
-    image: noidaImg 
-  },
-  {
-    name: "Greater Noida",
-    properties: 520,
-    growth: 18.8,
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
-    slug: "greater-noida"
-  },
-  {
-    name: "Dholera",
-    properties: 300,
-    growth: 35.0,
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
-    slug: "dholera"
-  },
-  {
-    name: "Gurgaon",
-    properties: 670,
-    growth: 20.5,
-    image: "https://images.unsplash.com/photo-1538842679288-5940c9cb042c?auto=format&fit=crop&w=800&q=80",
-    slug: "gurgaon"
-  }
-];*/}
 
 // 3. UPDATED: Browse By Type
 const browseTypes = [
@@ -682,11 +723,10 @@ Thank you.`;
               key={item.title}
               initial="hidden"
               whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
-              transition={{ delay: idx * 0.08 }}
-                  whileHover={{ y: -12, scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 250, damping: 18 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18, delay: idx * 0.08 }}
+              whileHover={{ y: -12, scale: 1.03 }}
             >
               <div className="investment-image">
                 <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
@@ -730,7 +770,6 @@ Thank you.`;
 // 10. NEW: Dholera Investment Section
 // ======================================
 function DholeraInvestmentSection() {
-  const navigate = useNavigate();
   const openWhatsApp = () => {
   const phone = "916201486202";
 
@@ -832,110 +871,32 @@ Thank you.`;
 // ENHANCEMENT COMPONENTS (unchanged)
 // ======================================
 
-function LoadingScreen({ onComplete }) {
-  useEffect(() => {
-    const timer = setTimeout(onComplete, 3500);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
-
-  return (
-    <div className="luxury-loader">
-      <div className="loader-bg-grid"></div>
-      <div className="loader-card">
-        <div className="logo-wrapper">
-          <img src={logo2} alt="Milesquare Realty" className="loader-logo" />
-          <div className="gold-ring"></div>
-        </div>
-        <h1 className="loader-title">Milesquare Realty</h1>
-        <p className="loader-tagline">Luxury Living Across NCR</p>
-        <div className="premium-progress">
-          <motion.div
-            className="premium-progress-fill"
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 3 }}
-          />
-        </div>
-        <motion.div
-          className="loader-percent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          Loading Premium Properties...
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
 function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(null);
 
   useEffect(() => {
+    let frameId = 0;
     const updateProgress = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0;
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setProgress(progress);
+        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+        progressRef.current?.style.setProperty("--scroll-progress", String(progress));
+      });
     };
-    window.addEventListener('scroll', updateProgress);
-    return () => window.removeEventListener('scroll', updateProgress);
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return (
     <div className="scroll-progress-bar">
-      <div className="scroll-progress-fill" style={{ width: `${progress}%` }} />
-    </div>
-  );
-}
-
-function HeroGlow() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    const rect = heroRef.current?.getBoundingClientRect();
-    if (rect) {
-      setPosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    }
-  };
-
-  return (
-    <div className="hero-glow-wrapper" ref={heroRef} onMouseMove={handleMouseMove}>
-      <div className="hero-glow" style={{ left: position.x - 200, top: position.y - 200 }} />
-    </div>
-  );
-}
-
-const floatingParticlesData = Array.from({ length: 30 }, (_, i) => ({
-  id: i,
-  size: Math.random() * 8 + 4,
-  duration: Math.random() * 20 + 10,
-  delay: Math.random() * 10,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-}));
-
-function FloatingParticles() {
-  return (
-    <div className="floating-particles">
-      {floatingParticlesData.map((p) => (
-        <div
-          key={p.id}
-          className="particle"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
-          }}
-        />
-      ))}
+      <div className="scroll-progress-fill" ref={progressRef} />
     </div>
   );
 }
@@ -949,37 +910,12 @@ function VideoPopup({ videoSrc, isOpen, onClose }) {
         <button className="video-popup-close" onClick={onClose}>
           <X size={32} />
         </button>
-        <video controls autoPlay className="video-popup-player">
+        <video controls autoPlay preload="none" className="video-popup-player">
           <source src={videoSrc} type="video/mp4" />
         </video>
       </div>
     </div>
   );
-}
-
-function LocationCounter({ target, suffix = "", duration = 1500 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef();
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
-
-  const formatted = new Intl.NumberFormat('en-IN').format(count);
-  return <span ref={ref}>{formatted}{suffix}</span>;
 }
 
 function SectionDivider() {
@@ -1101,17 +1037,53 @@ function Navbar() {
 // ======================================
 function PremiumVideoHero() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const video = heroRef.current;
+    if (!video) return;
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const saveData = navigator.connection?.saveData === true;
+    if (motionPreference.matches || saveData) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || document.hidden) {
+        video.pause();
+        return;
+      }
+
+      video.play().catch((error) => {
+        if (error.name !== "NotAllowedError") {
+          console.error("Hero video could not start:", error);
+        }
+      });
+    }, { rootMargin: "100px" });
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, []);
 
   return (
     <section className="premium-hero">
       <div className="hero-video-container">
-        <video className="hero-video" autoPlay muted loop playsInline preload="auto">
+        <video
+          ref={heroRef}
+          className="hero-video"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={heroPoster}
+          aria-hidden="true"
+        >
           <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="hero-video-overlay"></div>
       </div>
-      <HeroGlow />
-      <FloatingParticles />
       <div className="site-container hero-content">
         <div className="hero-left">
           <motion.h1 initial="hidden" animate="visible" variants={fadeUp}>
@@ -1218,7 +1190,7 @@ function PremiumFeaturedProperties() {
   return (
     <section id="properties" className="section properties-section premium-properties">
       <div className="site-container">
-        <SectionHeading kicker="Featured Collection" title="Handpicked Luxury Homes Across NCR" />
+        <SectionHeading kicker="Featured Collection" title="Featured Property & Investment Opportunities" />
         <div className="property-grid premium-property-grid">
           {featuredProperties.map((property, idx) => (
               <motion.article
@@ -1238,10 +1210,10 @@ function PremiumFeaturedProperties() {
                   {property.badge}
                 </span>
                 <div className="property-floating-price">{property.price}</div>
-                <div className="property-floating-rating">
+                {property.rating != null && <div className="property-floating-rating">
                   <Star size={14} fill="#B8892D" color="#B8892D" />
                   <span>{property.rating}</span>
-                </div>
+                </div>}
                 <div className="property-quick-actions">
                   <button className="quick-action-btn" onClick={() => toggleSave(property.title)} aria-label="Save property">
                     <Heart size={18} fill={savedProperties.includes(property.title) ? "#B8892D" : "none"} color={savedProperties.includes(property.title) ? "#B8892D" : "#fff"} />
@@ -1254,8 +1226,8 @@ function PremiumFeaturedProperties() {
               </div>
               <div className="property-content">
                 <div className="property-status">
-                  <span className="status-badge ready">Ready To Move</span>
-                  <span className="status-badge rera">RERA Approved</span>
+                  <span className="status-badge ready">{property.status || "Ready To Move"}</span>
+                  {(property.rera || !property.cardHighlights) && <span className="status-badge rera">{property.cardSecondaryBadge || "RERA Approved"}</span>}
                 </div>
                 <h3 className="property-title">{property.title}</h3>
                 <p className="property-location">
@@ -1263,12 +1235,12 @@ function PremiumFeaturedProperties() {
                   {property.location}
                 </p>
                 <div className="property-highlights">
-                  <span>🏆 Verified</span>
-                  <span>🔥 Top Pick</span>
-                  <span>⭐ Premium</span>
+                  {(property.cardHighlights || ["🏆 Verified", "🔥 Top Pick", "⭐ Premium"]).map((highlight) => (
+                    <span key={highlight}>{highlight}</span>
+                  ))}
                 </div>
                 <div className="property-specs">
-                  <div className="spec-item"><strong>Commercial</strong><span>Type</span></div>
+                  <div className="spec-item"><strong>{property.type || "Commercial"}</strong><span>Type</span></div>
                   <div className="spec-divider"></div>
                   <div className="spec-item"><strong>{property.area}</strong><span>Area</span></div>
                   <div className="spec-divider"></div>
@@ -1283,54 +1255,6 @@ function PremiumFeaturedProperties() {
    <ArrowRight size={18}/>
 </button>
                   </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ======================================
-// PREMIUM LOCATIONS (updated data)
-// ======================================
-function PremiumLocations() {
-  const navigate = useNavigate();
-
-  return (
-    <section id="locations" className="section locations-section premium-locations">
-      <div className="site-container">
-        <SectionHeading kicker="Top Locations" title="Explore NCR's Most Desirable Destinations" />
-        <div className="premium-location-grid">
-          {premiumLocations.map((location, idx) => (
-              <motion.article
-              onClick={() => navigate(`/location/${location.slug}`)}
-              key={location.name}
-              className="premium-location-card"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-              transition={{ delay: idx * 0.08 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <img src={location.image} alt={location.name} loading="lazy" decoding="async" />
-              <div className="location-overlay">
-                <div className="location-top">
-                  <span className="location-tag">Investment Hotspot</span>
-                  <div className="growth-badge">
-                    <TrendingUp size={14} /> +{location.growth}%
-                  </div>
-                </div>
-                <div className="location-bottom">
-                  <h3>{location.name}</h3>
-                  <p><LocationCounter target={location.properties} /> Properties Available</p>
-                  <div className="location-footer">
-                    <span>Explore Area</span>
-                    <div className="location-arrow"><ArrowRight size={20} /></div>
-                  </div>
-                </div>
               </div>
             </motion.article>
           ))}
@@ -1439,9 +1363,8 @@ function PremiumServicesSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
-              transition={{ delay: idx * 0.05 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18, delay: idx * 0.05 }}
               whileHover={{ y: -12, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="service-icon" style={{ backgroundColor: service.color === '#B8892D' ? 'rgba(184, 137, 45, 0.1)' : 'rgba(27, 27, 27, 0.05)' }}>
                 <service.icon size={32} color={service.color} />
@@ -1640,9 +1563,8 @@ function LuxuryAgentShowcase() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
-              transition={{ delay: idx * 0.05 }}
+              transition={{ type: "spring", stiffness: 250, damping: 18, delay: idx * 0.05 }}
               whileHover={{ y: -12, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 250, damping: 18 }}
             >
               <div className="agent-badge premium">{agent.badge}</div>
               <div className="agent-image-shell">
@@ -1858,11 +1780,8 @@ function FloatingActions() {
 // MAIN HOMEPAGE
 // ======================================
 function HomePage() {
-  const [loading, setLoading] = useState(true);
-
 return (
     <>
-      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <ScrollProgress />
       <main>
         <Navbar />

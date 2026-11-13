@@ -55,7 +55,7 @@ const faqItems = [
 
 function PropertyDetails() {
   const { slug } = useParams();
-  const [property, setProperty] = useState(null);
+  const property = featuredProperties.find((item) => item.slug === slug);
   const [currentImage, setCurrentImage] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [showEnquiry, setShowEnquiry] = useState(false);
@@ -69,7 +69,6 @@ function PropertyDetails() {
     name: "",
     phone: "",
     email: "",
-    property: "",
     city: "",
     budget: "",
     message: "",
@@ -77,22 +76,9 @@ function PropertyDetails() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Sync data dynamically once property is verified and mounted
   useEffect(() => {
     window.scrollTo(0, 0);
-    const found = featuredProperties.find(item => item.slug === slug);
-    setProperty(found);
   }, [slug]);
-
-  // FIXED: Hydrates form state safe from reference errors
-  useEffect(() => {
-    if (property) {
-      setFormData((prev) => ({
-        ...prev,
-        property: property.title,
-      }));
-    }
-  }, [property]);
 
   useEffect(() => {
     if (!property?.images?.length) return;
@@ -145,25 +131,26 @@ const handleSubmit = async (event) => {
   try {
     setIsLoading(true);
 
-    await sendEnquiry(formData);
+    const enquiryData = { ...formData, property: property.title };
+    await sendEnquiry(enquiryData);
 
     const whatsappMessage = `🏡 *New Property Enquiry*
 
-👤 Name: ${formData.name}
+👤 Name: ${enquiryData.name}
 
-📞 Phone: ${formData.phone}
+📞 Phone: ${enquiryData.phone}
 
-📧 Email: ${formData.email || "Not Provided"}
+📧 Email: ${enquiryData.email || "Not Provided"}
 
-🏢 Property: ${formData.property}
+🏢 Property: ${enquiryData.property}
 
-🏙 City: ${formData.city}
+🏙 City: ${enquiryData.city}
 
-💰 Budget: ${formData.budget}
+💰 Budget: ${enquiryData.budget}
 
 📝 Message:
 
-${formData.message || "No Message"}
+${enquiryData.message || "No Message"}
 `;
 
     window.open(
@@ -180,7 +167,6 @@ ${formData.message || "No Message"}
       name: "",
       phone: "",
       email: "",
-      property: property.title,
       city: "",
       budget: "",
       message: "",
@@ -216,16 +202,16 @@ ${formData.message || "No Message"}
   const brochureLink = property.brochure || "#";
 
   const overviewDetails = [
-    { label: "Property Type", value: property.type || "Commercial" },
-    { label: "Project Status", value: property.status || "Ready To Move" },
-    { label: "RERA Number", value: property.rera || "✅ Approved" },
-    { label: "Possession", value: property.possession || "Immediate" },
+    { label: "Property Type", value: property.type || "Not specified" },
+    { label: "Project Status", value: property.status || "Not specified" },
+    ...(property.rera ? [{ label: "RERA Number", value: property.rera }] : []),
+    { label: "Possession", value: property.possession || "Not specified" },
     { label: "Size Range", value: property.size || property.area },
     { label: "Investment", value: property.investment || "High Growth" },
     ...(property.paymentPlan ? [{ label: "Payment Plan", value: property.paymentPlan }] : []),
   ];
 
-  const nearbyPlaces = [
+  const nearbyPlaces = property.nearbyPlaces || [
     { icon: "🚇", label: "Metro Station", time: "2 min" },
     { icon: "🛣️", label: "Expressway", time: "5 min" },
     { icon: "✈️", label: "Airport", time: "35 min" },
@@ -248,7 +234,7 @@ ${formData.message || "No Message"}
 
         <section className="hero-section">
           <div className="hero-copy">
-            <span className="hero-tag">Premium Commercial Investment</span>
+            <span className="hero-tag">{property.heroTag || "Premium Commercial Investment"}</span>
             <h1>{property.title}</h1>
             <div className="hero-location">
               <MapPin size={18} />
@@ -257,17 +243,17 @@ ${formData.message || "No Message"}
             <p className="hero-description">{property.description}</p>
             <div className="hero-meta-row">
               <div className="hero-meta-card">
-                <span>Starting Price</span>
+                <span>{property.priceLabel || "Starting Price"}</span>
                 <strong>{property.price}</strong>
               </div>
               <div className="hero-meta-card">
                 <span>Builder</span>
                 <strong>{property.builder}</strong>
               </div>
-              <div className="hero-meta-card">
+              {property.rating != null && <div className="hero-meta-card">
                 <span>Rating</span>
                 <strong>{property.rating} / 5</strong>
-              </div>
+              </div>}
             </div>
 
             <div className="hero-actions">
@@ -280,9 +266,10 @@ ${formData.message || "No Message"}
             </div>
 
             <div className="hero-highlights">
-              <div className="highlight-pill"><Star size={14} /> Top rated investment</div>
-              <div className="highlight-pill"><ShieldCheck size={14} /> Pre-launch price benefits</div>
-              <div className="highlight-pill"><Sparkles size={14} /> Ready for leasing</div>
+              {(property.heroHighlights || ["Top rated investment", "Pre-launch price benefits", "Ready for leasing"]).map((highlight, index) => {
+                const HighlightIcon = [Star, ShieldCheck, Sparkles][index % 3];
+                return <div className="highlight-pill" key={highlight}><HighlightIcon size={14} /> {highlight}</div>;
+              })}
             </div>
           </div>
 
@@ -311,7 +298,7 @@ ${formData.message || "No Message"}
 
       {/* ===== VALUE HIGHLIGHT CARDS ===== */}
       <section className="summary-grid">
-        <div className="summary-card"><span>Investment Outlook</span><strong>High ROI</strong></div>
+        <div className="summary-card"><span>Investment Outlook</span><strong>{property.investmentOutlook || "High ROI"}</strong></div>
         <div className="summary-card"><span>Possession</span><strong>{property.possession || "Immediate"}</strong></div>
         <div className="summary-card"><span>Property Size</span><strong>{property.size || property.area}</strong></div>
         <div className="summary-card"><span>Best Use</span><strong>{property.investment || "Commercial"}</strong></div>
@@ -347,11 +334,11 @@ ${formData.message || "No Message"}
                   <div className="section-header">
                     <div>
                       <h2>Project Overview</h2>
-                      <p>Complete commercial project details and investment profile.</p>
+                      <p>{property.overviewSubtitle || "Complete commercial project details and investment profile."}</p>
                     </div>
-                    <a href={brochureLink} className="secondary-btn small" download>
+                    {property.brochure && <a href={brochureLink} className="secondary-btn small" download>
                       <Download size={15} /> Brochure
-                    </a>
+                    </a>}
                   </div>
 
                   <div className="overview-grid">
@@ -365,9 +352,11 @@ ${formData.message || "No Message"}
                         </div>
                       )}
                       <ul className="overview-list">
-                        <li>{property.landArea || "Premium location and thoughtfully planned development."}</li>
-                        <li>{property.towers || "Designed for a high-quality modern lifestyle."}</li>
-                        <li>{property.launchPrice ? `Launch price: ${property.launchPrice}` : "Excellent long-term investment potential."}</li>
+                        {(property.overviewPoints || [
+                          property.landArea || "Premium location and thoughtfully planned development.",
+                          property.towers || "Designed for a high-quality modern lifestyle.",
+                          property.launchPrice ? `Launch price: ${property.launchPrice}` : "Excellent long-term investment potential.",
+                        ]).map((point) => <li key={point}>{point}</li>)}
                       </ul>
                     </div>
 
@@ -381,6 +370,40 @@ ${formData.message || "No Message"}
                     </div>
                   </div>
                 </div>
+                {property.plotOptions?.length > 0 && (
+                  <div className="section-card investment-profile-card">
+                    <h2>Plot Sizes & Tree Counts</h2>
+                    <div className="investment-option-grid">
+                      {property.plotOptions.map((option) => (
+                        <div className="investment-option" key={option.size}>
+                          <strong>{option.size}</strong>
+                          <span>{option.trees}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <h2>Illustrative 1-Acre Calculation</h2>
+                    <dl className="investment-calculation">
+                      {property.investmentCalculation.map((item) => (
+                        <div className="investment-calculation-row" key={item.label}>
+                          <dt>{item.label}</dt>
+                          <dd>{item.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p className="investment-disclaimer">{property.investmentDisclaimer}</p>
+                  </div>
+                )}
+                {property.plantationManagement?.length > 0 && (
+                  <div className="section-card investment-profile-card">
+                    <h2>Plantation Management by Heartwood</h2>
+                    <p className="section-copy">
+                      Plantation activities are described for the agreed 15-year period and are subject to the signed Plantation Management Agreement.
+                    </p>
+                    <ul className="plantation-management-list">
+                      {property.plantationManagement.map((activity) => <li key={activity}>{activity}</li>)}
+                    </ul>
+                  </div>
+                )}
                 {property.floorProgram?.length > 0 && (
                   <div className="section-card floor-program-card">
                     <div className="section-header">
@@ -406,7 +429,7 @@ ${formData.message || "No Message"}
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                 <div className="section-card">
                   <h2>Project Amenities</h2>
-                  <p className="section-copy">Premium spaces designed for modern high-end commercial success.</p>
+                  <p className="section-copy">{property.amenitiesIntro || "Premium spaces designed for modern high-end commercial success."}</p>
                   <div className="amenity-grid">
                     {property.amenities?.map((item) => (
                       <div key={item} className="amenity-card">
@@ -453,7 +476,7 @@ ${formData.message || "No Message"}
                 <div className="section-card">
                   <h2>Location Advantages</h2>
                   <p className="section-copy">Nearby primary landmarks and transit corridors.</p>
-                  <div className="location-grid">
+                  {nearbyPlaces.length > 0 && <div className="location-grid">
                     {nearbyPlaces.map((place) => (
                       <div key={place.label} className="location-card">
                         <span className="loc-emoji">{place.icon}</span>
@@ -463,10 +486,11 @@ ${formData.message || "No Message"}
                         </div>
                       </div>
                     ))}
-                  </div>
-                  <div className="map-card">
+                  </div>}
+                  {property.locationNote && <p className="section-copy">{property.locationNote}</p>}
+                  {property.showLocationMap !== false && <div className="map-card">
                     <iframe src={mapSrc} title="Project location" loading="lazy" allowFullScreen />
-                  </div>
+                  </div>}
                 </div>
               </motion.div>
             )}
@@ -484,7 +508,7 @@ ${formData.message || "No Message"}
               </div>
               {showFAQ && (
                 <div className="faq-list">
-                  {faqItems.map((item, index) => (
+                  {(property.faqItems || faqItems).map((item, index) => (
                     <div key={item.q} className="faq-item">
                       <button className="faq-question" onClick={() => setExpandedFAQ((prev) => (prev === index ? null : index))}>
                         <span>{item.q}</span>
@@ -523,8 +547,10 @@ ${formData.message || "No Message"}
             </div>
 
             <div className="trust-strip">
-              <div><CheckCircle2 size={16} color="var(--gold-primary)" /><span>RERA Approved</span></div>
-              <div><ShieldCheck size={16} color="var(--gold-primary)" /><span>Secure Escrow</span></div>
+              {(property.trustItems || ["RERA Approved", "Secure Escrow"]).map((item, index) => {
+                const TrustIcon = index === 0 ? CheckCircle2 : ShieldCheck;
+                return <div key={item}><TrustIcon size={16} color="var(--gold-primary)" /><span>{item}</span></div>;
+              })}
             </div>
           </div>
 
@@ -570,7 +596,7 @@ ${formData.message || "No Message"}
                 {/* Fixed Field: Property Read-only Input */}
                 <div className="modal-field">
                   <label>Selected Asset Property</label>
-                  <input type="text" name="property" value={formData.property} readOnly className="readonly-input" />
+                  <input type="text" name="property" value={property.title} readOnly className="readonly-input" />
                 </div>
 
                 <div className="modal-field">

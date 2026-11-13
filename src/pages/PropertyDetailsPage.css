@@ -1695,6 +1695,99 @@ font-size:.8rem;
 
 }
 
+.investment-profile-card{
+    margin-top:28px;
+}
+
+.investment-profile-card h2{
+    margin-bottom:18px;
+    color:#111;
+    font-size:1.55rem;
+}
+
+.investment-profile-card h2:not(:first-child){
+    margin-top:34px;
+}
+
+.investment-option-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+}
+
+.investment-option{
+    display:grid;
+    gap:6px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:var(--surface-2);
+}
+
+.investment-option strong,
+.investment-calculation-row dd{
+    color:#5e4615;
+    font-weight:700;
+}
+
+.investment-option span,
+.investment-calculation-row dt{
+    color:#666;
+}
+
+.investment-calculation{
+    display:grid;
+    gap:0;
+}
+
+.investment-calculation-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:20px;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.investment-calculation-row dd{
+    margin:0;
+    text-align:right;
+}
+
+.investment-disclaimer{
+    margin-top:24px;
+    padding:16px 18px;
+    border-left:4px solid var(--gold);
+    border-radius:8px;
+    background:#faf8f2;
+    color:#555;
+    font-size:.92rem;
+    line-height:1.8;
+}
+
+.plantation-management-list{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px 24px;
+    padding-left:20px;
+    color:#555;
+}
+
+@media (max-width: 700px){
+    .investment-option-grid,
+    .plantation-management-list{
+        grid-template-columns:1fr;
+    }
+
+    .investment-calculation-row{
+        grid-template-columns:1fr;
+        gap:6px;
+    }
+
+    .investment-calculation-row dd{
+        text-align:left;
+    }
+}
+
 /*==========================================
  OVERVIEW GRID
 ==========================================*/

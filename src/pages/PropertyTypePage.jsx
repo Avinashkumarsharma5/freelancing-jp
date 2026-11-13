@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   Sparkles,
   ChevronRight,
-  ChevronLeft,
   Phone,
   MessageCircle, 
   Heart,
@@ -33,9 +32,7 @@ import {
   CheckCircle,
   Crown,
   Gem,
-  Infinity as InfinityIcon,
   Droplets,
-  Wind,
   Coffee,
   Wifi,
   Tv,
@@ -43,9 +40,7 @@ import {
   Dumbbell,
   Utensils,
   Trees,
-  Lock,
   Sun,
-  Cloud,
 } from "lucide-react";
 import "./PropertyTypePage.css";
 

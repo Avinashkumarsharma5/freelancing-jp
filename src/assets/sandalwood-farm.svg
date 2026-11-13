@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">Sandalwood plantation illustration</title>
+  <desc id="description">Rows of young trees across an agricultural landscape at sunrise.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8e6bf"/>
+      <stop offset="1" stop-color="#f5f0dc"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ba66a"/>
+      <stop offset="1" stop-color="#334d36"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#sky)"/>
+  <circle cx="920" cy="170" r="78" fill="#e1b45f" opacity=".8"/>
+  <path d="M0 365 220 260l170 92 218-142 224 155 174-103 194 105v333H0Z" fill="#71865d"/>
+  <path d="M0 410c205-70 360-28 566-70s422-25 634 16v344H0Z" fill="url(#field)"/>
+  <path d="M0 548c225-75 431-62 636-91s401-13 564 28v215H0Z" fill="#405c3c"/>
+  <g fill="#d2ad68" opacity=".55">
+    <path d="M89 700 460 398h20L185 700Zm226 0 264-290h18L367 700Zm269 0 192-286h17L629 700Zm264 0 137-266h16L910 700Z"/>
+  </g>
+  <g fill="#36583d" stroke="#294632" stroke-width="4">
+    <g transform="translate(170 430)"><path d="M0 68v70" stroke="#71563a" stroke-width="12"/><circle cy="40" r="42"/><circle cx="-24" cy="53" r="28"/><circle cx="25" cy="55" r="28"/></g>
+    <g transform="translate(355 405)"><path d="M0 68v82" stroke="#71563a" stroke-width="12"/><circle cy="40" r="45"/><circle cx="-26" cy="55" r="30"/><circle cx="27" cy="57" r="30"/></g>
+    <g transform="translate(557 390)"><path d="M0 68v88" stroke="#71563a" stroke-width="12"/><circle cy="40" r="48"/><circle cx="-29" cy="57" r="32"/><circle cx="29" cy="57" r="32"/></g>
+    <g transform="translate(774 410)"><path d="M0 68v80" stroke="#71563a" stroke-width="12"/><circle cy="40" r="44"/><circle cx="-26" cy="54" r="29"/><circle cx="27" cy="56" r="29"/></g>
+    <g transform="translate(987 440)"><path d="M0 68v70" stroke="#71563a" stroke-width="12"/><circle cy="40" r="40"/><circle cx="-24" cy="52" r="27"/><circle cx="24" cy="53" r="27"/></g>
+  </g>
+  <g fill="#537247" opacity=".85">
+    <circle cx="110" cy="545" r="19"/><circle cx="272" cy="534" r="17"/><circle cx="450" cy="515" r="18"/>
+    <circle cx="670" cy="540" r="19"/><circle cx="880" cy="550" r="18"/><circle cx="1090" cy="570" r="19"/>
+  </g>
+  <path d="M0 643c255-57 439-27 652-59s364-23 548 10v106H0Z" fill="#263e30" opacity=".72"/>
+</svg>
