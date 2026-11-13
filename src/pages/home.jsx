@@ -871,7 +871,7 @@ Thank you.`;
 // ENHANCEMENT COMPONENTS (unchanged)
 // ======================================
 
-function LoadingScreen({ onComplete }) {
+export function LoadingScreen({ onComplete }) {
   useEffect(() => {
     const timer = setTimeout(onComplete, 3500);
     return () => clearTimeout(timer);
@@ -1816,11 +1816,8 @@ function FloatingActions() {
 // MAIN HOMEPAGE
 // ======================================
 function HomePage() {
-  const [loading, setLoading] = useState(true);
-
 return (
     <>
-      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <ScrollProgress />
       <main>
         <Navbar />

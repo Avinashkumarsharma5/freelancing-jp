@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/home";
+import HomePage, { LoadingScreen } from "./pages/home";
 import PropertyTypePage from "./pages/PropertyTypePage";
 import LocationDetailsPage from "./pages/LocationDetailsPage";
 import Contact from "./pages/Contact";
 import PropertyDetails from "./pages/PropertyDetails";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <Routes>
+    <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      <Routes>
 
       <Route
         path="/"
@@ -35,7 +40,8 @@ path="/property/:slug"
 element={<PropertyDetails/>}
 />
 
-    </Routes>
+      </Routes>
+    </>
   );
 }
 
