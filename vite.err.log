@@ -1,0 +1,4 @@
+[2m2:43:26 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] SyntaxError: The requested module '/node_modules/.vite/deps/lucide-react.js?v=a5cc21f2' does not provide an export named 'Linkedin'
+[2m2:43:26 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/pages/home.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m2:43:26 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] SyntaxError: The requested module '/node_modules/.vite/deps/lucide-react.js?v=a5cc21f2' does not provide an export named 'Linkedin'
+[2m2:43:26 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/pages/home.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
