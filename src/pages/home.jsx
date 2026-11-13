@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo2.png";
+import logo from "../assets/logo2-optimized.png";
 import heroVideo from "../assets/jpmp5.mp4";
 import heroPoster from "../assets/hero-poster.svg";
 import CityCenter32 from "../assets/City Center 32.jpg";
@@ -19,7 +19,7 @@ import citycenterImg from "../assets/citycenter.jpg";
 import mayurforestImg from "../assets/mayurforest.jpg";
 import noidaImg from "../assets/noida.jpg";
 import BentoLaunch from "../assets/gaur-bento-launch.jpg";
-import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
+import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.jpg";
 import PlumeLaunch from "../assets/gaur-plume-launch.jpg";
 import PlumeOverview from "../assets/gaur-plume-overview.jpg";
 import PlumeClubhouse from "../assets/gaur-plume-clubhouse.jpg";
@@ -870,6 +870,42 @@ Thank you.`;
 // ======================================
 // ENHANCEMENT COMPONENTS (unchanged)
 // ======================================
+
+function LoadingScreen({ onComplete }) {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 3500);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
+  return (
+    <div className="luxury-loader">
+      <div className="loader-bg-grid"></div>
+      <div className="loader-card">
+        <div className="logo-wrapper">
+          <img src={logo} alt="Milesquare Realty" className="loader-logo" />
+          <div className="gold-ring"></div>
+        </div>
+        <h1 className="loader-title">Milesquare Realty</h1>
+        <p className="loader-tagline">Luxury Living Across NCR</p>
+        <div className="premium-progress">
+          <motion.div
+            className="premium-progress-fill"
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 3 }}
+          />
+        </div>
+        <motion.div
+          className="loader-percent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          Loading Premium Properties...
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
 function ScrollProgress() {
   const progressRef = useRef(null);
@@ -1780,8 +1816,11 @@ function FloatingActions() {
 // MAIN HOMEPAGE
 // ======================================
 function HomePage() {
+  const [loading, setLoading] = useState(true);
+
 return (
     <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <ScrollProgress />
       <main>
         <Navbar />
