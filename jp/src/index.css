@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
+}
+
+/* Performance & Smoothness tweaks */
+*{
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .3s, color .3s, border-color .3s;
+}
+
+.motion-element{
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.card{
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, filter .5s;
+}
