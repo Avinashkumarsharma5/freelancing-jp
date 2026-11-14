@@ -1,34 +1,34 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo2.png";
+import logo from "../assets/logo2-optimized.png";
 import heroVideo from "../assets/jpmp5.mp4";
-import logo2 from "../assets/logo.png";
-import CityCenter32 from "../assets/City Center 32.png";
+import heroPoster from "../assets/hero-poster.svg";
+import CityCenter32 from "../assets/City Center 32.jpg";
 import DomanImage from "../assets/domam.png";
 import JaiprakashImage from "../assets/jp.png";
 
-import MayurForestVilla from "../assets/Mayur Forest Villa.png";
-import BhutaniAstrathum from "../assets/Bhutani Astrathum.png";
-import ResidentialPlots from "../assets/residential plots.png";
-import StudioApartments from "../assets/studio apartments.png";
-import CommercialOffice from "../assets/Commercial Office.png";
-import RetailShops from "../assets/Retail Shops.png";
-import FoodCourt from "../assets/food court.png";
-import astrathumImg from "../assets/astrathum.png";
-import foodzaniImg from "../assets/foodzani.png";
-import citycenterImg from "../assets/citycenter.png";
-import mayurforestImg from "../assets/mayurforest.png";
-import noidaImg from "../assets/noida.png";
-import BentoLaunch from "../assets/gaur-bento-launch.png";
-import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.png";
-import PlumeLaunch from "../assets/gaur-plume-launch.png";
-import PlumeOverview from "../assets/gaur-plume-overview.png";
-import PlumeClubhouse from "../assets/gaur-plume-clubhouse.png";
+import MayurForestVilla from "../assets/Mayur Forest Villa.jpg";
+import BhutaniAstrathum from "../assets/Bhutani Astrathum.jpg";
+import ResidentialPlots from "../assets/residential plots.jpg";
+import StudioApartments from "../assets/studio apartments.jpg";
+import CommercialOffice from "../assets/Commercial Office.jpg";
+import RetailShops from "../assets/Retail Shops.jpg";
+import FoodCourt from "../assets/food court.jpg";
+import astrathumImg from "../assets/astrathum.jpg";
+import foodzaniImg from "../assets/foodzani.jpg";
+import citycenterImg from "../assets/citycenter.jpg";
+import mayurforestImg from "../assets/mayurforest.jpg";
+import noidaImg from "../assets/noida.jpg";
+import BentoLaunch from "../assets/gaur-bento-launch.jpg";
+import BentoTerracePlan from "../assets/gaur-bento-terrace-plan.jpg";
+import PlumeLaunch from "../assets/gaur-plume-launch.jpg";
+import PlumeOverview from "../assets/gaur-plume-overview.jpg";
+import PlumeClubhouse from "../assets/gaur-plume-clubhouse.jpg";
 import NirajKumar from "../assets/niraj-kumar.png";
-import YamunaEducationHub from "../assets/yamuna-education-hub.png";
-import YamunaEmployment from "../assets/yamuna-employment.png";
-import BentoExteriorDay from "../assets/gaur-bento-exterior-day.png";
-import BentoTowersView from "../assets/gaur-bento-towers-view.png";
-import BentoRetailFront from "../assets/gaur-bento-retail-front.png";
+import YamunaEducationHub from "../assets/yamuna-education-hub.jpg";
+import YamunaEmployment from "../assets/yamuna-employment.jpg";
+import BentoExteriorDay from "../assets/gaur-bento-exterior-day.jpg";
+import BentoTowersView from "../assets/gaur-bento-towers-view.jpg";
+import BentoRetailFront from "../assets/gaur-bento-retail-front.jpg";
 import BentoWalkthrough from "../assets/gaur-bento-walkthrough.mp4";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -871,7 +871,7 @@ Thank you.`;
 // ENHANCEMENT COMPONENTS (unchanged)
 // ======================================
 
-function LoadingScreen({ onComplete }) {
+export function LoadingScreen({ onComplete }) {
   useEffect(() => {
     const timer = setTimeout(onComplete, 3500);
     return () => clearTimeout(timer);
@@ -882,7 +882,7 @@ function LoadingScreen({ onComplete }) {
       <div className="loader-bg-grid"></div>
       <div className="loader-card">
         <div className="logo-wrapper">
-          <img src={logo2} alt="Milesquare Realty" className="loader-logo" />
+          <img src={logo} alt="Milesquare Realty" className="loader-logo" />
           <div className="gold-ring"></div>
         </div>
         <h1 className="loader-title">Milesquare Realty</h1>
@@ -908,73 +908,31 @@ function LoadingScreen({ onComplete }) {
 }
 
 function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(null);
 
   useEffect(() => {
+    let frameId = 0;
     const updateProgress = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0;
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setProgress(progress);
+        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+        progressRef.current?.style.setProperty("--scroll-progress", String(progress));
+      });
     };
-    window.addEventListener('scroll', updateProgress);
-    return () => window.removeEventListener('scroll', updateProgress);
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   return (
     <div className="scroll-progress-bar">
-      <div className="scroll-progress-fill" style={{ width: `${progress}%` }} />
-    </div>
-  );
-}
-
-function HeroGlow() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    const rect = heroRef.current?.getBoundingClientRect();
-    if (rect) {
-      setPosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    }
-  };
-
-  return (
-    <div className="hero-glow-wrapper" ref={heroRef} onMouseMove={handleMouseMove}>
-      <div className="hero-glow" style={{ left: position.x - 200, top: position.y - 200 }} />
-    </div>
-  );
-}
-
-const floatingParticlesData = Array.from({ length: 30 }, (_, i) => ({
-  id: i,
-  size: Math.random() * 8 + 4,
-  duration: Math.random() * 20 + 10,
-  delay: Math.random() * 10,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-}));
-
-function FloatingParticles() {
-  return (
-    <div className="floating-particles">
-      {floatingParticlesData.map((p) => (
-        <div
-          key={p.id}
-          className="particle"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
-          }}
-        />
-      ))}
+      <div className="scroll-progress-fill" ref={progressRef} />
     </div>
   );
 }
@@ -988,7 +946,7 @@ function VideoPopup({ videoSrc, isOpen, onClose }) {
         <button className="video-popup-close" onClick={onClose}>
           <X size={32} />
         </button>
-        <video controls autoPlay className="video-popup-player">
+        <video controls autoPlay preload="none" className="video-popup-player">
           <source src={videoSrc} type="video/mp4" />
         </video>
       </div>
@@ -1115,17 +1073,53 @@ function Navbar() {
 // ======================================
 function PremiumVideoHero() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const video = heroRef.current;
+    if (!video) return;
+
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const saveData = navigator.connection?.saveData === true;
+    if (motionPreference.matches || saveData) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || document.hidden) {
+        video.pause();
+        return;
+      }
+
+      video.play().catch((error) => {
+        if (error.name !== "NotAllowedError") {
+          console.error("Hero video could not start:", error);
+        }
+      });
+    }, { rootMargin: "100px" });
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, []);
 
   return (
     <section className="premium-hero">
       <div className="hero-video-container">
-        <video className="hero-video" autoPlay muted loop playsInline preload="auto">
+        <video
+          ref={heroRef}
+          className="hero-video"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={heroPoster}
+          aria-hidden="true"
+        >
           <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="hero-video-overlay"></div>
       </div>
-      <HeroGlow />
-      <FloatingParticles />
       <div className="site-container hero-content">
         <div className="hero-left">
           <motion.h1 initial="hidden" animate="visible" variants={fadeUp}>
@@ -1822,11 +1816,8 @@ function FloatingActions() {
 // MAIN HOMEPAGE
 // ======================================
 function HomePage() {
-  const [loading, setLoading] = useState(true);
-
 return (
     <>
-      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <ScrollProgress />
       <main>
         <Navbar />
